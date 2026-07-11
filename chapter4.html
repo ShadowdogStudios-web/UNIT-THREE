@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unit 3 Chapter 4: Fear and Exclusion</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0d0c;
+      --ink: #f7f2e7;
+      --muted: #d0c7b9;
+      --quiet: #958b7d;
+      --line: rgba(255,255,255,.15);
+      --gold: #f0bd55;
+      --brass: #f0bd55;
+      --teal: #68c8c2;
+      --steel: #65b9d2;
+      --coral: #d8674f;
+      --brick: #d8674f;
+      --green: #96bd71;
+      --blue: #7fa7d9;
+      --panel: rgba(16,18,17,.84);
+      --panel-strong: rgba(25,27,25,.94);
+      --paper: #eadbbd;
+      --ink-dark: #251d13;
+      --radius: 8px;
+    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; width: 100%; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+    }
+    button, textarea { font: inherit; color: inherit; }
+    h1, h2, h3, p { margin-top: 0; }
+    .app {
+      min-height: 100vh;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(239,198,91,.16), transparent 30%),
+        linear-gradient(225deg, rgba(79,199,183,.13), transparent 34%),
+        linear-gradient(180deg, #0b0d0c, #1c1711 58%, #080a09);
+    }
+    .app::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 70px 70px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.85), transparent 82%);
+    }
+    .topbar {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(300px, 1.2fr) minmax(220px, .8fr) auto;
+      gap: 16px;
+      align-items: center;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(11,13,12,.84);
+      backdrop-filter: blur(18px);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .mark {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      flex: 0 0 auto;
+      border: 2px solid rgba(255,255,255,.62);
+      border-radius: 8px;
+      color: #17120a;
+      background: linear-gradient(135deg, var(--brass), var(--steel));
+      font-weight: 950;
+    }
+    .eyebrow { display: block; color: var(--gold); font-size: 12px; font-weight: 950; text-transform: uppercase; }
+    h1 { margin-bottom: 0; font-size: 21px; line-height: 1.12; letter-spacing: 0; }
+    .meter-row { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 7px; color: var(--muted); font-size: 12px; font-weight: 850; }
+    .phase { color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 230px; }
+    .progress-track { height: 8px; overflow: hidden; border-radius: 999px; background: rgba(255,255,255,.12); }
+    .progress-fill { width: 10%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--brick), var(--brass), var(--green), var(--steel)); transition: width .35s ease; }
+    .top-controls { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; min-width: 0; }
+    .icon-btn, .link-btn {
+      display: inline-grid;
+      place-items: center;
+      min-width: 42px;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.08);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+    }
+    .link-btn { padding: 0 12px; color: var(--ink); font-weight: 900; font-size: 13px; }
+    .icon-btn:hover, .icon-btn:focus-visible, .link-btn:hover, .link-btn:focus-visible { transform: translateY(-1px); border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.14); outline: none; }
+    .icon-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .shell {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 264px minmax(0, 1fr) 318px;
+      gap: 14px;
+      height: calc(100vh - 83px);
+      padding: 14px;
+      min-height: 0;
+    }
+    .rail, .notebook, .stage {
+      min-height: 0;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 24px 60px rgba(0,0,0,.24);
+    }
+    .rail { padding: 12px; }
+    .rail-title { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 12px; color: var(--muted); font-size: 12px; font-weight: 900; text-transform: uppercase; }
+    .lesson-nav { display: grid; gap: 10px; }
+    .nav-item { display: grid; grid-template-columns: 48px 1fr; gap: 10px; align-items: center; width: 100%; min-height: 58px; padding: 10px; border: 1px solid rgba(255,255,255,.12); border-radius: 8px; color: var(--ink); background: rgba(255,255,255,.055); cursor: pointer; text-align: left; }
+    .nav-item:hover, .nav-item:focus-visible, .nav-item.is-active { border-color: rgba(239,198,91,.78); background: rgba(239,198,91,.12); outline: none; }
+    .nav-num { display: grid; place-items: center; width: 40px; height: 34px; border-radius: 8px; color: #17120a; background: linear-gradient(135deg, var(--gold), #f5d97c); font-weight: 950; }
+    .nav-copy { display: grid; gap: 2px; min-width: 0; }
+    .nav-copy strong { overflow-wrap: anywhere; font-size: 13px; line-height: 1.1; }
+    .nav-copy span { color: var(--muted); font-size: 12px; line-height: 1.15; }
+    .stage { background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025)), rgba(10,11,10,.78); }
+    .slide { display: none; min-height: 100%; padding: 48px; animation: slideIn .28s ease both; }
+    .slide.is-active { display: block; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .slide-kicker { margin-bottom: 16px; color: var(--gold); font-size: 13px; font-weight: 950; text-transform: uppercase; }
+    .slide h2 { max-width: 940px; margin-bottom: 16px; font-size: clamp(36px, 5.7vw, 64px); line-height: 1; letter-spacing: 0; }
+    .lab-slide h2, .path-slide h2 { max-width: 980px; font-size: clamp(30px, 4vw, 46px); line-height: 1.05; }
+    .lede { max-width: 880px; color: var(--muted); font-size: clamp(18px, 2vw, 23px); line-height: 1.45; }
+    .content-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 14px; margin-top: 28px; }
+    .span-12 { grid-column: span 12; } .span-7 { grid-column: span 7; } .span-5 { grid-column: span 5; }
+    .stack { display: grid; gap: 12px; align-content: start; }
+    .callout, .info-card, .source-card, .activity-box, .preview, .prompt-box, .mini-lab, .path-step {
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 8px;
+      background: rgba(255,255,255,.055);
+      box-shadow: 0 18px 42px rgba(0,0,0,.18);
+      padding: 16px;
+    }
+    .callout, .prompt-box { border-color: rgba(239,198,91,.32); background: linear-gradient(135deg, rgba(239,198,91,.14), rgba(255,255,255,.045)); }
+    .callout h3, .info-card strong, .source-card strong, .activity-box h3, .prompt-box strong, .mini-lab strong { display: block; margin-bottom: 8px; color: var(--ink); font-size: 15px; line-height: 1.2; }
+    .callout p, .info-card p, .source-card p, .prompt-box p, .mini-lab span { margin-bottom: 0; color: var(--muted); line-height: 1.45; }
+    .hero-board, .visual { position: relative; min-height: 360px; overflow: hidden; border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius); background: linear-gradient(135deg, rgba(219,115,95,.13), rgba(79,199,183,.1)), rgba(255,255,255,.045); }
+    .hero-path, .route-line, .time-line { position: absolute; left: 10%; right: 10%; top: 50%; height: 5px; border-radius: 999px; background: linear-gradient(90deg, var(--brass), var(--steel), var(--brick)); animation: pulseLine 2.8s ease-in-out infinite; }
+    @keyframes pulseLine { 0%,100% { opacity: .45; } 50% { opacity: 1; } }
+    .hero-node { position: absolute; width: 215px; padding: 14px; border: 1px solid rgba(255,255,255,.16); border-radius: 8px; background: rgba(8,10,10,.82); box-shadow: 0 16px 32px rgba(0,0,0,.24); }
+    .hero-node strong { display: block; color: var(--gold); margin-bottom: 6px; }
+    .hero-node span { color: var(--muted); font-size: 13px; line-height: 1.35; }
+    .hero-node.one { left: 8%; top: 14%; } .hero-node.two { right: 8%; top: 34%; } .hero-node.three { left: 22%; bottom: 10%; }
+    .path-board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .path-step { display: grid; grid-template-columns: 42px 1fr; gap: 10px; align-items: center; min-height: 70px; }
+    .path-step b { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 8px; color: #17120a; background: var(--teal); }
+    .path-step span { color: var(--muted); line-height: 1.25; }
+    .map-land { position: absolute; width: 110px; height: 90px; border-radius: 8px; background: rgba(239,198,91,.7); box-shadow: 0 16px 34px rgba(0,0,0,.24); }
+    .map-land.one { left: 10%; top: 18%; } .map-land.two { right: 12%; top: 30%; background: rgba(79,199,183,.72); } .map-land.three { left: 36%; bottom: 16%; background: rgba(219,115,95,.72); }
+    .route-line { transform: rotate(-8deg); } .route-arrow { position: absolute; left: 48%; top: 42%; width: 18px; height: 18px; border-top: 4px solid var(--ink); border-right: 4px solid var(--ink); transform: rotate(45deg); animation: arrowMove 2.6s ease-in-out infinite; }
+    @keyframes arrowMove { 0%,100% { translate: -18px 8px; opacity: .45; } 50% { translate: 26px 0; opacity: 1; } }
+    .map-label { position: absolute; padding: 8px 10px; border-radius: 8px; color: #17120a; background: var(--gold); font-weight: 950; text-transform: uppercase; font-size: 12px; }
+    .map-label.left { left: 8%; bottom: 12%; } .map-label.right { right: 8%; top: 12%; background: var(--coral); }
+    .pressure-bar { position: absolute; bottom: 0; width: 16%; border-radius: 8px 8px 0 0; background: linear-gradient(180deg, var(--coral), rgba(219,115,95,.22)); animation: barRise 2.2s ease-in-out infinite; }
+    .b1 { left: 12%; height: 30%; } .b2 { left: 32%; height: 62%; animation-delay: .2s; } .b3 { left: 52%; height: 45%; background: linear-gradient(180deg, var(--gold), rgba(239,198,91,.2)); animation-delay: .4s; } .b4 { left: 72%; height: 78%; background: linear-gradient(180deg, var(--teal), rgba(79,199,183,.2)); animation-delay: .6s; }
+    @keyframes barRise { 0%,100% { transform: scaleY(.9); opacity: .65; } 50% { transform: scaleY(1); opacity: 1; } }
+    .spark { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 30px var(--gold); animation: spark 1.8s ease-in-out infinite; }
+    .s1 { left: 18%; top: 22%; } .s2 { left: 58%; top: 18%; animation-delay: .35s; } .s3 { right: 20%; top: 44%; animation-delay: .7s; }
+    @keyframes spark { 0%,100% { scale: .7; opacity: .45; } 50% { scale: 1.2; opacity: 1; } }
+    .paper-sheet { position: absolute; left: 12%; top: 12%; width: 50%; min-height: 72%; padding: 18px; border-radius: 8px; color: var(--ink-dark); background: repeating-linear-gradient(0deg, transparent 0 31px, rgba(39,32,22,.13) 31px 32px), var(--paper); box-shadow: 0 18px 44px rgba(0,0,0,.32); transform: rotate(-2deg); }
+    .paper-sheet strong { display: block; margin-bottom: 12px; font-size: 20px; }
+    .paper-sheet span { display: block; margin-top: 10px; font-weight: 800; }
+    .stamp { position: absolute; right: 12%; bottom: 16%; padding: 18px; border: 3px solid var(--coral); border-radius: 8px; color: var(--coral); font-weight: 950; text-transform: uppercase; transform: rotate(8deg); }
+    .speech { position: absolute; max-width: 190px; padding: 14px; border-radius: 8px; color: #17120a; background: var(--gold); font-weight: 950; box-shadow: 0 16px 32px rgba(0,0,0,.24); }
+    .speech.one { left: 10%; top: 18%; } .speech.two { right: 12%; top: 38%; background: var(--teal); } .speech.three { left: 30%; bottom: 12%; background: var(--coral); }
+    .sound-line { position: absolute; left: 12%; right: 12%; top: 52%; height: 4px; border-radius: 999px; background: linear-gradient(90deg, var(--brass), var(--steel), var(--brick)); animation: pulseLine 2.4s ease-in-out infinite; }
+    .field-row { position: absolute; left: 8%; right: 8%; height: 36px; border-radius: 999px; background: repeating-linear-gradient(90deg, rgba(139,194,109,.85) 0 18px, rgba(239,198,91,.55) 18px 28px); animation: fieldMove 3.6s linear infinite; }
+    .field-row:nth-child(1) { top: 22%; } .field-row:nth-child(2) { top: 42%; animation-delay: .4s; } .field-row:nth-child(3) { top: 62%; animation-delay: .8s; }
+    @keyframes fieldMove { from { background-position: 0 0; } to { background-position: 56px 0; } }
+    .ledger-strip { position: absolute; left: 10%; right: 10%; bottom: 12%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .ledger-strip span { display: grid; place-items: center; min-height: 46px; border-radius: 8px; color: #17120a; background: var(--gold); font-weight: 950; }
+    .pillar { position: absolute; bottom: 20%; width: 70px; height: 190px; border-radius: 8px 8px 0 0; background: linear-gradient(180deg, var(--paper), rgba(239,227,198,.65)); animation: cardFloat 3s ease-in-out infinite; }
+    .p1 { left: 22%; } .p2 { left: 43%; animation-delay: .35s; } .p3 { left: 64%; animation-delay: .7s; }
+    .foundation { position: absolute; left: 16%; right: 16%; bottom: 12%; min-height: 48px; display: grid; place-items: center; border-radius: 8px; color: #17120a; background: var(--teal); font-weight: 950; text-transform: uppercase; }
+    @keyframes cardFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    .time-line { top: 48%; } .time-dot { position: absolute; width: 34px; height: 34px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 24px rgba(239,198,91,.4); animation: spark 2.2s ease-in-out infinite; }
+    .d1 { left: 18%; top: 43%; } .d2 { left: 48%; top: 43%; animation-delay: .35s; } .d3 { right: 18%; top: 43%; animation-delay: .7s; }
+    .time-card { position: absolute; left: 28%; right: 28%; bottom: 14%; display: grid; place-items: center; min-height: 64px; border-radius: 8px; color: #17120a; background: var(--gold); font-weight: 950; text-transform: uppercase; }
+    .source-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .source-card { display: grid; gap: 10px; min-height: 220px; align-content: start; }
+    .lab-btn { justify-self: start; min-height: 38px; padding: 9px 12px; border: 1px solid rgba(255,255,255,.14); border-radius: 8px; color: #17120a; background: var(--gold); cursor: pointer; font-weight: 900; }
+    .lab-btn:hover, .lab-btn:focus-visible, .lab-btn.is-selected { background: var(--teal); outline: none; }
+    .preview { color: var(--ink); background: rgba(79,199,183,.1); line-height: 1.5; min-height: 70px; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .field-label { display: grid; gap: 7px; color: var(--gold); font-size: 13px; font-weight: 900; }
+    textarea { width: 100%; min-height: 82px; resize: vertical; border: 1px solid rgba(255,255,255,.16); border-radius: 8px; padding: 10px; color: var(--ink); background: rgba(0,0,0,.24); outline: none; }
+    textarea:focus { border-color: rgba(79,199,183,.8); box-shadow: 0 0 0 3px rgba(79,199,183,.14); }
+    .vocab-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { display: inline-flex; align-items: center; min-height: 32px; padding: 7px 10px; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; color: var(--muted); background: rgba(255,255,255,.06); font-size: 12px; font-weight: 850; }
+    .notebook { padding: 18px; }
+    .notebook h2 { margin-bottom: 10px; color: var(--gold); font-size: 22px; line-height: 1.15; }
+    .notebook p { color: var(--muted); line-height: 1.46; }
+    .pulse-card { padding: 13px; margin-top: 12px; border: 1px solid rgba(255,255,255,.12); border-radius: 8px; background: rgba(255,255,255,.055); }
+    .pulse-card strong { display: block; margin-bottom: 8px; color: var(--ink); }
+    .mini-stat { display: grid; grid-template-columns: 48px 1fr; gap: 10px; align-items: center; margin-top: 10px; }
+    .mini-stat b { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 8px; color: #17120a; background: var(--teal); font-size: 18px; }
+    .mini-stat span { color: var(--muted); font-size: 13px; line-height: 1.3; }
+    @media (max-width: 1180px) {
+      .topbar { grid-template-columns: minmax(240px, 1fr) minmax(200px, 1fr); align-items: start; }
+      .top-controls { grid-column: 1 / -1; justify-content: flex-start; }
+      .shell { height: calc(100vh - 132px); }
+      .shell { grid-template-columns: 224px minmax(0, 1fr); }
+      .notebook { display: none; }
+      .span-7, .span-5 { grid-column: span 12; }
+      .source-grid, .path-board { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 820px) {
+      .app { overflow: auto; }
+      .topbar { grid-template-columns: 1fr; gap: 10px; }
+      .top-controls { justify-content: flex-start; flex-wrap: wrap; }
+      .shell { height: auto; min-height: 0; grid-template-columns: 1fr; }
+      .rail { overflow-x: auto; overflow-y: hidden; }
+      .lesson-nav { grid-auto-flow: column; grid-auto-columns: 210px; }
+      .stage { overflow: visible; }
+      .slide { min-height: 0; padding: 20px; }
+      .content-grid, .form-grid { grid-template-columns: 1fr; }
+      .content-grid > * { grid-column: span 12; }
+      h1 { font-size: 18px; }
+      .phase { max-width: 100%; }
+      .slide h2, .lab-slide h2, .path-slide h2 { font-size: 32px; }
+      .lede { font-size: 18px; }
+      .hero-board, .visual { min-height: 310px; }
+      .hero-node { position: relative; inset: auto !important; width: auto; margin: 10px; }
+      .hero-path { opacity: .4; }
+      .source-card { min-height: 0; }
+      .paper-sheet { position: relative; left: auto; top: auto; width: auto; min-height: 220px; margin: 14px; transform: none; }
+      .stamp { right: 18px; bottom: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><div class="mark">U3</div><div><span class="eyebrow">Industry, Immigration & Reform</span><h1>Chapter 4: Fear and Exclusion</h1></div></div>
+      <div class="meter" aria-live="polite">
+        <div class="meter-row"><span id="sectionCounter">Section 1 of 9</span><span class="phase" id="phaseLabel">Opening</span></div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+      <div class="top-controls">
+        <a class="link-btn" href="index.html">Unit Home</a>
+        <a class="link-btn" href="chapter3.html">Previous</a>
+        <button class="icon-btn" id="prevBtn" type="button" aria-label="Previous section"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></svg></button>
+        <button class="icon-btn" id="nextBtn" type="button" aria-label="Next section"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg></button>
+        <a class="link-btn" href="chapter5.html">Next</a>
+      </div>
+    </header>
+    <div class="shell">
+      <aside class="rail">
+        <div class="rail-title"><span>Investigation Path</span><span>Ch. 4</span></div>
+        <nav class="lesson-nav" aria-label="Chapter sections"><button class="nav-item is-active" type="button" data-slide="0"><span class="nav-num">1</span><span class="nav-copy"><strong>Opening</strong><span>Start here</span></span></button>
+<button class="nav-item" type="button" data-slide="1"><span class="nav-num">2</span><span class="nav-copy"><strong>Evidence Path</strong><span>Unit thread</span></span></button>
+<button class="nav-item" type="button" data-slide="2"><span class="nav-num">3</span><span class="nav-copy"><strong>The first door slams: Chinese...</strong><span>Evidence</span></span></button>
+<button class="nav-item" type="button" data-slide="3"><span class="nav-num">4</span><span class="nav-copy"><strong>Inventing a science of prejudice</strong><span>Evidence</span></span></button>
+<button class="nav-item" type="button" data-slide="4"><span class="nav-num">5</span><span class="nav-copy"><strong>The road to the closed gate</strong><span>Evidence</span></span></button>
+<button class="nav-item" type="button" data-slide="5"><span class="nav-num">6</span><span class="nav-copy"><strong>Illinois: a city&#x27;s fears come...</strong><span>Evidence</span></span></button>
+<button class="nav-item" type="button" data-slide="6"><span class="nav-num">7</span><span class="nav-copy"><strong>Historian Lab</strong><span>Analyze</span></span></button>
+<button class="nav-item" type="button" data-slide="7"><span class="nav-num">8</span><span class="nav-copy"><strong>Historian Lab</strong><span>Analyze</span></span></button>
+<button class="nav-item" type="button" data-slide="8"><span class="nav-num">9</span><span class="nav-copy"><strong>Exit Claim</strong><span>Write</span></span></button></nav>
+      </aside>
+      <main class="stage">
+        <section class="slide is-active opening-slide" data-title="Opening">
+          <div class="slide-kicker">Nativism and the closing door, 1880s-1920s</div>
+          <h2>Fear and Exclusion</h2>
+          <p class="lede">In 1882, a Chinese laborer stood at a dock on the West Coast - a man who may well have helped build the transcontinental railroad with his own hands - and was told he could not enter the country, by reason of a brand-new law that barred him for one reason only: he was Chinese.</p>
+          <div class="content-grid">
+            <div class="span-7 hero-board">
+              <div class="hero-path"></div>
+              <div class="hero-node one"><strong>Promise</strong><span>What the nation said it stood for</span></div>
+              <div class="hero-node two"><strong>Practice</strong><span>Who paid the cost as it grew</span></div>
+              <div class="hero-node three"><strong>Question</strong><span>For the first time in its history, the United States had passed a law to keep out an entire people, named by their race...</span></div>
+            </div>
+            <div class="span-5 stack">
+              <div class="callout"><h3>Chapter Thread</h3><p>Threads: BELONGING</p></div>
+              <div class="info-card"><strong>Opening Evidence</strong><p>For the first time in its history, the United States had passed a law to keep out an entire people, named by their race and nationality. The Chinese Exclusion Act of 1882 did exactly what its blunt title said. It banned Chinese laborers...</p></div>
+              <div class="info-card"><strong>Investigation Move</strong><p>Track who gets a voice, who gets land, who controls labor, and who is counted as belonging.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide path-slide" data-title="Evidence Path">
+          <div class="slide-kicker">Chapter Map</div>
+          <h2>Follow the evidence before you argue the claim.</h2>
+          <p class="lede">This chapter moves through specific turning points, then asks you to judge the evidence like a historian.</p>
+          <div class="content-grid">
+            <div class="span-7 path-board"><div class="path-step"><b>1</b><span>The first door slams: Chinese exclusion</span></div><div class="path-step"><b>2</b><span>Inventing a science of prejudice</span></div><div class="path-step"><b>3</b><span>The road to the closed gate</span></div><div class="path-step"><b>4</b><span>Illinois: a city&#x27;s fears come to a boil</span></div></div>
+            <div class="span-5 stack">
+              <div class="callout"><h3>Historian Labs</h3><p>Each activity asks you to test competing interpretations, not just remember a fact.</p></div>
+              <div class="mini-lab"><strong>A LAW AS EVIDENCE OF FEAR</strong><span>A law is more than a set of rules - it is a piece of evidence about what a society feared and valued at the moment...</span></div><div class="mini-lab"><strong>WHO GETS TO DEFINE &quot;AMERICAN&quot;?</strong><span>The deepest question of this chapter is also one of the oldest in the country: who decides what it means to be an...</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide story-slide" data-title="The first door slams: Chinese exclusion">
+          <div class="slide-kicker">Evidence Trail</div>
+          <h2>The first door slams: Chinese exclusion</h2>
+          <p class="lede">The campaign against Chinese immigrants shows the pattern with terrible clarity. Chinese workers had come, mostly to the West, to mine gold and build railroads, taking the lowest-paid and most dangerous jobs. As long as the economy was booming and labor was scarce, they were tolerated. But when hard times...</p>
+          <div class="content-grid">
+            <div class="span-7">
+          <div class="visual document-board" aria-label="The first door slams: Chinese exclusion document visual">
+            <div class="paper-sheet"><strong>Words</strong><span>promise</span><span>limit</span><span>loophole</span></div>
+            <div class="stamp">evidence</div>
+          </div></div>
+            <div class="span-5 stack">
+      <div class="info-card"><strong>Core Idea</strong><p>The campaign against Chinese immigrants shows the pattern with terrible clarity. Chinese workers had come, mostly to the West, to mine gold and build railroads, taking the lowest-paid and most dangerous jobs. As long as the economy was booming and labor was...</p></div>
+      <div class="info-card"><strong>Text Evidence</strong><p>Notice the logic, because you will see it again and again in this chapter and throughout this book. A group is welcomed when its cheap labor is useful. The same group is blamed and excluded when the economy sours and people look for someone to blame. The...</p></div>
+      <div class="info-card"><strong>Why It Matters</strong><p>Notice the logic, because you will see it again and again in this chapter and throughout this book. A group is welcomed when its cheap labor is useful. The same group is blamed and excluded when the economy sours and people look for someone to...</p></div>
+    </div>
+          </div>
+        </section>
+
+        <section class="slide story-slide" data-title="Inventing a science of prejudice">
+          <div class="slide-kicker">Evidence Trail</div>
+          <h2>Inventing a science of prejudice</h2>
+          <p class="lede">What made the nativism of this era especially dangerous was that it dressed itself up as science. As the &quot;new immigrants&quot; from southern and eastern Europe poured in, along with the older prejudices against Catholics, Jews, and others, a new and poisonous idea gained respectability: that humanity was divided...</p>
+          <div class="content-grid">
+            <div class="span-7">
+          <div class="visual document-board" aria-label="Inventing a science of prejudice document visual">
+            <div class="paper-sheet"><strong>Words</strong><span>promise</span><span>limit</span><span>loophole</span></div>
+            <div class="stamp">evidence</div>
+          </div></div>
+            <div class="span-5 stack">
+      <div class="info-card"><strong>Core Idea</strong><p>What made the nativism of this era especially dangerous was that it dressed itself up as science. As the &quot;new immigrants&quot; from southern and eastern Europe poured in, along with the older prejudices against Catholics, Jews, and others, a new and poisonous idea...</p></div>
+      <div class="info-card"><strong>Text Evidence</strong><p>Eugenics gave old hatreds a lab coat. Anti-Catholic prejudice, which painted Catholic immigrants as agents of a foreign pope who could never be loyal Americans, now had &quot;scientific&quot; backing. Antisemitism, the ancient hatred of Jews, found new...</p></div>
+      <div class="info-card"><strong>Why It Matters</strong><p>Eugenics gave old hatreds a lab coat. Anti-Catholic prejudice, which painted Catholic immigrants as agents of a foreign pope who could never be loyal Americans, now had &quot;scientific&quot; backing. Antisemitism, the ancient hatred of Jews, found new...</p></div>
+    </div>
+          </div>
+        </section>
+
+        <section class="slide story-slide" data-title="The road to the closed gate">
+          <div class="slide-kicker">Evidence Trail</div>
+          <h2>The road to the closed gate</h2>
+          <p class="lede">The exclusion of the Chinese was only the beginning. As the great wave of European immigration continued, the nativist movement worked to shut the door on more and more people. They pushed for a literacy test, designed to keep out immigrants who could not read - which conveniently meant the poorest people...</p>
+          <div class="content-grid">
+            <div class="span-7">
+          <div class="visual document-board" aria-label="The road to the closed gate document visual">
+            <div class="paper-sheet"><strong>Words</strong><span>promise</span><span>limit</span><span>loophole</span></div>
+            <div class="stamp">evidence</div>
+          </div></div>
+            <div class="span-5 stack">
+      <div class="info-card"><strong>Core Idea</strong><p>The exclusion of the Chinese was only the beginning. As the great wave of European immigration continued, the nativist movement worked to shut the door on more and more people. They pushed for a literacy test, designed to keep out immigrants who could not...</p></div>
+      <div class="info-card"><strong>Text Evidence</strong><p>They achieved it in the 1920s, just past the edge of this unit, with immigration quota laws that slammed the golden door nearly shut. These laws set strict limits on total immigration and, crucially, assigned each country a quota based on how many people from...</p></div>
+      <div class="info-card"><strong>Why It Matters</strong><p>They achieved it in the 1920s, just past the edge of this unit, with immigration quota laws that slammed the golden door nearly shut. These laws set strict limits on total immigration and, crucially, assigned each country a quota based on how many...</p></div>
+    </div>
+          </div>
+        </section>
+
+        <section class="slide story-slide" data-title="Illinois: a city&#x27;s fears come to a boil">
+          <div class="slide-kicker">Evidence Trail</div>
+          <h2>Illinois: a city&#x27;s fears come to a boil</h2>
+          <p class="lede">Chicago, packed with more immigrants and radicals than almost anywhere in the country, was a place where these fears ran especially hot. The city&#x27;s vast immigrant working class included political radicals - socialists and anarchists, many of them German immigrants - who organized workers and called for...</p>
+          <div class="content-grid">
+            <div class="span-7">
+          <div class="visual map-board" aria-label="Illinois: a city&#x27;s fears come to a boil map visual">
+            <div class="map-land one"></div><div class="map-land two"></div><div class="map-land three"></div>
+            <div class="route-line"></div><div class="route-arrow"></div>
+            <div class="map-label left">claim</div><div class="map-label right">cost</div>
+          </div></div>
+            <div class="span-5 stack">
+      <div class="info-card"><strong>Core Idea</strong><p>Chicago, packed with more immigrants and radicals than almost anywhere in the country, was a place where these fears ran especially hot. The city&#x27;s vast immigrant working class included political radicals - socialists and anarchists, many of them German...</p></div>
+      <div class="info-card"><strong>Text Evidence</strong><p>That fear found its target in 1886, in an event you will study closely in Chapter 6: the Haymarket Affair, when a bomb thrown at a Chicago labor rally killed police, and the city responded by putting a group of immigrant anarchist leaders on trial for their...</p></div>
+      <div class="info-card"><strong>Why It Matters</strong><p>That fear found its target in 1886, in an event you will study closely in Chapter 6: the Haymarket Affair, when a bomb thrown at a Chicago labor rally killed police, and the city responded by putting a group of immigrant anarchist leaders on trial...</p></div>
+    </div>
+          </div>
+        </section>
+
+        <section class="slide lab-slide" data-title="A LAW AS EVIDENCE OF FEAR">
+          <div class="slide-kicker">Be the Historian</div>
+          <h2>A LAW AS EVIDENCE OF FEAR</h2>
+          <p class="lede">A law is more than a set of rules - it is a piece of evidence about what a society feared and valued at the moment it was written. Read the Chinese Exclusion Act as a primary source about its own time.</p>
+          <div class="content-grid">
+            <div class="span-12 source-grid"><div class="source-card"><strong>What the law did</strong><p>What the law did. It barred Chinese laborers from entering the country and forbade Chinese residents from becoming citizens - singling out one nationality by name, something no previous federal immigration law had done.</p><button class="lab-btn" type="button" data-response="lab1_0">Use this evidence</button></div><div class="source-card"><strong>What the law reveals</strong><p>What the law reveals. That a powerful part of the public had come to see Chinese immigrants as an economic and racial threat. That &quot;American&quot; was being defined, in law, in racial terms. And that this happened during a period of economic anxiety, when scarce...</p><button class="lab-btn" type="button" data-response="lab1_1">Use this evidence</button></div><div class="source-card"><strong>Reading between the lines</strong><p>Reading between the lines. The law never says &quot;we are afraid.&quot; But its very existence - naming a single race for exclusion - is proof of a fear powerful enough to override the nation&#x27;s stated ideals about welcoming the oppressed. Laws often reveal most in...</p><button class="lab-btn" type="button" data-response="lab1_2">Use this evidence</button></div></div>
+            <div class="span-12 prompt-box"><strong>Your Turn</strong><p>Your turn. How can a historian use a law to understand the emotions and anxieties of the people who passed it? What does it tell you that this law arrived during an economic downturn? And how would you go about distinguishing the stated reasons for a law from its real motives?</p></div>
+            <div class="span-12 preview" id="activityPreview1">Choose evidence. Then explain what it proves and what it leaves unresolved.</div>
+          </div>
+        </section>
+
+        <section class="slide lab-slide" data-title="WHO GETS TO DEFINE &quot;AMERICAN&quot;?">
+          <div class="slide-kicker">Be the Historian</div>
+          <h2>WHO GETS TO DEFINE &quot;AMERICAN&quot;?</h2>
+          <p class="lede">The deepest question of this chapter is also one of the oldest in the country: who decides what it means to be an American, and on what grounds?</p>
+          <div class="content-grid">
+            <div class="span-12 source-grid"><div class="source-card"><strong>One answer: by ideals</strong><p>One answer: by ideals. In this view, an American is anyone who embraces the nation&#x27;s founding principles - liberty, equality, self-government. By this standard, the immigrant who crossed an ocean believing in those ideals is as American as anyone, regardless...</p><button class="lab-btn" type="button" data-response="lab2_0">Use this evidence</button></div><div class="source-card"><strong>Another answer: by blood and culture</strong><p>Another answer: by blood and culture. The nativists offered a different definition: that a real American belonged to a particular race, religion, and northern European heritage, and that those who did not - the Chinese, the Catholic, the Jew, the Italian -...</p><button class="lab-btn" type="button" data-response="lab2_1">Use this evidence</button></div></div>
+            <div class="span-12 prompt-box"><strong>Your Turn</strong><p>Your turn. Which definition of &quot;American&quot; does the evidence of this chapter support, and which has the nation&#x27;s practice often followed? Notice that this is not a settled question even now - the same two answers are still argued today. How would you defend the definition you believe in? And what does this book&#x27;s recurring theme - the truest believers in America&#x27;s promise are often the people America casts out -...</p></div>
+            <div class="span-12 preview" id="activityPreview2">Choose evidence. Then explain what it proves and what it leaves unresolved.</div>
+          </div>
+        </section>
+
+        <section class="slide exit-slide" data-title="Exit Claim">
+          <div class="slide-kicker">Synthesis</div>
+          <h2>What does Chapter 4 prove?</h2>
+          <p class="lede">Author&#x27;s note. I want to be careful and fair here, because immigration is a subject people argue about fiercely in our own time, and this book does not exist to push you toward one political conclusion. So let me stick to what the historical record plainly shows: that nativism in this era produced real cruelty and real...</p>
+          <div class="content-grid">
+            <div class="span-7 activity-box">
+              <h3>Build a Deeper Claim</h3>
+              <div class="form-grid">
+                <label class="field-label">Promise<textarea id="promiseField" placeholder="What promise or ideal appears in this chapter?"></textarea></label>
+                <label class="field-label">Practice<textarea id="practiceField" placeholder="What reality complicates or contradicts it?"></textarea></label>
+                <label class="field-label">Evidence<textarea id="evidenceField" placeholder="Which event, law, document, person, or choice proves it?"></textarea></label>
+                <label class="field-label">Interpretation<textarea id="meaningField" placeholder="What should a historian conclude from this evidence?"></textarea></label>
+              </div>
+              <div class="preview" id="reflectionPreview">Your final claim will appear here as you type.</div>
+            </div>
+            <div class="span-5 stack">
+              <div class="callout"><h3>Carry Forward</h3><p>Coming next - Chapter 5: daily life in the industrial city - the tenement and the slum, disease and danger, the political machines, the deadly Triangle Shirtwaist fire, and Upton Sinclair&#x27;s The Jungle exposing the horrors of the Chicago...</p></div>
+              <div class="info-card"><strong>Vocabulary</strong><div class="vocab-row"><span class="tag">nativism</span><span class="tag">Chinese Exclusion Act</span><span class="tag">eugenics</span><span class="tag">literacy test</span><span class="tag">quota</span><span class="tag">scapegoat</span><span class="tag">belonging</span><span class="tag">causation</span></div></div>
+            </div>
+          </div>
+        </section></main>
+      <aside class="notebook" aria-live="polite">
+        <h2 id="notebookTitle">Opening</h2>
+        <p id="notebookText">Track the chapter's evidence before writing your claim.</p>
+        <div class="pulse-card"><strong>Current Task</strong><p id="taskText">Explain the opening conflict in one precise sentence.</p></div>
+        <div class="pulse-card"><strong>Evidence Checklist</strong>
+          <div class="mini-stat"><b>1</b><span>Name the promise being made.</span></div>
+          <div class="mini-stat"><b>2</b><span>Identify who benefits and who pays the cost.</span></div>
+          <div class="mini-stat"><b>3</b><span>Use one concrete event, document, law, or person.</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const navItems = Array.from(document.querySelectorAll(".nav-item"));
+    const progressFill = document.getElementById("progressFill");
+    const sectionCounter = document.getElementById("sectionCounter");
+    const phaseLabel = document.getElementById("phaseLabel");
+    const notebookTitle = document.getElementById("notebookTitle");
+    const notebookText = document.getElementById("notebookText");
+    const taskText = document.getElementById("taskText");
+    const responses = {"lab1_0": "What the law did: What the law did. It barred Chinese laborers from entering the country and forbade Chinese residents from becoming citizens - singling out one nationality by name, something no previous federal immigration law had done.", "lab1_1": "What the law reveals: What the law reveals. That a powerful part of the public had come to see Chinese immigrants as an economic and racial threat. That \"American\" was being defined, in law, in racial terms. And that this happened during a period of economic anxiety, when scarce jobs made scapegoats attractive.", "lab1_2": "Reading between the lines: Reading between the lines. The law never says \"we are afraid.\" But its very existence - naming a single race for exclusion - is proof of a fear powerful enough to override the nation's stated ideals about welcoming the oppressed. Laws often reveal most in what they assume without saying.", "lab2_0": "One answer: by ideals: One answer: by ideals. In this view, an American is anyone who embraces the nation's founding principles - liberty, equality, self-government. By this standard, the immigrant who crossed an ocean believing in those ideals is as American as anyone, regardless of birthplace, language, or faith.", "lab2_1": "Another answer: by blood and culture: Another answer: by blood and culture. The nativists offered a different definition: that a real American belonged to a particular race, religion, and northern European heritage, and that those who did not - the Chinese, the Catholic, the Jew, the Italian - could never truly become American no matter how long they..."};
+    const tasks = [
+      "Explain the opening conflict in one precise sentence.",
+      "Map the evidence path before choosing an interpretation.",
+      "Name the claim, evidence, and tension in this section.",
+      "Explain who benefits, who loses, and what changes.",
+      "Choose one historian lens and test what it proves.",
+      "Write a claim that uses evidence and admits complexity.",
+      "Connect this chapter to the unit's promise-versus-practice argument."
+    ];
+    let current = 0;
+    function activeInsight(slide) {
+      const lede = slide.querySelector(".lede");
+      return lede ? lede.textContent.trim() : "Track the chapter evidence before writing your claim.";
+    }
+    function updateSlide(index) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle("is-active", i === current));
+      navItems.forEach((item, i) => {
+        item.classList.toggle("is-active", i === current);
+        item.setAttribute("aria-current", i === current ? "step" : "false");
+      });
+      const active = slides[current];
+      const title = active.dataset.title || `Section ${current + 1}`;
+      sectionCounter.textContent = `Section ${current + 1} of ${slides.length}`;
+      phaseLabel.textContent = title;
+      progressFill.style.width = `${((current + 1) / slides.length) * 100}%`;
+      notebookTitle.textContent = title;
+      notebookText.textContent = activeInsight(active);
+      taskText.textContent = tasks[Math.min(current, tasks.length - 1)];
+    }
+    navItems.forEach((item) => item.addEventListener("click", () => updateSlide(Number(item.dataset.slide))));
+    document.getElementById("prevBtn").addEventListener("click", () => updateSlide(current - 1));
+    document.getElementById("nextBtn").addEventListener("click", () => updateSlide(current + 1));
+    document.querySelectorAll(".lab-btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        const slide = button.closest(".slide");
+        slide.querySelectorAll(".lab-btn").forEach((btn) => btn.classList.remove("is-selected"));
+        button.classList.add("is-selected");
+        const preview = slide.querySelector(".preview");
+        preview.textContent = responses[button.dataset.response] || "Use this evidence in your response.";
+      });
+    });
+    const fields = ["promiseField", "practiceField", "evidenceField", "meaningField"].map((id) => document.getElementById(id)).filter(Boolean);
+    const reflectionPreview = document.getElementById("reflectionPreview");
+    function updateReflection() {
+      if (!reflectionPreview) return;
+      const values = fields.map((field) => field.value.trim());
+      if (values.every((value) => !value)) {
+        reflectionPreview.textContent = "Your final claim will appear here as you type.";
+        return;
+      }
+      const [promise, practice, evidence, meaning] = values;
+      reflectionPreview.textContent = `Final claim: The promise was ${promise || "a national ideal"}. In practice, ${practice || "the chapter shows a conflict over power"}. The clearest evidence is ${evidence || "one event or document from the chapter"}. A historian should conclude ${meaning || "that industry, immigration, and reform changed the meaning of the nation"}.`;
+    }
+    fields.forEach((field) => field.addEventListener("input", updateReflection));
+    updateSlide(0);
+  </script>
+</body>
+</html>
