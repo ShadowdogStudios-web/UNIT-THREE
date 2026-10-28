@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unit 3 Deep Dive: The Wild West — Fencing the Frontier</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #241c14;
+      --ink: #f4ede2;
+      --muted: #c7b8a4;
+      --quiet: #9d8d79;
+      --line: rgba(255,255,255,.12);
+      --gold: #4f9dd6;
+      --brass: #4f9dd6;
+      --teal: #68c8c2;
+      --steel: #86c1ea;
+      --coral: #5c86b0;
+      --brick: #5c86b0;
+      --green: #96bd71;
+      --blue: #86c1ea;
+      --panel: rgba(44,34,25,.84);
+      --panel-strong: rgba(36,28,20,.94);
+      --paper: #eadbbd;
+      --ink-dark: #20170e;
+      --radius: 8px;
+    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; width: 100%; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+    }
+    button, textarea { font: inherit; color: inherit; }
+    h1, h2, h3, p { margin-top: 0; }
+    .app {
+      min-height: 100vh;
+      overflow: hidden;
+      background: radial-gradient(120% 90% at 80% 0%, #3c2d1c 0%, #2c2216 55%, #241c14 100%);
+    }
+    .app::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 70px 70px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.85), transparent 82%);
+    }
+    .topbar {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(300px, 1.2fr) minmax(220px, .8fr) auto;
+      gap: 16px;
+      align-items: center;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(36,28,20,.84);
+      backdrop-filter: blur(18px);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .mark {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      flex: 0 0 auto;
+      border: 2px solid rgba(255,255,255,.62);
+      border-radius: 8px;
+      color: #17120a;
+      background: linear-gradient(135deg, var(--brass), var(--steel));
+      font-weight: 950;
+    }
+    .eyebrow { display: block; color: var(--gold); font-size: 12px; font-weight: 950; text-transform: uppercase; }
+    h1 { margin-bottom: 0; font-size: 21px; line-height: 1.12; letter-spacing: 0; }
+    .meter-row { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 7px; color: var(--muted); font-size: 12px; font-weight: 850; }
+    .phase { color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 230px; }
+    .progress-track { height: 8px; overflow: hidden; border-radius: 999px; background: rgba(255,255,255,.12); }
+    .progress-fill { width: 10%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--brick), var(--brass), var(--green), var(--steel)); transition: width .35s ease; }
+    .top-controls { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; min-width: 0; }
+    .icon-btn, .link-btn {
+      display: inline-grid;
+      place-items: center;
+      min-width: 42px;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.08);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+    }
+    .link-btn { padding: 0 12px; color: var(--ink); font-weight: 900; font-size: 13px; }
+    .icon-btn:hover, .icon-btn:focus-visible, .link-btn:hover, .link-btn:focus-visible { transform: translateY(-1px); border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.14); outline: none; }
+    .icon-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .shell {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 264px minmax(0, 1fr) 318px;
+      gap: 14px;
+      height: calc(100vh - 83px);
+      padding: 14px;
+      min-height: 0;
+    }
+    .rail, .notebook, .stage {
+      min-height: 0;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 24px 60px rgba(0,0,0,.24);
+    }
+    .rail { padding: 12px; }
+    .rail-title { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 12px; color: var(--muted); font-size: 12px; font-weight: 900; text-transform: uppercase; }
+    .lesson-nav { display: grid; gap: 10px; }
+    .nav-item { display: grid; grid-template-columns: 48px 1fr; gap: 10px; align-items: center; width: 100%; min-height: 58px; padding: 10px; border: 1px solid rgba(255,255,255,.12); border-radius: 8px; color: var(--ink); background: rgba(255,255,255,.055); cursor: pointer; text-align: left; }
+    .nav-item:hover, .nav-item:focus-visible, .nav-item.is-active { border-color: rgba(79,157,214,.78); background: rgba(79,157,214,.12); outline: none; }
+    .nav-num { display: grid; place-items: center; width: 40px; height: 34px; border-radius: 8px; color: #17120a; background: linear-gradient(135deg, var(--gold), #a9d2ef); font-weight: 950; }
+    .nav-copy { display: grid; gap: 2px; min-width: 0; }
+    .nav-copy strong { overflow-wrap: anywhere; font-size: 13px; line-height: 1.1; }
+    .nav-copy span { color: var(--muted); font-size: 12px; line-height: 1.15; }
+    .stage { background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025)), rgba(36,28,20,.72); }
+    .slide { display: none; min-height: 100%; padding: 48px; animation: slideIn .28s ease both; }
+    .slide.is-active { display: block; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .slide-kicker { margin-bottom: 16px; color: var(--gold); font-size: 13px; font-weight: 950; text-transform: uppercase; }
+    .slide h2 { max-width: 940px; margin-bottom: 16px; font-size: clamp(36px, 5.7vw, 64px); line-height: 1; letter-spacing: 0; }
+    .lab-slide h2, .path-slide h2 { max-width: 980px; font-size: clamp(30px, 4vw, 46px); line-height: 1.05; }
+    .lede { max-width: 880px; color: var(--muted); font-size: clamp(18px, 2vw, 23px); line-height: 1.45; }
+    .content-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 14px; margin-top: 28px; }
+    .span-12 { grid-column: span 12; } .span-7 { grid-column: span 7; } .span-5 { grid-column: span 5; }
+    .stack { display: grid; gap: 12px; align-content: start; }
+    .callout, .info-card, .source-card, .activity-box, .preview, .prompt-box, .mini-lab, .path-step {
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 8px;
+      background: rgba(255,255,255,.055);
+      box-shadow: 0 18px 42px rgba(0,0,0,.18);
+      padding: 16px;
+    }
+    .callout, .prompt-box { border-color: rgba(79,157,214,.32); background: linear-gradient(135deg, rgba(79,157,214,.14), rgba(255,255,255,.045)); }
+    .callout h3, .info-card strong, .source-card strong, .activity-box h3, .prompt-box strong, .mini-lab strong { display: block; margin-bottom: 8px; color: var(--ink); font-size: 15px; line-height: 1.2; }
+    .callout p, .info-card p, .source-card p, .prompt-box p, .mini-lab span { margin-bottom: 0; color: var(--muted); line-height: 1.45; }
+    .hero-board, .visual { position: relative; min-height: 360px; overflow: hidden; border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius); background: linear-gradient(135deg, rgba(92,134,176,.13), rgba(104,200,194,.1)), rgba(255,255,255,.045); }
+    .hero-path, .route-line, .time-line { position: absolute; left: 10%; right: 10%; top: 50%; height: 5px; border-radius: 999px; background: linear-gradient(90deg, var(--brass), var(--steel), var(--brick)); animation: pulseLine 2.8s ease-in-out infinite; }
+    @keyframes pulseLine { 0%,100% { opacity: .45; } 50% { opacity: 1; } }
+    .hero-node { position: absolute; width: 215px; padding: 14px; border: 1px solid rgba(255,255,255,.16); border-radius: 8px; background: rgba(36,28,20,.82); box-shadow: 0 16px 32px rgba(0,0,0,.24); }
+    .hero-node strong { display: block; color: var(--gold); margin-bottom: 6px; }
+    .hero-node span { color: var(--muted); font-size: 13px; line-height: 1.35; }
+    .hero-node.one { left: 8%; top: 14%; } .hero-node.two { right: 8%; top: 34%; } .hero-node.three { left: 22%; bottom: 10%; }
+    .path-board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .path-step { display: grid; grid-template-columns: 42px 1fr; gap: 10px; align-items: center; min-height: 70px; }
+    .path-step b { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 8px; color: #17120a; background: var(--teal); }
+    .path-step span { color: var(--muted); line-height: 1.25; }
+    .map-land { position: absolute; width: 110px; height: 90px; border-radius: 8px; background: rgba(79,157,214,.7); box-shadow: 0 16px 34px rgba(0,0,0,.24); }
+    .map-land.one { left: 10%; top: 18%; } .map-land.two { right: 12%; top: 30%; background: rgba(104,200,194,.72); } .map-land.three { left: 36%; bottom: 16%; background: rgba(92,134,176,.72); }
+    .route-line { transform: rotate(-8deg); } .route-arrow { position: absolute; left: 48%; top: 42%; width: 18px; height: 18px; border-top: 4px solid var(--ink); border-right: 4px solid var(--ink); transform: rotate(45deg); animation: arrowMove 2.6s ease-in-out infinite; }
+    @keyframes arrowMove { 0%,100% { translate: -18px 8px; opacity: .45; } 50% { translate: 26px 0; opacity: 1; } }
+    .map-label { position: absolute; padding: 8px 10px; border-radius: 8px; color: #17120a; background: var(--gold); font-weight: 950; text-transform: uppercase; font-size: 12px; }
+    .map-label.left { left: 8%; bottom: 12%; } .map-label.right { right: 8%; top: 12%; background: var(--coral); }
+    .pressure-bar { position: absolute; bottom: 0; width: 16%; border-radius: 8px 8px 0 0; background: linear-gradient(180deg, var(--coral), rgba(92,134,176,.22)); animation: barRise 2.2s ease-in-out infinite; }
+    .b1 { left: 12%; height: 30%; } .b2 { left: 32%; height: 62%; animation-delay: .2s; } .b3 { left: 52%; height: 45%; background: linear-gradient(180deg, var(--gold), rgba(79,157,214,.2)); animation-delay: .4s; } .b4 { left: 72%; height: 78%; background: linear-gradient(180deg, var(--teal), rgba(104,200,194,.2)); animation-delay: .6s; }
+    @keyframes barRise { 0%,100% { transform: scaleY(.9); opacity: .65; } 50% { transform: scaleY(1); opacity: 1; } }
+    .spark { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 30px var(--gold); animation: spark 1.8s ease-in-out infinite; }
+    .s1 { left: 18%; top: 22%; } .s2 { left: 58%; top: 18%; animation-delay: .35s; } .s3 { right: 20%; top: 44%; animation-delay: .7s; }
+    @keyframes spark { 0%,100% { scale: .7; opacity: .45; } 50% { scale: 1.2; opacity: 1; } }
+    .paper-sheet { position: absolute; left: 12%; top: 12%; width: 50%; min-height: 72%; padding: 18px; border-radius: 8px; color: var(--ink-dark); background: repeating-linear-gradient(0deg, transparent 0 31px, rgba(39,32,22,.13) 31px 32px), var(--paper); box-shadow: 0 18px 44px rgba(0,0,0,.32); transform: rotate(-2deg); }
+    .paper-sheet strong { display: block; margin-bottom: 12px; font-size: 20px; }
+    .paper-sheet span { display: block; margin-top: 10px; font-weight: 800; }
+    .stamp { position: absolute; right: 12%; bottom: 16%; padding: 18px; border: 3px solid var(--coral); border-radius: 8px; color: var(--coral); font-weight: 950; text-transform: uppercase; transform: rotate(8deg); }
+    .speech { position: absolute; max-width: 190px; padding: 14px; border-radius: 8px; color: #17120a; background: var(--gold); font-weight: 950; box-shadow: 0 16px 32px rgba(0,0,0,.24); }
+    .speech.one { left: 10%; top: 18%; } .speech.two { right: 12%; top: 38%; background: var(--teal); } .speech.three { left: 30%; bottom: 12%; background: var(--coral); }
+    .sound-line { position: absolute; left: 12%; right: 12%; top: 52%; height: 4px; border-radius: 999px; background: linear-gradient(90deg, var(--brass), var(--steel), var(--brick)); animation: pulseLine 2.4s ease-in-out infinite; }
+    .field-row { position: absolute; left: 8%; right: 8%; height: 36px; border-radius: 999px; background: repeating-linear-gradient(90deg, rgba(139,194,109,.85) 0 18px, rgba(79,157,214,.55) 18px 28px); animation: fieldMove 3.6s linear infinite; }
+    .field-row:nth-child(1) { top: 22%; } .field-row:nth-child(2) { top: 42%; animation-delay: .4s; } .field-row:nth-child(3) { top: 62%; animation-delay: .8s; }
+    @keyframes fieldMove { from { background-position: 0 0; } to { background-position: 56px 0; } }
+    .ledger-strip { position: absolute; left: 10%; right: 10%; bottom: 12%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .ledger-strip span { display: grid; place-items: center; min-height: 46px; border-radius: 8px; color: #17120a; background: var(--gold); font-weight: 950; }
+    .pillar { position: absolute; bottom: 20%; width: 70px; height: 190px; border-radius: 8px 8px 0 0; background: linear-gradient(180deg, var(--paper), rgba(239,227,198,.65)); animation: cardFloat 3s ease-in-out infinite; }
+    .p1 { left: 22%; } .p2 { left: 43%; animation-delay: .35s; } .p3 { left: 64%; animation-delay: .7s; }
+    .foundation { position: absolute; left: 16%; right: 16%; bottom: 12%; min-height: 48px; display: grid; place-items: center; border-radius: 8px; color: #17120a; background: var(--teal); font-weight: 950; text-transform: uppercase; }
+    @keyframes cardFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    .time-line { top: 48%; } .time-dot { position: absolute; width: 34px; height: 34px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 24px rgba(79,157,214,.4); animation: spark 2.2s ease-in-out infinite; }
+    .d1 { left: 18%; top: 43%; } .d2 { left: 48%; top: 43%; animation-delay: .35s; } .d3 { right: 18%; top: 43%; animation-delay: .7s; }
+    .time-card { position: absolute; left: 28%; right: 28%; bottom: 14%; display: grid; place-items: center; min-height: 64px; border-radius: 8px; color: #17120a; background: var(--gold); font-weight: 950; text-transform: uppercase; }
+    .source-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .source-card { display: grid; gap: 10px; min-height: 220px; align-content: start; }
+    .lab-btn { justify-self: start; min-height: 38px; padding: 9px 12px; border: 1px solid rgba(255,255,255,.14); border-radius: 8px; color: #17120a; background: var(--gold); cursor: pointer; font-weight: 900; }
+    .lab-btn:hover, .lab-btn:focus-visible, .lab-btn.is-selected { background: var(--teal); outline: none; }
+    .preview { color: var(--ink); background: rgba(104,200,194,.1); line-height: 1.5; min-height: 70px; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .field-label { display: grid; gap: 7px; color: var(--gold); font-size: 13px; font-weight: 900; }
+    textarea { width: 100%; min-height: 82px; resize: vertical; border: 1px solid rgba(255,255,255,.16); border-radius: 8px; padding: 10px; color: var(--ink); background: rgba(0,0,0,.24); outline: none; }
+    textarea:focus { border-color: rgba(104,200,194,.8); box-shadow: 0 0 0 3px rgba(104,200,194,.14); }
+    .vocab-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { display: inline-flex; align-items: center; min-height: 32px; padding: 7px 10px; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; color: var(--muted); background: rgba(255,255,255,.06); font-size: 12px; font-weight: 850; }
+    .notebook { padding: 18px; }
+    .notebook h2 { margin-bottom: 10px; color: var(--gold); font-size: 22px; line-height: 1.15; }
+    .notebook p { color: var(--muted); line-height: 1.46; }
+    .pulse-card { padding: 13px; margin-top: 12px; border: 1px solid rgba(255,255,255,.12); border-radius: 8px; background: rgba(255,255,255,.055); }
+    .pulse-card strong { display: block; margin-bottom: 8px; color: var(--ink); }
+    .mini-stat { display: grid; grid-template-columns: 48px 1fr; gap: 10px; align-items: center; margin-top: 10px; }
+    .mini-stat b { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 8px; color: #17120a; background: var(--teal); font-size: 18px; }
+    .mini-stat span { color: var(--muted); font-size: 13px; line-height: 1.3; }
+    @media (max-width: 1180px) {
+      .topbar { grid-template-columns: minmax(240px, 1fr) minmax(200px, 1fr); align-items: start; }
+      .top-controls { grid-column: 1 / -1; justify-content: flex-start; }
+      .shell { height: calc(100vh - 132px); }
+      .shell { grid-template-columns: 224px minmax(0, 1fr); }
+      .notebook { display: none; }
+      .span-7, .span-5 { grid-column: span 12; }
+      .source-grid, .path-board { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 820px) {
+      .app { overflow: auto; }
+      .topbar { grid-template-columns: 1fr; gap: 10px; }
+      .top-controls { justify-content: flex-start; flex-wrap: wrap; }
+      .shell { height: auto; min-height: 0; grid-template-columns: 1fr; }
+      .rail { overflow-x: auto; overflow-y: hidden; }
+      .lesson-nav { grid-auto-flow: column; grid-auto-columns: 210px; }
+      .stage { overflow: visible; }
+      .slide { min-height: 0; padding: 20px; }
+      .content-grid, .form-grid { grid-template-columns: 1fr; }
+      .content-grid > * { grid-column: span 12; }
+      h1 { font-size: 18px; }
+      .phase { max-width: 100%; }
+      .slide h2, .lab-slide h2, .path-slide h2 { font-size: 32px; }
+      .lede { font-size: 18px; }
+      .hero-board, .visual { min-height: 310px; }
+      .hero-node { position: relative; inset: auto !important; width: auto; margin: 10px; }
+      .hero-path { opacity: .4; }
+      .source-card { min-height: 0; }
+      .paper-sheet { position: relative; left: auto; top: auto; width: auto; min-height: 220px; margin: 14px; transform: none; }
+      .stamp { right: 18px; bottom: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+    }
+
+    /* ---- SDS Unit 3 restyle: montage + figure + rights ---- */
+    .montage{position:fixed;inset:0;z-index:0;pointer-events:none;
+      background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNzYwIDMwMCI+CjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q4Y2NiYiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuOSI+CjxyZWN0IHg9IjIwIiB5PSIxNTAiIHdpZHRoPSI0NiIgaGVpZ2h0PSIxMzAiLz48cmVjdCB4PSI3MCIgeT0iMTIwIiB3aWR0aD0iMzQiIGhlaWdodD0iMTYwIi8+CjxyZWN0IHg9IjEwOCIgeT0iMTcwIiB3aWR0aD0iNDAiIGhlaWdodD0iMTEwIi8+PHJlY3QgeD0iMTUyIiB5PSIxMDAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxODAiLz4KPHJlY3QgeD0iMTg2IiB5PSIxNjAiIHdpZHRoPSI0NCIgaGVpZ2h0PSIxMjAiLz4KPHBhdGggZD0iTTMwIDE3MGgyNiBNMzAgMTkwaDI2IE0zMCAyMTBoMjYgTTc4IDE0MGgxOCBNNzggMTYwaDE4IE03OCAxODBoMTggTTE2MCAxMjBoMTQgTTE2MCAxNDBoMTQgTTE2MCAxNjBoMTQiLz4KPHJlY3QgeD0iMjUwIiB5PSIxMzAiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxNTAiLz48cmVjdCB4PSIyNzYiIHk9IjExMCIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE3MCIvPgo8cGF0aCBkPSJNMjU5IDEzMGMtMTgtMTYgMTAtMzAtNi00NiBNMjg1IDExMGMtMjAtMTggMTItMzQtNi01MiIvPgo8Y2lyY2xlIGN4PSI0MzAiIGN5PSIxMzAiIHI9IjU0Ii8+PGNpcmNsZSBjeD0iNDMwIiBjeT0iMTMwIiByPSIyMCIvPgo8cGF0aCBkPSJNNDMwIDY2di0xNiBNNDMwIDIxMHYtMTYgTTM2NiAxMzBoLTE2IE01MTAgMTMwaC0xNiBNMzg1IDg1bC0xMS0xMSBNNDg2IDE4NmwtMTEtMTEgTTQ3NSA4NWwxMS0xMSBNMzc0IDE4NmwxMS0xMSIvPgo8cGF0aCBkPSJNNTQwIDI1MGgyMDAgTTU0MCAyNjJoMjAwIi8+CjxwYXRoIGQ9Ik01NDggMjUwdjEyIE01NzIgMjUwdjEyIE01OTYgMjUwdjEyIE02MjAgMjUwdjEyIE02NDQgMjUwdjEyIE02NjggMjUwdjEyIE02OTIgMjUwdjEyIE03MTYgMjUwdjEyIi8+CjxwYXRoIGQ9Ik01NjAgMjEwYzQwLTYwIDE0MC02MCAxODAgMCIvPjxyZWN0IHg9IjYxMiIgeT0iMTUwIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiLz4KPGNpcmNsZSBjeD0iMTUwIiBjeT0iNjAiIHI9IjM0Ii8+PHBhdGggZD0iTTE1MCAyNnY2OCBNMTE2IDYwaDY4IE0xMjYgMzZsNDggNDggTTE3NCAzNmwtNDggNDgiLz4KPC9nPjwvc3ZnPg==");background-size:760px 300px;background-repeat:repeat;
+      opacity:.06;filter:sepia(.15) saturate(.7);
+      mask-image:radial-gradient(ellipse 120% 120% at 50% 38%, rgba(0,0,0,.9), rgba(0,0,0,.3) 72%, transparent);
+      -webkit-mask-image:radial-gradient(ellipse 120% 120% at 50% 38%, rgba(0,0,0,.9), rgba(0,0,0,.3) 72%, transparent);}
+    .fig-slot{margin:0;border:1px solid rgba(79,157,214,.3);border-radius:8px;overflow:hidden;background:rgba(255,255,255,.04)}
+    .fig-slot img{display:block;width:100%;height:auto}
+    .fig-ph{display:grid;place-items:center;text-align:center;min-height:180px;padding:18px;color:var(--gold);font-size:13px;font-weight:800;line-height:1.4;
+      background:repeating-linear-gradient(135deg, rgba(79,157,214,.08) 0 12px, rgba(79,157,214,.02) 12px 24px)}
+    .fig-ph small{display:block;margin-top:8px;color:var(--muted);font-weight:600}
+    .fig-slot figcaption{padding:9px 12px;color:var(--muted);font-size:12px;font-style:italic;line-height:1.4;border-top:1px solid rgba(255,255,255,.1)}
+    .rights{margin-top:14px;padding:12px 13px;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:rgba(0,0,0,.2);color:var(--quiet);font-size:11px;line-height:1.5}
+    .rights b{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="montage" aria-hidden="true"></div>
+    <header class="topbar">
+      <div class="brand"><div class="mark">U3</div><div><span class="eyebrow">Unit 3 · Deep Dive</span><h1>The Wild West: Fencing the Frontier</h1></div></div>
+      <div class="meter" aria-live="polite">
+        <div class="meter-row"><span id="sectionCounter">Section 1 of 8</span><span class="phase" id="phaseLabel">Opening</span></div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+      <div class="top-controls">
+        <a class="link-btn" href="../index.html">Unit Home</a>
+        <a class="link-btn" href="../index.html">Previous</a>
+        <button class="icon-btn" id="prevBtn" type="button" aria-label="Previous section"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></svg></button>
+        <button class="icon-btn" id="nextBtn" type="button" aria-label="Next section"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg></button>
+        
+      </div>
+    </header>
+    <div class="shell">
+      <aside class="rail">
+        <div class="rail-title"><span>Investigation Path</span><span>The West</span></div>
+        <nav class="lesson-nav" aria-label="Chapter sections"><button class="nav-item is-active" type="button" data-slide="0"><span class="nav-num">1</span><span class="nav-copy"><strong>Opening</strong><span>Start here</span></span></button>
+<button class="nav-item" type="button" data-slide="1"><span class="nav-num">2</span><span class="nav-copy"><strong>How to read this</strong><span>Myth vs. record</span></span></button>
+<button class="nav-item" type="button" data-slide="2"><span class="nav-num">3</span><span class="nav-copy"><strong>The wire that fenced the West</strong><span>Evidence</span></span></button>
+<button class="nav-item" type="button" data-slide="3"><span class="nav-num">4</span><span class="nav-copy"><strong>The animals came to Chicago</strong><span>Evidence</span></span></button>
+<button class="nav-item" type="button" data-slide="4"><span class="nav-num">5</span><span class="nav-copy"><strong>The gunfighter myth</strong><span>Evidence</span></span></button>
+<button class="nav-item" type="button" data-slide="5"><span class="nav-num">6</span><span class="nav-copy"><strong>Myth vs. record</strong><span>Analyze</span></span></button>
+<button class="nav-item" type="button" data-slide="6"><span class="nav-num">7</span><span class="nav-copy"><strong>Who really tamed the West?</strong><span>Analyze</span></span></button>
+<button class="nav-item" type="button" data-slide="7"><span class="nav-num">8</span><span class="nav-copy"><strong>Exit Claim</strong><span>Write</span></span></button></nav>
+      </aside>
+      <main class="stage">
+<section class="slide is-active opening-slide" data-title="Opening">
+  <div class="slide-kicker">The American West · c. 1865&ndash;1895</div>
+  <h2>The Wild West: Fencing the Frontier</h2>
+  <p class="lede">The cowboy with his six-shooter is the most famous image America ever sold itself. But the real West was won less by the gunfighter than by three unglamorous things &mdash; and all three trace straight back to Illinois: a strand of wire, a refrigerated railcar, and a slaughterhouse.</p>
+  <div class="content-grid">
+    <div class="span-7 hero-board">
+      <div class="hero-path"></div>
+      <div class="hero-node one"><strong>Barbed wire</strong><span>Patented in DeKalb, Illinois, 1874</span></div>
+      <div class="hero-node two"><strong>The stockyards</strong><span>The West&rsquo;s cattle flowed to Chicago</span></div>
+      <div class="hero-node three"><strong>The myth</strong><span>Dime novels and Wyatt Earp</span></div>
+    </div>
+    <div class="span-5 stack">
+      <figure class="fig-slot"><div class="fig-ph">PHOTO SLOT &mdash; add a credited period image<small>Send the PD file and I&rsquo;ll embed it here</small></div><figcaption>A barbed-wire fence on the open range &mdash; photograph, public domain (source to be credited).</figcaption></figure>
+      <div class="callout"><h3>Big Question</h3><p>What actually &ldquo;won&rdquo; the West &mdash; the gunfighter of the legend, or the quiet industrial tools we never put on a poster?</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide path-slide" data-title="How to read this">
+  <div class="slide-kicker">How to read this</div>
+  <h2>Separate the myth from the record.</h2>
+  <p class="lede">The Wild West was turned into legend while it was still happening. A historian&rsquo;s job is to hold the exciting story next to the dull paperwork &mdash; the patents, the rail schedules, the payrolls &mdash; and see which one actually changed the land.</p>
+  <div class="content-grid">
+    <div class="span-7 path-board">
+      <div class="path-step"><b>1</b><span>The wire that fenced the West (Glidden, 1874)</span></div>
+      <div class="path-step"><b>2</b><span>The animals came to Chicago (the stockyards)</span></div>
+      <div class="path-step"><b>3</b><span>The gunfighter myth (Earp, the dime novel)</span></div>
+    </div>
+    <div class="span-5 stack">
+      <div class="callout"><h3>Be the Historian</h3><p>Two labs ask you to test the legend against the evidence &mdash; and to decide what really tamed the frontier.</p></div>
+      <div class="mini-lab"><strong>MYTH VS. RECORD</strong><span>Compare a thrilling dime-novel cover with a photograph of real ranch hands.</span></div>
+      <div class="mini-lab"><strong>WHO TAMED THE WEST?</strong><span>Weigh the gunfighter against wire, rails, and the stockyard.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide story-slide" data-title="The wire that fenced the West">
+  <div class="slide-kicker">Evidence Trail · Barbed wire</div>
+  <h2>The wire that fenced the West</h2>
+  <p class="lede">In 1874, a farmer named Joseph Glidden in DeKalb, Illinois patented a cheap, sharp, mass-producible barbed wire. Within a few years it had fenced in the open range &mdash; and quietly ended the world of the long cattle drive and the free-roaming cowboy.</p>
+  <div class="content-grid">
+    <div class="span-7 stack">
+      <figure class="fig-slot"><div class="fig-ph">PHOTO SLOT &mdash; add a credited period image<small>Send the PD file and I&rsquo;ll embed it here</small></div><figcaption>Joseph Glidden&rsquo;s barbed-wire patent drawing, 1874 &mdash; public domain (source to be credited).</figcaption></figure>
+    </div>
+    <div class="span-5 stack">
+      <div class="info-card"><strong>Core Idea</strong><p>The open range worked because the land was unfenced. Cheap wire changed that overnight: ranchers could enclose land, farmers could keep cattle out, and the great trail drives had nowhere left to go.</p></div>
+      <div class="info-card"><strong>Text Evidence</strong><p>They called it &ldquo;the devil&rsquo;s rope.&rdquo; It set off violent &ldquo;range wars&rdquo; over who could fence what, and it cut across land that Native nations and open-range ranchers had used freely for generations.</p></div>
+      <div class="info-card"><strong>Why It Matters</strong><p>An Illinois invention, not a gunfight, did more than almost anything to end the frontier the movies celebrate.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide story-slide" data-title="The animals came to Chicago">
+  <div class="slide-kicker">Evidence Trail · The stockyards</div>
+  <h2>The animals came to Chicago</h2>
+  <p class="lede">Why drive cattle a thousand miles north? Because the money, and the killing floor, were in Chicago. The Union Stock Yards opened in 1865, and men like Philip Armour and Gustavus Swift turned the slaughter of animals into a moving assembly line &mdash; or really, a <em>dis</em>assembly line.</p>
+  <div class="content-grid">
+    <div class="span-7 stack">
+      <figure class="fig-slot"><div class="fig-ph">PHOTO SLOT &mdash; add a credited period image<small>Send the PD file and I&rsquo;ll embed it here</small></div><figcaption>The Union Stock Yards, Chicago &mdash; photograph, public domain (source to be credited).</figcaption></figure>
+    </div>
+    <div class="span-5 stack">
+      <div class="info-card"><strong>Core Idea</strong><p>The Western cattle economy ran through Illinois. The whole point of the cattle drive was to reach a railhead that shipped the animals to Chicago&rsquo;s packing houses.</p></div>
+      <div class="info-card"><strong>Text Evidence</strong><p>Swift&rsquo;s refrigerated railcar meant meat butchered in Chicago could be sold fresh across the country. The packers used &ldquo;everything but the squeal,&rdquo; and the disassembly line later inspired Henry Ford&rsquo;s factories.</p></div>
+      <div class="info-card"><strong>Why It Matters</strong><p>The cowboy&rsquo;s cattle ended their journey on a Chicago killing floor &mdash; the &ldquo;Wild West&rdquo; and industrial Illinois were the same story.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide story-slide" data-title="The gunfighter myth">
+  <div class="slide-kicker">Evidence Trail · The myth</div>
+  <h2>The gunfighter myth</h2>
+  <p class="lede">Wyatt Earp &mdash; born in Monmouth, Illinois in 1848 &mdash; walked to the O.K. Corral in 1881, and the legend took it from there. But the myth of the fast-draw gunfighter was being manufactured, in dime novels and Wild West shows, while the real frontier was still being fenced.</p>
+  <div class="content-grid">
+    <div class="span-7 stack">
+      <figure class="fig-slot"><div class="fig-ph">PHOTO SLOT &mdash; add a credited period image<small>Send the PD file and I&rsquo;ll embed it here</small></div><figcaption>A dime-novel cover or Wild West show poster &mdash; public domain (source to be credited).</figcaption></figure>
+    </div>
+    <div class="span-5 stack">
+      <div class="info-card"><strong>Core Idea</strong><p>The West was sold as legend as fast as it was lived. Dime novels and Buffalo Bill&rsquo;s traveling Wild West show turned a brief, messy frontier into a permanent American myth.</p></div>
+      <div class="info-card"><strong>Text Evidence</strong><p>Most real &ldquo;cowboys&rdquo; were low-paid seasonal laborers &mdash; a large share of them Black, Mexican, and Native. Gunfights were far rarer than the stories claim. The legend simplified and whitened a crowded, ordinary workforce.</p></div>
+      <div class="info-card"><strong>Why It Matters</strong><p>When the picture in our heads comes from an advertisement, the historian has to ask what the advertisement left out.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide lab-slide" data-title="Myth vs. record">
+  <div class="slide-kicker">Be the Historian · Sourcing</div>
+  <h2>Myth vs. record</h2>
+  <p class="lede">Two sources show the &ldquo;cowboy.&rdquo; One was made to thrill and sell. One was made to record. Read each for what it is before you trust it.</p>
+  <div class="content-grid">
+    <div class="span-12 source-grid">
+      <div class="source-card"><strong>Source A &mdash; The dime novel</strong><p>A cover shows a lone, square-jawed gunfighter in a blazing shootout. It was printed cheaply to sell thrills to readers back East, who had never been west.</p><button class="lab-btn" type="button" data-response="lab1_0">Use this evidence</button></div>
+      <div class="source-card"><strong>Source B &mdash; The photograph</strong><p>A photo of an actual ranch crew: tired, dusty, ordinary men of several races, posed by a chuck wagon. It was made to record who was really there.</p><button class="lab-btn" type="button" data-response="lab1_1">Use this evidence</button></div>
+    </div>
+    <div class="span-12 prompt-box"><strong>Your Turn</strong><p>Use the sentence starters: &ldquo;Source A was made in order to ______.&rdquo; &ldquo;Source B was made in order to ______.&rdquo; &ldquo;The biggest difference between them is ______.&rdquo; &ldquo;If I only had the dime novel, I would wrongly believe ______.&rdquo;</p></div>
+    <div class="span-12 preview" id="activityPreview1">Pick a source. Then explain why it was made and what it can and cannot prove.</div>
+  </div>
+</section>
+
+<section class="slide lab-slide" data-title="Who really tamed the West?">
+  <div class="slide-kicker">Be the Historian · Cause &amp; Effect</div>
+  <h2>Who really tamed the West?</h2>
+  <p class="lede">The legend gives the credit to the gunfighter. The record points somewhere much less exciting. Weigh the two explanations.</p>
+  <div class="content-grid">
+    <div class="span-12 source-grid">
+      <div class="source-card"><strong>The legend&rsquo;s answer</strong><p>Brave individual gunfighters and cowboys tamed a lawless land through courage and the six-shooter. It is a story about heroes.</p><button class="lab-btn" type="button" data-response="lab2_0">Use this evidence</button></div>
+      <div class="source-card"><strong>The record&rsquo;s answer</strong><p>Barbed wire closed the range, railroads and the Chicago stockyards built the cattle economy, and the U.S. Army and reservations removed Native resistance. It is a story about industry and power.</p><button class="lab-btn" type="button" data-response="lab2_1">Use this evidence</button></div>
+    </div>
+    <div class="span-12 prompt-box"><strong>Your Turn</strong><p>Use the sentence starters: &ldquo;The legend says the West was tamed by ______.&rdquo; &ldquo;The evidence says it was really ______.&rdquo; &ldquo;One Illinois example that proves it is ______.&rdquo; &ldquo;We remember the gunfighter instead of the wire because ______.&rdquo;</p></div>
+    <div class="span-12 preview" id="activityPreview2">Pick an answer. Then back it with one concrete cause from the chapter.</div>
+  </div>
+</section>
+
+<section class="slide exit-slide" data-title="Exit Claim">
+  <div class="slide-kicker">Synthesis</div>
+  <h2>What really won the West?</h2>
+  <p class="lede">You have held the legend next to the record. Now make a claim a historian could defend &mdash; one that gives the quiet tools their due without pretending the myth didn&rsquo;t matter.</p>
+  <div class="content-grid">
+    <div class="span-7 activity-box">
+      <h3>Build a Deeper Claim</h3>
+      <div class="form-grid">
+        <label class="field-label">Promise<textarea id="promiseField" placeholder="What did the 'Wild West' legend promise or celebrate?"></textarea></label>
+        <label class="field-label">Practice<textarea id="practiceField" placeholder="What actually changed the West? (wire, rails, stockyards, the Army)"></textarea></label>
+        <label class="field-label">Evidence<textarea id="evidenceField" placeholder="Which Illinois example proves it? (Glidden, the stockyards, Earp)"></textarea></label>
+        <label class="field-label">Interpretation<textarea id="meaningField" placeholder="What should a historian conclude about myth vs. record?"></textarea></label>
+      </div>
+      <div class="preview" id="reflectionPreview">Your final claim will appear here as you type.</div>
+    </div>
+    <div class="span-5 stack">
+      <div class="callout"><h3>Carry Forward</h3><p>The same industrial power that fenced the West &mdash; cheap steel, railroads, assembly lines, big companies &mdash; is the story of the whole unit. The frontier was just one place it landed first.</p></div>
+      <div class="info-card"><strong>Vocabulary</strong><div class="vocab-row"><span class="tag">barbed wire</span><span class="tag">open range</span><span class="tag">Union Stock Yards</span><span class="tag">refrigerated railcar</span><span class="tag">dime novel</span><span class="tag">myth vs. record</span></div></div>
+    </div>
+  </div>
+</section>
+      </main>
+      <aside class="notebook" aria-live="polite">
+        <h2 id="notebookTitle">Opening</h2>
+        <p id="notebookText">Track the chapter's evidence before writing your claim.</p>
+        <div class="pulse-card"><strong>Current Task</strong><p id="taskText">Explain the opening conflict in one precise sentence.</p></div>
+        <div class="pulse-card"><strong>Evidence Checklist</strong>
+          <div class="mini-stat"><b>1</b><span>Name the promise being made.</span></div>
+          <div class="mini-stat"><b>2</b><span>Identify who benefits and who pays the cost.</span></div>
+          <div class="mini-stat"><b>3</b><span>Use one concrete event, document, law, or person.</span></div>
+        </div>
+        <div class="rights"><b>&copy; 2026 ShadowDog Digital Studios. All Rights Reserved.</b> ShadowDog Digital Studios holds explicit rights to the design, text, and arrangement of this material. Historical images are public domain and credited to their sources.</div>
+      </aside>
+    </div>
+  </div>
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const navItems = Array.from(document.querySelectorAll(".nav-item"));
+    const progressFill = document.getElementById("progressFill");
+    const sectionCounter = document.getElementById("sectionCounter");
+    const phaseLabel = document.getElementById("phaseLabel");
+    const notebookTitle = document.getElementById("notebookTitle");
+    const notebookText = document.getElementById("notebookText");
+    const taskText = document.getElementById("taskText");
+    const responses = {"lab1_0": "Source A — The dime novel: Printed to sell thrills to readers back East. It invents a lone heroic gunfighter and cannot be trusted as a record of who was really on the range.", "lab1_1": "Source B — The photograph: Made to record an actual ranch crew — tired, ordinary, and of several races. It shows the real, diverse workforce the legend erased.", "lab2_0": "The legend's answer: Brave individuals with six-shooters tamed a lawless land — a story about heroes, not systems.", "lab2_1": "The record's answer: Barbed wire, railroads, the Chicago stockyards, and the Army did the real work — a story about industry and power, much of it Illinois-made."};
+    const tasks = [
+      "Name the three Illinois things that shaped the real West.",
+      "Hold the legend next to the paperwork.",
+      "Explain how barbed wire ended the open range.",
+      "Explain why the West's cattle flowed to Chicago.",
+      "Explain how the gunfighter myth was manufactured.",
+      "Compare a dime novel with a real photograph.",
+      "Weigh the gunfighter against wire, rails, and the stockyard.",
+      "Write a claim about what really won the West."
+    ];
+    let current = 0;
+    function activeInsight(slide) {
+      const lede = slide.querySelector(".lede");
+      return lede ? lede.textContent.trim() : "Track the chapter evidence before writing your claim.";
+    }
+    function updateSlide(index) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle("is-active", i === current));
+      navItems.forEach((item, i) => {
+        item.classList.toggle("is-active", i === current);
+        item.setAttribute("aria-current", i === current ? "step" : "false");
+      });
+      const active = slides[current];
+      const title = active.dataset.title || `Section ${current + 1}`;
+      sectionCounter.textContent = `Section ${current + 1} of ${slides.length}`;
+      phaseLabel.textContent = title;
+      progressFill.style.width = `${((current + 1) / slides.length) * 100}%`;
+      notebookTitle.textContent = title;
+      notebookText.textContent = activeInsight(active);
+      taskText.textContent = tasks[Math.min(current, tasks.length - 1)];
+    }
+    navItems.forEach((item) => item.addEventListener("click", () => updateSlide(Number(item.dataset.slide))));
+    document.getElementById("prevBtn").addEventListener("click", () => updateSlide(current - 1));
+    document.getElementById("nextBtn").addEventListener("click", () => updateSlide(current + 1));
+    document.querySelectorAll(".lab-btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        const slide = button.closest(".slide");
+        slide.querySelectorAll(".lab-btn").forEach((btn) => btn.classList.remove("is-selected"));
+        button.classList.add("is-selected");
+        const preview = slide.querySelector(".preview");
+        preview.textContent = responses[button.dataset.response] || "Use this evidence in your response.";
+      });
+    });
+    const fields = ["promiseField", "practiceField", "evidenceField", "meaningField"].map((id) => document.getElementById(id)).filter(Boolean);
+    const reflectionPreview = document.getElementById("reflectionPreview");
+    function updateReflection() {
+      if (!reflectionPreview) return;
+      const values = fields.map((field) => field.value.trim());
+      if (values.every((value) => !value)) {
+        reflectionPreview.textContent = "Your final claim will appear here as you type.";
+        return;
+      }
+      const [promise, practice, evidence, meaning] = values;
+      reflectionPreview.textContent = `Final claim: The promise was ${promise || "a national ideal"}. In practice, ${practice || "the chapter shows a conflict over power"}. The clearest evidence is ${evidence || "one event or document from the chapter"}. A historian should conclude ${meaning || "that industry — wire, rails, and the stockyard — won the West the legend credits to the gunfighter"}.`;
+    }
+    fields.forEach((field) => field.addEventListener("input", updateReflection));
+    updateSlide(0);
+  </script>
+  <script>
+  (function(){
+    var KEY='sdssave::'+location.pathname;
+    var ids=['promiseField','practiceField','evidenceField','meaningField'];
+    function save(){try{var d={};ids.forEach(function(id){var el=document.getElementById(id);if(el)d[id]=el.value;});localStorage.setItem(KEY,JSON.stringify(d));}catch(e){}}
+    function load(){try{var d=JSON.parse(localStorage.getItem(KEY)||'{}');var any=false;
+      ids.forEach(function(id){var el=document.getElementById(id);if(el&&d[id]!=null){el.value=d[id];if(d[id])any=true;}});
+      if(any){var f=document.getElementById('promiseField');if(f)f.dispatchEvent(new Event('input',{bubbles:true}));}
+    }catch(e){}}
+    ids.forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('input',save);});
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',load);else load();
+  })();
+  </script>
+<!-- SDS-HIGHLIGHTER v1 START -->
+<style id="sdshl-style">
+mark.sds-hl{background:#ffe066;color:#111;border-radius:2px;padding:0 .5px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+body.sdshl-on mark.sds-hl{cursor:pointer}
+body.sdshl-on ::selection{background:#ffe066;color:#111}
+#sdshl-btn{position:fixed;right:14px;bottom:64px;z-index:140;border:1px solid #caa23a;background:rgba(20,22,20,.92);color:#ffe066;border-radius:999px;padding:9px 14px;font:600 13px/1 system-ui,-apple-system,sans-serif;cursor:pointer;display:flex;gap:7px;align-items:center;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+#sdshl-btn.on{background:#ffe066;color:#1a1205;border-color:#ffe066}
+#sdshl-btn .ic{font-size:15px;line-height:1}
+#sdshl-bar{position:fixed;right:14px;bottom:106px;z-index:140;background:rgba(20,22,20,.96);color:#eee;border:1px solid #444;border-radius:10px;padding:10px 12px;font:400 12px/1.45 system-ui,-apple-system,sans-serif;max-width:230px;display:none;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+#sdshl-btn.on ~ #sdshl-bar{display:block}
+#sdshl-bar b{color:#ffe066}
+#sdshl-bar button{margin-top:8px;background:none;border:1px solid #555;color:#ddd;border-radius:6px;padding:5px 9px;font:inherit;cursor:pointer}
+@media print{#sdshl-btn,#sdshl-bar{display:none!important}}
+</style>
+<button id="sdshl-btn" type="button" aria-pressed="false"><span class="ic">&#9998;</span><span class="lbl">Highlight</span></button>
+<div id="sdshl-bar">Highlighter is <b>on</b>. Select text to highlight it. Click a highlight to remove it. Your highlights save on this device.<br><button id="sdshl-clear">Clear all highlights</button></div>
+<script id="sdshl-js">
+(function(){
+  if(window.__sdsHL)return; window.__sdsHL=1;
+  var KEY='sdshl::'+location.pathname;
+  var btn=document.getElementById('sdshl-btn'), on=false;
+  function slides(){var s=document.querySelectorAll('.slide');return s.length?[].slice.call(s):[document.body];}
+  function okParent(p){return p && !p.closest('script,style,#sdshl-btn,#sdshl-bar,.topbar,.foot,.nav,.lb,.actbox,input,textarea,button');}
+  function textNodes(root){var a=[],w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+    if(!n.nodeValue)return 2; if(!okParent(n.parentElement))return 2; return 1;}});var n;while(n=w.nextNode())a.push(n);return a;}
+  function slideText(sl){return textNodes(sl).map(function(n){return n.nodeValue;}).join('');}
+  function globalStart(sl,node){var t=textNodes(sl),p=0;for(var i=0;i<t.length;i++){if(t[i]===node)return p;p+=t[i].nodeValue.length;}return -1;}
+  function locate(sl,off){var t=textNodes(sl),p=0;for(var i=0;i<t.length;i++){var L=t[i].nodeValue.length;if(off<=p+L)return{node:t[i],off:off-p};p+=L;}var last=t[t.length-1];return last?{node:last,off:last.nodeValue.length}:null;}
+  function wrapRange(range){
+    var root=range.commonAncestorContainer; if(root.nodeType===3)root=root.parentNode;
+    var nodes=textNodes(root).filter(function(n){try{return range.intersectsNode(n);}catch(e){return false;}});
+    nodes.forEach(function(n){
+      var s=(n===range.startContainer)?range.startOffset:0;
+      var e=(n===range.endContainer)?range.endOffset:n.nodeValue.length;
+      if(e<=s)return;
+      var r=document.createRange();r.setStart(n,s);r.setEnd(n,e);
+      var m=document.createElement('mark');m.className='sds-hl';
+      try{r.surroundContents(m);}catch(err){}
+    });
+  }
+  function nthIndexOf(hay,needle,n){var idx=-1;for(var k=0;k<=n;k++){idx=hay.indexOf(needle,idx+1);if(idx<0)return -1;}return idx;}
+  function save(){
+    var out=[];
+    slides().forEach(function(sl,si){
+      var marks=sl.querySelectorAll('mark.sds-hl');if(!marks.length)return;
+      var full=slideText(sl);
+      marks.forEach(function(m){
+        var t=m.textContent;if(!t)return;
+        var inner=textNodes(m);if(!inner.length)return;
+        var gs=globalStart(sl,inner[0]);if(gs<0)return;
+        // occurrence index = how many times t appears before gs
+        var n=0,idx=-1;while(true){idx=full.indexOf(t,idx+1);if(idx<0||idx>=gs)break;n++;}
+        out.push({s:si,t:t,n:n});
+      });
+    });
+    try{localStorage.setItem(KEY,JSON.stringify(out));}catch(e){}
+  }
+  function apply(list){
+    var bySlide={};list.forEach(function(h){(bySlide[h.s]=bySlide[h.s]||[]).push(h);});
+    slides().forEach(function(sl,si){
+      var hs=bySlide[si];if(!hs)return;
+      if(sl.querySelector('mark.sds-hl'))return; // already applied
+      var full=slideText(sl);
+      hs.forEach(function(h){
+        var start=nthIndexOf(full,h.t,h.n);if(start<0)return;
+        var a=locate(sl,start),b=locate(sl,start+h.t.length);if(!a||!b)return;
+        var r=document.createRange();try{r.setStart(a.node,a.off);r.setEnd(b.node,b.off);}catch(e){return;}
+        wrapRange(r);
+      });
+    });
+  }
+  function load(){try{var l=JSON.parse(localStorage.getItem(KEY)||'[]');apply(l);}catch(e){}}
+  // interactions
+  btn.addEventListener('click',function(){on=!on;btn.classList.toggle('on',on);document.body.classList.toggle('sdshl-on',on);btn.setAttribute('aria-pressed',on);btn.querySelector('.lbl').textContent=on?'Highlighting':'Highlight';});
+  document.addEventListener('mouseup',function(e){
+    if(!on)return;
+    if(e.target.closest&&e.target.closest('#sdshl-btn,#sdshl-bar'))return;
+    var sel=window.getSelection();if(!sel||sel.isCollapsed||!sel.rangeCount)return;
+    var r=sel.getRangeAt(0);if(r.collapsed||!r.toString().trim())return;
+    // only within slide content
+    var anc=r.commonAncestorContainer;anc=anc.nodeType===3?anc.parentElement:anc;
+    if(!okParent(anc))return;
+    wrapRange(r);sel.removeAllRanges();save();
+  });
+  document.addEventListener('click',function(e){
+    if(!on)return;var m=e.target.closest&&e.target.closest('mark.sds-hl');if(!m)return;
+    e.preventDefault();e.stopPropagation();
+    var parent=m.parentNode;while(m.firstChild)parent.insertBefore(m.firstChild,m);parent.removeChild(m);parent.normalize();save();
+  },true);
+  var clr=document.getElementById('sdshl-clear');
+  if(clr)clr.addEventListener('click',function(){document.querySelectorAll('mark.sds-hl').forEach(function(m){var p=m.parentNode;while(m.firstChild)p.insertBefore(m.firstChild,m);p.removeChild(m);p.normalize();});try{localStorage.removeItem(KEY);}catch(e){}});
+  // apply saved highlights after render
+  if(document.readyState==='complete')setTimeout(load,120);else window.addEventListener('load',function(){setTimeout(load,120);});
+})();
+</script>
+<!-- SDS-HIGHLIGHTER v1 END -->
+
+</body>
+</html>
