@@ -1,0 +1,1220 @@
+<!doctype html>
+<html lang="en" class="locked">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="I can connect what muckrakers exposed to the reforms that followed and judge how much journalism mattered.">
+<meta name="author" content="ShadowDog Digital Studios">
+<meta name="copyright" content="© 2026 ShadowDog Digital Studios. All Rights Reserved.">
+<title>Ch 7 Assignment: Match the Muckraker — Unit 3</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap"><style>/* Promise & Practice · Unit 3 — shared styles. © 2026 ShadowDog Digital Studios. All Rights Reserved. */
+
+:root{
+  --ground:#F4F6F0; --surface:#FFFFFF; --ink:#1E2620; --ink2:#2B332C; --muted:#4F584D; --muted2:#5A6358;
+  --line:#D8DDD3; --line2:#C5CCBF; --line3:#E5E9E1;
+  --rust:#B1442F; --rust-dk:#8A3322; --rust-bg:#FBF3F0; --rust-line:#E7C7BD;
+  --green:#2F5E46; --green-dk:#233A2E; --green-bg:#E6ECE2; --gold:#C99A2E; --gold-bg:#FFF6DC;
+  --serif:Georgia,'Times New Roman',serif; --sans:'Source Sans 3',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --max:1240px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font:400 16px/1.5 var(--sans)}
+a{color:var(--rust)} a:hover{color:var(--rust-dk)}
+img{max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
+@media (max-width:640px){.wrap{padding:0 16px}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* top bars */
+.util{background:var(--green-dk);color:#E8EDE4;font-size:13px}
+.util .wrap{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;padding-top:8px;padding-bottom:8px}
+.util .brand{letter-spacing:.08em;text-transform:uppercase}
+.util a{color:#E8EDE4}
+.mast{background:var(--surface);border-bottom:1px solid var(--line)}
+.mast .wrap{display:flex;flex-direction:column;gap:10px;padding-top:18px}
+.mast .row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 16px}
+.logo{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;text-decoration:none;color:var(--ink)}
+.logo b{font:400 28px/1 var(--serif)}
+.logo span{font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rust)}
+.search{display:flex;align-items:center;gap:8px;border:1px solid var(--line2);background:#fff;padding:0 12px;min-height:44px;flex:0 1 360px;min-width:200px;position:relative}
+.search input{border:0;outline:0;flex:1;min-width:0;background:transparent;font-size:15px}
+.search-results{position:absolute;left:-1px;right:-1px;top:100%;background:#fff;border:1px solid var(--line2);z-index:40;max-height:420px;overflow:auto;display:none}
+.search-results.open{display:block}
+.search-results a{display:block;padding:10px 14px;border-bottom:1px solid var(--line3);text-decoration:none;color:var(--ink)}
+.search-results a small{display:block;color:var(--muted2);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.search-results a:hover,.search-results a:focus{background:var(--ground)}
+.search-results .none{padding:12px 14px;color:var(--muted2)}
+.nav{display:flex;flex-wrap:wrap;gap:0 26px;font:600 15px/1 var(--sans)}
+.nav a{color:var(--ink);text-decoration:none;padding:12px 0 14px;border-bottom:2px solid transparent}
+.nav a[aria-current="page"],.nav a:hover{border-bottom-color:var(--rust)}
+
+/* type */
+.kicker{font:700 12px/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rust)}
+.kicker.green{color:var(--green)} .kicker.gray{color:var(--muted2)}
+h1.title{margin:0;font:400 clamp(38px,6vw,58px)/1.05 var(--serif);letter-spacing:-.015em}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px;border-bottom:1px solid var(--line2);padding-bottom:10px}
+.sec-head h2{margin:0;font:400 30px/1.15 var(--serif)}
+.sec-head .meta{font:600 14px var(--sans);color:var(--muted2)}
+.sec-head a{font:600 14px var(--sans);text-decoration:none}
+.crumbs{font:400 14px var(--sans);color:var(--muted2);display:flex;flex-wrap:wrap;gap:8px}
+.crumbs a{text-decoration:none}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.grid.sm{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--ink);min-width:0}
+.card:hover{border-color:var(--line2);box-shadow:0 2px 0 var(--line2)}
+.card img{width:100%;height:170px;object-fit:cover;display:block;background:#E3E7DF}
+.card .body{padding:14px 16px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card .lbl{font:700 11px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--rust)}
+.card .lbl.green{color:var(--green)} .card .lbl.gray{color:var(--muted2)} .card .lbl.gold{color:#8A6514}
+.card .t{font:400 20px/1.22 var(--serif)}
+.card .d{font:400 14px/1.45 var(--sans);color:var(--muted)}
+.card.text{padding:20px;justify-content:space-between;gap:16px;border-top:3px solid var(--rust)}
+.card.text.green{border-top-color:var(--green)}
+.card.text .t{font-size:24px}
+.card.text .go{font:600 14px var(--sans);color:var(--rust)}
+.card.text.green .go{color:var(--green)}
+.pill{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;background:#fff;border:1px solid var(--line2);color:var(--ink);text-decoration:none;font:600 15px var(--sans)}
+.pill:hover{border-color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border:1px solid var(--line2);background:#fff;color:var(--ink);font:600 15px var(--sans);text-decoration:none;cursor:pointer}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--rust);border-color:var(--rust);color:#fff}
+.btn.primary:hover{background:var(--rust-dk);border-color:var(--rust-dk);color:#fff}
+.btn.dark{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn svg{width:18px;height:18px}
+.box{background:var(--surface);border:1px solid var(--line);padding:20px}
+.credit{font:400 13px/1.45 var(--sans);color:var(--muted2)}
+figure{margin:0;display:flex;flex-direction:column;gap:8px}
+figure img{width:100%;display:block;border:1px solid var(--line);background:#E3E7DF}
+
+/* footer */
+.rights{margin-top:64px;background:var(--green-dk);color:#E8EDE4}
+.rights .wrap{padding-top:28px;padding-bottom:28px;font:400 14px/1.6 var(--sans)}
+
+/* highlighter + notes */
+mark.hl{background:#F6DE84;color:#1E2620;padding:0 1px;cursor:pointer}
+.tools-dock{position:fixed;right:16px;bottom:16px;display:flex;flex-direction:column;align-items:flex-end;gap:8px;z-index:30}
+.tools-dock .btn{box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.tools-dock .btn[aria-pressed="true"]{background:#F6DE84;border-color:#C9A72A}
+.hl-tip{background:var(--ink);color:#fff;font-size:13px;padding:6px 10px;max-width:260px;display:none}
+.hl-tip.show{display:block}
+.notes-panel{position:fixed;right:16px;bottom:76px;width:min(380px,calc(100vw - 32px));background:#fff;border:1px solid var(--line2);box-shadow:0 8px 30px rgba(0,0,0,.18);z-index:31;display:none;flex-direction:column}
+.notes-panel.open{display:flex}
+.notes-panel header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);font:600 15px var(--sans)}
+.notes-panel textarea{border:0;outline:0;resize:vertical;min-height:220px;padding:14px;font:400 16px/1.5 var(--sans)}
+.notes-panel footer{display:flex;gap:6px;padding:10px 14px;border-top:1px solid var(--line);align-items:center;flex-wrap:wrap}
+.notes-panel footer span{font-size:12px;color:var(--muted2);margin-right:auto}
+
+/* lock */
+html.locked body>*:not(#sds-lock){display:none!important}
+#sds-lock{position:fixed;inset:0;background:var(--ground);z-index:100;display:flex;align-items:center;justify-content:center;padding:24px}
+#sds-lock .panel{background:#fff;border:1px solid var(--line);border-top:3px solid var(--rust);max-width:440px;width:100%;padding:32px;display:flex;flex-direction:column;gap:14px}
+#sds-lock h1{margin:0;font:400 30px/1.15 var(--serif)}
+#sds-lock p{margin:0;color:var(--muted)}
+#sds-lock input{min-height:48px;border:1px solid var(--line2);padding:0 14px;font-size:18px;letter-spacing:.04em}
+#sds-lock .err{color:var(--rust-dk);font-weight:600;min-height:1.4em}
+#sds-lock small{color:var(--muted2);font-size:12px}
+
+@media print{
+  .util,.mast,.tools-dock,.notes-panel,.no-print,#sds-lock{display:none!important}
+  body{background:#fff}
+  .rights{background:#fff;color:#333;margin-top:24px;border-top:1px solid #999}
+  a{color:inherit;text-decoration:none}
+  .card,.box{break-inside:avoid}
+}
+
+/* ---------- learning supports ---------- */
+.term-def{all:unset;cursor:help;border-bottom:2px dotted var(--rust);color:inherit;font:inherit}
+.term-def:hover,.term-def:focus-visible{background:#FBF3E8;outline:none}
+html.hl-on .term-def{cursor:text;border-bottom-style:none}
+.term-pop{position:absolute;z-index:60;width:min(320px,calc(100vw - 16px));background:#fff;border:1px solid var(--line);border-top:3px solid var(--rust);box-shadow:0 10px 30px rgba(0,0,0,.18);padding:12px 14px}
+.term-pop strong{font:600 18px Georgia,serif}.term-pop p{font:400 15px/1.5 var(--sans);margin:6px 0 10px;color:var(--ink)}
+.tp-act{display:flex;gap:6px;flex-wrap:wrap}.tp-act .btn{min-height:34px;padding:0 10px;font-size:13px}
+::highlight(sds-read){background:#F6DE84;color:#111}
+.reading-now{outline:2px solid #F6DE84;outline-offset:3px}
+.read-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;z-index:40;display:flex;gap:8px;align-items:center;background:#fff;border:1px solid var(--line);box-shadow:0 6px 20px rgba(0,0,0,.15);padding:8px 12px}
+.read-bar[hidden]{display:none}
+.read-bar .rb-t{font:600 13px var(--sans);color:var(--rust)}
+.read-bar .btn{min-height:34px;padding:0 10px}.read-bar label{font:400 13px var(--sans);display:flex;gap:4px;align-items:center}
+.about-pop{position:fixed;inset:0;z-index:70;background:rgba(20,20,20,.45);display:grid;place-items:center;padding:16px}
+.ab-in{background:#fff;max-width:640px;width:100%;max-height:calc(100vh - 32px);overflow:auto;padding:22px 24px;border-top:3px solid var(--rust)}
+.ab-in h2{font:400 28px Georgia,serif;margin:4px 0 8px}.ab-in h3{font:600 16px var(--sans);margin:14px 0 4px}
+.ab-in p,.ab-in li{font:400 15px/1.55 var(--sans)}.ab-k{color:var(--muted);font-size:13px!important}
+.tools-dock .ab-btn{min-height:36px;font-size:13px}
+body.nick .read-bar,body.theater-page .read-bar{background:#211A14;border-color:#6B5638;color:#F3E6C8}
+
+/* ---------- page layouts ---------- */
+.kicker.light{color:#F2D9CF}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border:1px solid var(--line2);background:#fff;color:var(--ink);text-decoration:none;font:600 14px var(--sans)}
+a.chip:hover{border-color:var(--rust);color:var(--rust)}
+.stack{display:flex;flex-direction:column;gap:20px}
+.page-pad{padding-top:36px;display:flex;flex-direction:column;gap:14px}
+.intro{margin:0;font:400 19px/1.5 var(--serif);color:var(--muted);max-width:760px}
+.filters{display:flex;flex-direction:column;gap:10px}
+.filters .fr{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.filters .fr>span:first-child{font:600 13px var(--sans);color:var(--muted2);margin-right:6px}
+.filters .count{margin-left:auto;font-size:14px;color:var(--muted2)}
+.letters .btn{min-width:40px;padding:0 10px}
+
+/* hub */
+.hero{position:relative;background:#1E2620;color:#fff;overflow:hidden}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;filter:grayscale(.2)}
+.hero .wrap{position:relative;padding-top:88px;padding-bottom:56px;display:flex;flex-direction:column;gap:14px}
+.hero h1{margin:0;font:400 clamp(40px,7vw,66px)/1.04 var(--serif);letter-spacing:-.015em;max-width:840px}
+.hero p{margin:0;font:400 20px/1.5 var(--serif);max-width:680px;color:#EEF1EA}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+.btn.ghost{background:transparent;color:#fff;border-color:#fff}
+.btn.ghost:hover{background:rgba(255,255,255,.12);color:#fff}
+.hero-credit{font-size:12px;color:#D9DFD4;margin-top:20px}
+.shortcuts{background:#fff;border-bottom:1px solid var(--line)}
+.shortcuts .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr))}
+.shortcuts a{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 8px;text-decoration:none;color:var(--ink);font:600 14px var(--sans);border-right:1px solid var(--line3)}
+.shortcuts a:last-child{border-right:0}
+.shortcuts a:hover{background:var(--ground)}
+.shortcuts svg{width:26px;height:26px;fill:none;stroke:var(--rust);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+.hub{padding-top:52px;display:flex;flex-direction:column;gap:60px}
+.feat-row{display:flex;flex-wrap:wrap;gap:32px}
+.feat-main{flex:999 1 620px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.feat-side{flex:1 1 280px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.today{display:flex;flex-direction:column;gap:10px}
+.today .tt{margin:0;font:400 21px/1.3 var(--serif)}
+.today a{font-weight:600;text-decoration:none}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.stats div{display:flex;flex-direction:column}
+.stats b{font:400 30px/1 var(--serif)}
+.stats span{font-size:13px;color:var(--muted2)}
+.group{display:flex;flex-direction:column;gap:20px;margin-bottom:36px}
+#chapters .card img{object-fit:cover}
+.ill-band{background:var(--green-bg);border:1px solid #D0D8CB;padding:32px;display:flex;flex-direction:column;gap:20px}
+.ill-band .sec-head{border-bottom-color:#C5CEC0}
+.ill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:#C5CEC0;border:1px solid #C5CEC0}
+.ill-link{background:#fff;padding:16px 18px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:4px;font:400 18px/1.3 var(--serif)}
+.ill-link span{font:600 12px var(--sans);color:var(--green);text-transform:uppercase;letter-spacing:.1em}
+.ill-link:hover{background:#FAFBF8}
+.soon{border:1px dashed #9AA694;border-top:1px dashed #9AA694;background:#fff}
+.tl-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));border-top:2px solid var(--ink)}
+.tl-strip div{padding:14px 14px 10px 0;display:flex;flex-direction:column;gap:4px}
+.tl-strip b{font:400 26px/1 var(--serif);color:var(--rust)}
+.tl-strip span{font-size:14px;line-height:1.4}
+
+/* chapter */
+.chapter{padding-top:26px;display:flex;flex-direction:column;gap:24px}
+.ch-head{display:flex;flex-direction:column;gap:12px;max-width:920px}
+.ch-meta{display:flex;flex-wrap:wrap;gap:8px 22px;color:var(--muted);font-size:15px}
+.ch-meta strong{color:var(--ink)}
+.ch-actions{display:flex;flex-wrap:wrap;gap:8px}
+.hero-fig img{max-height:500px;object-fit:cover}
+.ch-cols{display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start}
+.ch-side{flex:1 1 260px;min-width:0;display:flex;flex-direction:column;gap:20px;position:sticky;top:12px}
+@media (max-width:900px){.ch-side{position:static}}
+.toc{display:flex;flex-direction:column;gap:10px}
+.toc a{font:400 16px/1.35 var(--serif);color:var(--ink);text-decoration:none}
+.toc a:hover{color:var(--rust)}
+.toc a.bth{color:var(--rust)} .toc a.ill{color:var(--green)}
+.ch-body{flex:999 1 600px;min-width:0;max-width:760px;display:flex;flex-direction:column;gap:18px;font:400 19px/1.7 var(--serif)}
+.ch-body p{margin:0}
+.ch-body .lede{font-size:22px;line-height:1.6}
+.ch-body h2{margin:18px 0 0;padding-top:16px;border-top:1px solid var(--line);font:400 32px/1.2 var(--serif);scroll-margin-top:16px}
+.ch-body h2.ill{color:var(--green)}
+.ch-body hr.scene{border:0;text-align:center;margin:4px 0;height:auto}
+.ch-body hr.scene::after{content:'* * *';color:var(--muted2);letter-spacing:.4em;font-size:15px}
+.ch-body figure.inline{margin:6px 0}
+.ch-body figure.inline img{max-height:460px;object-fit:contain;background:#ECEFE8}
+.bth{background:var(--rust-bg);border:1px solid var(--rust-line);border-top:3px solid var(--rust);padding:24px 26px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.65;scroll-margin-top:16px}
+.bth h3{margin:0;font:400 27px/1.2 var(--serif)}
+.ch-body .box{font:400 16px/1.55 var(--sans)}
+.ch-body .box p{margin:6px 0 0}
+.note{border-left:0;border-top:1px solid var(--line);padding-top:18px;font-style:italic}
+.note p{margin-top:8px!important}
+.assign-cta{display:flex;flex-direction:column;gap:6px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--green);padding:18px 20px;text-decoration:none;color:var(--ink);font-family:var(--sans)}
+.assign-cta .kicker{color:var(--green)}
+.assign-cta .t{font:400 22px/1.25 var(--serif)}
+.assign-cta .d{font-size:14px;color:var(--muted)}
+.assign-cta .go{font-weight:600;color:var(--green)}
+.assign-cta:hover{border-color:var(--green)}
+.cite .tabs{display:flex;gap:6px;margin:10px 0}
+.cite .tabs .btn{min-height:36px;padding:0 14px;font-size:13px}
+.cite-text{background:var(--ground);padding:12px 14px;font-size:15px}
+.more-img .grid{margin-top:12px}
+.related{margin-top:24px;display:flex;flex-direction:column;gap:20px}
+.related .card img{height:140px}
+
+/* assignment packet */
+.assign{padding-top:24px;display:flex;flex-direction:column;gap:16px}
+.packet{background:#fff;border:1px solid var(--line);display:flex;flex-direction:column}
+.pk-head{display:flex;gap:18px;align-items:center;padding:24px 28px;color:#fff;background:linear-gradient(115deg,#233A2E 0%,#2F5E46 45%,#8A3322 100%)}
+.pk-head .crest{width:58px;height:66px;flex:none}
+.pk-head h1{margin:4px 0;font:400 clamp(28px,4vw,40px)/1.1 var(--serif)}
+.pk-kick{font:700 12px/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#F2D9CF}
+.pk-sub{font-size:15px;color:#E8EDE4}
+.pk-id{display:flex;flex-wrap:wrap;gap:12px 24px;padding:16px 28px;border-bottom:1px solid var(--line)}
+.pk-id label{display:flex;align-items:center;gap:8px;font-weight:600}
+.pk-id input,.pk-id select{min-height:40px;border:0;border-bottom:1px solid var(--ink);padding:0 6px;min-width:140px;background:transparent}
+.pk-id input[name=name],#qz-name{min-width:240px}
+.goal{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;background:var(--gold-bg);border-top:3px solid var(--gold);border-bottom:1px solid #EAD9A6;padding:14px 28px}
+.goal span{font:700 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#7A5A10}
+.goal p{margin:0;font:400 18px/1.45 var(--serif)}
+.pk-intro{display:flex;flex-wrap:wrap;gap:24px;padding:24px 28px;border-bottom:1px solid var(--line)}
+.pk-intro figure{flex:1 1 260px;max-width:380px}
+.pk-intro figure img{max-height:300px;object-fit:cover}
+.pk-intro>div{flex:999 1 340px;min-width:0;display:flex;flex-direction:column;gap:10px}
+.pk-intro h2{margin:0;font:400 24px var(--serif)}
+.pk-intro p{margin:0;font-size:17px}
+.savebar{display:flex;flex-direction:column;gap:8px;margin-top:6px;padding-top:12px;border-top:1px dashed var(--line2)}
+.savebar [data-save-status]{font-size:13px;color:var(--green)}
+.savebtns{display:flex;flex-wrap:wrap;gap:6px}
+.savebtns .btn{min-height:40px;padding:0 12px;font-size:14px}
+.part{padding:24px 28px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:16px}
+.part-head{display:flex;gap:14px;align-items:flex-start}
+.badge{flex:none;width:40px;height:40px;background:var(--rust);color:#fff;display:flex;align-items:center;justify-content:center;font:700 19px var(--sans)}
+.part-head h2{margin:2px 0 0;font:400 25px/1.2 var(--serif)}
+.part-head .prompt{margin:4px 0 0;color:var(--muted);font-size:16px}
+.q{display:flex;flex-direction:column;gap:6px}
+.q label,.q legend{font-weight:600;font-size:16px}
+.q textarea,.quote-item textarea{border:1px solid var(--line2);padding:10px 12px;font-size:16px;line-height:1.5;resize:vertical;min-height:72px;width:100%}
+.q textarea::placeholder,.quote-item textarea::placeholder{color:#7C857A;font-style:italic}
+fieldset.q{border:1px solid var(--line);padding:14px 16px;margin:0}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:8px 6px;font-weight:400!important;cursor:pointer}
+.opt input{margin-top:5px;width:18px;height:18px;flex:none}
+.opt.right{background:#E7F2EA;outline:1px solid #8DBB9C}
+.opt.wrong{background:#FBEAE6;outline:1px solid #E1A796}
+.why{margin:6px 0 0;padding:10px 12px;background:var(--ground);font-size:15px}
+.sort{display:flex;flex-direction:column;border:1px solid var(--line)}
+.sort-row{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line3)}
+.sort-row:last-child{border-bottom:0}
+.sort-n{flex:none;width:26px;height:26px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font:600 13px var(--sans)}
+.sort-t{flex:999 1 300px;min-width:0;font-size:16px}
+.sort select,.quote-ctl select{min-height:42px;border:1px solid var(--line2);padding:0 8px;background:#fff;flex:0 1 260px;min-width:160px}
+.order select{flex:0 0 64px;min-width:64px}
+.year{font:700 15px var(--sans);color:var(--rust);min-width:0}
+.mark{font:700 14px var(--sans);min-width:70px}
+.mark.ok{color:var(--green)} .mark.no{color:var(--rust-dk)}
+.check{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.score{font-weight:600}
+blockquote.src{margin:0;padding:16px 20px;background:var(--ground);border-left:3px solid var(--ink);font:400 18px/1.6 var(--serif)}
+blockquote.src p{margin:0}
+blockquote.src cite{display:block;margin-top:8px;font:400 14px var(--sans);color:var(--muted2);font-style:normal}
+.quote-item{flex-direction:column;align-items:stretch}
+.quote-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.quote-item label{font-weight:600}
+.part-fig{max-width:620px}
+.pk-end{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:22px 28px}
+.pk-end p{margin:0}
+
+/* quiz */
+.quiz{padding-top:24px;display:flex;flex-direction:column;gap:18px}
+.quiz-head{border:1px solid var(--line)}
+.quiz-intro{display:flex;flex-direction:column;gap:12px}
+.quiz-intro p{margin:0}
+.rules{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.quiz .pk-id{padding:0;border:0}
+.quiz-form{display:flex;flex-direction:column;gap:16px}
+.qq{background:#fff;border:1px solid var(--line);padding:20px 22px;margin:0;display:flex;flex-direction:column;gap:12px}
+.qq legend{float:left;width:100%;font:400 20px/1.35 var(--serif);display:flex;gap:12px;padding:0;margin-bottom:6px}
+.qn{flex:none;width:32px;height:32px;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font:700 15px var(--sans)}
+.stim{max-width:560px}
+.stim img{max-height:380px;object-fit:contain;background:#ECEFE8}
+.stim-text{background:var(--ground);border-left:3px solid var(--ink);padding:12px 16px;font-size:16px}
+.opts{display:flex;flex-direction:column;gap:2px}
+.quiz-submit{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:flex-end}
+.answered{color:var(--muted2);font-size:14px}
+.quiz-status{display:flex;flex-direction:column;gap:10px;border-top:3px solid var(--rust)}
+.quiz-status .big{font:400 40px/1 var(--serif)}
+.quiz-status code{font:700 22px/1.2 ui-monospace,Consolas,monospace;background:var(--gold-bg);border:1px solid #EAD9A6;padding:8px 12px;display:inline-block;letter-spacing:.04em}
+.teacher-reset{display:flex;justify-content:flex-end}
+.teacher-reset .btn{min-height:36px;font-size:13px;color:var(--muted2)}
+.quiz-done .opt input{pointer-events:none}
+
+/* glossary */
+.glossary{display:flex;flex-direction:column;gap:22px}
+.letter{display:flex;flex-wrap:wrap;gap:12px 24px;border-top:1px solid var(--line2);padding-top:14px}
+.letter .L{flex:0 0 56px;font:400 44px/1 var(--serif);color:var(--rust)}
+.terms{flex:999 1 600px;min-width:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:4px 32px}
+.term{padding:10px 0;border-bottom:1px solid var(--line3);scroll-margin-top:20px}
+.term-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.term h3{margin:0;font:400 20px/1.3 var(--serif)}
+.term-tag{font:600 12px var(--sans);color:var(--muted2)}
+.term-tag a{text-decoration:none}
+.term p{margin:4px 0 0;color:var(--muted);font-size:15px;line-height:1.5}
+.term:target,.term.flash{background:var(--gold-bg);outline:6px solid var(--gold-bg)}
+
+/* timeline */
+.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.ev{display:flex;align-items:stretch}
+.yr{flex:0 0 76px;font:400 28px/1 var(--serif);color:var(--rust);padding-top:20px}
+.dot{flex:0 0 26px;position:relative}
+.dot::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:1px;background:var(--line2)}
+.dot::after{content:'';position:absolute;left:6px;top:24px;width:11px;height:11px;border:2px solid var(--rust);background:#fff}
+.ev-card{flex:1 1 auto;min-width:0;margin:8px 0 8px 10px;background:#fff;border:1px solid var(--line);padding:14px 18px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:5px}
+.ev-card:hover{border-color:var(--line2)}
+.ev-t{font:400 21px/1.25 var(--serif)}
+.ev-w{font:600 12px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted2)}
+.ev-d{font-size:15px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font:600 12px var(--sans);padding:3px 8px}
+.tags .ch{border:1px solid var(--line2)} .tags .th{background:var(--green-bg);color:var(--green)} .tags .il{background:var(--green);color:#fff}
+.ilbtn{color:var(--green);border-color:var(--green)}
+.ilbtn.on{background:var(--green);color:#fff}
+@media (max-width:560px){.yr{flex-basis:56px;font-size:22px}}
+
+/* image library */
+.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.img-cell{display:flex;flex-direction:column;text-align:left;padding:0;background:#fff;border:1px solid var(--line);cursor:pointer}
+.img-cell:hover{border-color:var(--line2)}
+.img-cell img{width:100%;height:180px;object-fit:cover;display:block;background:#ECEFE8}
+.ic-ch{padding:10px 12px 0;font:700 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--rust)}
+.ic-t{padding:4px 12px 12px;font:400 16px/1.3 var(--serif)}
+.lightbox{position:fixed;inset:0;background:rgba(18,26,21,.9);z-index:60;display:flex;align-items:center;justify-content:center;padding:20px}
+.lightbox[hidden]{display:none}
+.lb-in{background:#fff;max-width:1100px;width:100%;max-height:100%;overflow:auto;display:flex;flex-wrap:wrap}
+.lb-in>img{flex:999 1 560px;min-width:0;max-height:78vh;object-fit:contain;background:#1E2620}
+.lb-side{flex:1 1 280px;padding:22px;display:flex;flex-direction:column;gap:12px}
+.lb-cap{margin:0;font:400 19px/1.4 var(--serif)}
+.lb-btns{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+
+.key h2{margin:0 0 4px;font:400 24px var(--serif)}
+.key ol{margin:10px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:6px}
+.key{margin-bottom:14px}
+
+@media print{
+  .packet{border:0}
+  .pk-head{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .goal,.badge{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .part{break-inside:avoid-page}
+  .q textarea{min-height:110px}
+  .why,.mark,.year,.check,.score{display:none!important}
+  .qq{break-inside:avoid}
+  .ch-cols{display:block}
+  .hero-fig img{max-height:320px}
+}
+
+/* ---------- The Reading Room (flip-book) ---------- */
+.reading-room{display:flex;flex-wrap:wrap;gap:40px;align-items:center;background:#fff;border:1px solid var(--line);padding:40px}
+@media (max-width:640px){.reading-room{padding:24px}}
+.rr-text{flex:999 1 380px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.rr-text h2{margin:0;font:400 36px/1.1 var(--serif)}
+.rr-text p{margin:0;font:400 18px/1.55 var(--serif);color:var(--muted)}
+.ribbons{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.ribbons button{min-height:40px;min-width:44px;padding:0 10px;border:1px solid var(--line2);background:#fff;font:600 14px var(--sans);cursor:pointer;position:relative}
+.ribbons button:hover{border-color:var(--rust);color:var(--rust)}
+.book-wrap{flex:1 1 280px;display:flex;justify-content:center;perspective:1600px;padding:10px 0}
+.book3d{position:relative;width:250px;height:340px;transform-style:preserve-3d;transform:rotateY(-24deg) rotateX(4deg);transition:transform .6s ease;cursor:pointer;border:0;background:none;padding:0}
+.book3d:hover,.book3d:focus-visible{transform:rotateY(-12deg) rotateX(2deg)}
+.book3d .pages{position:absolute;inset:6px 0 6px 14px;background:repeating-linear-gradient(90deg,#fdfcf8 0 2px,#e9e5da 2px 3px);transform:translateZ(-18px);box-shadow:0 18px 40px rgba(30,38,32,.28)}
+.book3d .spine{position:absolute;left:0;top:0;width:36px;height:100%;background:linear-gradient(90deg,#16251c,#2F5E46);transform-origin:left;transform:rotateY(90deg) translateX(-36px)}
+.book3d .cover{position:absolute;inset:0;transform-origin:left center;transition:transform .9s cubic-bezier(.4,.1,.2,1);background:#233A2E;border-radius:2px 6px 6px 2px;overflow:hidden;box-shadow:inset 6px 0 10px rgba(0,0,0,.35);display:flex;flex-direction:column}
+.book3d.opening .cover{transform:rotateY(-155deg)}
+.book3d .mosaic{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;flex:1;opacity:.55;filter:grayscale(.3)}
+.book3d .mosaic span{background-size:cover;background-position:center}
+.book3d .cv-title{position:absolute;left:0;right:0;bottom:0;padding:16px 16px 18px;background:linear-gradient(transparent,rgba(20,32,25,.95) 30%);color:#fff;text-align:left}
+.book3d .cv-title small{display:block;font:700 10px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#F2D9CF;margin-bottom:6px}
+.book3d .cv-title b{display:block;font:400 25px/1.08 var(--serif)}
+.book3d .cv-title i{display:block;font:normal 400 12px var(--sans);color:#D9DFD4;margin-top:6px}
+.book3d .tab{position:absolute;right:-8px;width:12px;height:22px;background:var(--rust);transform:translateZ(1px)}
+/* reader overlay */
+.reader{position:fixed;inset:0;z-index:70;background:rgba(18,26,21,.92);display:flex;flex-direction:column}
+.reader[hidden]{display:none}
+.reader-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:10px 16px;background:#F4F6F0;border-bottom:1px solid var(--line)}
+.reader-bar .rt{font:400 20px var(--serif);margin-right:auto}
+.reader-bar .rt small{font:700 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rust);display:block}
+.reader-bar .btn{min-height:40px;font-size:14px}
+.reader-body{flex:1;display:flex;min-height:0}
+.reader-ribbons{display:flex;flex-direction:column;gap:4px;padding:12px 0 12px 10px;overflow:auto}
+.reader-ribbons button{width:46px;min-height:38px;border:0;background:#3B4A40;color:#E8EDE4;font:700 13px var(--sans);cursor:pointer;clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%);padding-bottom:6px}
+.reader-ribbons button[aria-current="true"],.reader-ribbons button:hover{background:var(--rust)}
+.reader iframe{flex:1;border:0;background:#fff;min-width:0}
+@media (max-width:640px){.reader-ribbons{flex-direction:row;padding:6px;overflow-x:auto}.reader-body{flex-direction:column}.reader-ribbons button{width:40px;min-height:34px}}
+
+/* ---------- Silent Film Theater ---------- */
+body.theater-page{background:#16120E}
+.theater{color:#F3E6C8}
+.marquee-top{background:radial-gradient(ellipse at top,#3A2A1A,#16120E 70%);text-align:center;padding:38px 0 30px;border-bottom:3px double #C99A2E}
+.marquee-top h1{font:400 clamp(38px,6vw,64px)/1.05 Georgia,serif;color:#F7E9C6;margin:6px 0 10px;letter-spacing:.01em}
+.mq-kick{font:700 12px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#E7B75A;margin:0}
+.mq-sub{font:400 19px/1.55 Georgia,serif;max-width:680px;margin:0 auto;color:#E6D6B4}
+.bulbs{display:block;height:10px;margin:12px auto;max-width:760px;background:radial-gradient(circle,#FFE7A3 0 3px,#C99A2E 3.5px,transparent 4.5px) 0 50%/22px 10px repeat-x;animation:bulb 1.6s steps(2) infinite}
+@keyframes bulb{50%{filter:brightness(.55)}}
+@media (prefers-reduced-motion:reduce){.bulbs{animation:none}}
+.theater-body{padding:26px 16px 40px}
+.theater .box{background:#211A14;border-color:#4A3A28;color:#F0E4C8}
+.theater .box p{color:#F0E4C8}
+.theater .kicker{color:#E7B75A}
+.theater a{color:#F2C46B}
+.theater .credit{color:#B8A37E}
+.film-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;margin:22px 0}
+.film-card{display:flex;flex-direction:column;background:#1E1813;border:3px double #C99A2E;color:#F3E6C8;text-decoration:none;transition:transform .15s}
+.film-card:hover{transform:translateY(-3px)}
+.film-frame{display:block;background:#000;aspect-ratio:4/3;overflow:hidden}
+.film-frame img{width:100%;height:100%;object-fit:cover;filter:sepia(.25) contrast(1.05)}
+.film-meta{display:flex;flex-direction:column;gap:5px;padding:12px 14px 14px}
+.film-meta .lbl{font:700 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:#E7B75A}
+.film-meta .t{font:400 23px/1.2 Georgia,serif;color:#F7E9C6}
+.film-meta .d{font:400 14.5px/1.5 var(--sans);color:#E0D0AE}
+.film-meta .who{font:400 12.5px var(--sans);color:#B8A37E}
+.screen-wrap{background:radial-gradient(ellipse at top,#2E2216,#16120E 75%);padding:26px 0 18px;border-bottom:3px double #C99A2E}
+.film-head{text-align:center;margin-bottom:14px}
+.film-head h1{font:400 clamp(30px,5vw,48px)/1.1 Georgia,serif;color:#F7E9C6;margin:4px 0}
+.film-head .who{font:400 15px var(--sans);color:#CDB98F;margin:0}
+.screen{max-width:880px;margin:0 auto;border:6px solid #2B2016;box-shadow:0 0 0 2px #C99A2E,0 24px 60px rgba(0,0,0,.6);background:#000}
+.screen video{display:block;width:100%;aspect-ratio:4/3;background:#000}
+.screen-ctl{max-width:880px;margin:12px auto 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.reels{display:flex;gap:6px;flex-wrap:wrap}
+.reel-btn{background:#2C2219;color:#F3E6C8;border:1px solid #6B5638;padding:7px 12px;font:600 14px var(--sans);cursor:pointer}
+.reel-btn small{margin-left:6px;font-weight:400;color:#CDB98F}
+.reel-btn.on{background:#E7B75A;color:#1E1610;border-color:#E7B75A}.reel-btn.on small{color:#3A2A14}
+.theater .piano-ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.theater .piano-ctl .btn{background:#2C2219;color:#F3E6C8;border-color:#6B5638}
+.theater [data-piano][aria-pressed="true"]{background:#E7B75A;color:#1E1610;border-color:#E7B75A}
+.follow{font:400 13px var(--sans);color:#CDB98F;display:flex;gap:5px;align-items:center}
+.piano-now{font:italic 400 13px var(--sans);color:#CDB98F}
+.screen-wrap .credit{max-width:880px;margin:10px auto 0;text-align:center}
+.film-body{padding:24px 16px 40px}
+.film-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:820px){.film-cols{grid-template-columns:1fr}}
+.film-cols .hook{font:italic 400 19px/1.5 Georgia,serif}
+.film-qs h2{font:400 26px Georgia,serif;color:#F7E9C6;margin:2px 0 6px}
+.theater .od-label{display:block;font:600 15px var(--sans);margin:14px 0 6px;color:#F3E6C8}
+.theater .od-ta{width:100%;background:#16120E;color:#F3E6C8;border:1px solid #6B5638;padding:10px;font:400 15px/1.5 var(--sans)}
+.theater .od-save{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.theater .od-save .btn,.film-nav .btn{background:#2C2219;color:#F3E6C8;border-color:#6B5638}
+.theater .meta{color:#CDB98F}
+.film-nav{display:flex;justify-content:space-between;gap:10px;margin-top:22px;flex-wrap:wrap}
+.film-band{background:#1E1813;border:3px double #C99A2E;padding:20px 20px 22px;margin:28px 0;color:#F3E6C8}
+.film-band h2{color:#F7E9C6}.film-band .kicker{color:#E7B75A}.film-band .meta{color:#CDB98F}.film-band .sec-head a{color:#F2C46B}
+.film-band .sec-head{border-bottom-color:#4A3A28}
+@media print{body.theater-page{background:#fff}.theater,.theater .box p,.theater .od-label{color:#000}.screen-wrap,.marquee-top{display:none}.theater .box{background:#fff}.theater .od-ta{background:#fff;color:#000}}
+
+/* ---------- teacher-only + lesson plans ---------- */
+html:not(.is-master) [data-master]{display:none!important}
+.lp-wrap{display:grid;grid-template-columns:260px 1fr;gap:24px;align-items:start;margin-top:16px}
+@media (max-width:860px){.lp-wrap{grid-template-columns:1fr}}
+.lp-nav{position:sticky;top:12px;border:1px solid var(--line);background:#fff;padding:12px;max-height:calc(100vh - 24px);overflow:auto}
+.lp-nav h4{font:700 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--rust);margin:12px 0 4px}
+.lp-nav a{display:block;padding:6px 8px;font:400 14.5px/1.35 var(--sans);color:var(--ink);text-decoration:none;border-left:3px solid transparent}
+.lp-nav a:hover{background:var(--ground)}.lp-nav a.on{border-left-color:var(--rust);background:var(--ground);font-weight:600}
+.lp{background:#fff;border:1px solid var(--line);padding:24px 26px}
+.lp-head{border-bottom:2px solid var(--rust);padding-bottom:12px;margin-bottom:6px;position:relative}
+.lp-head h2{font:400 32px/1.15 Georgia,serif;margin:4px 0}
+.lp-meta{font:400 15px var(--sans);color:var(--muted);margin:0}
+.lp-print{position:absolute;top:0;right:0}
+.lp-dom{margin-top:18px}
+.lp-dom h3{font:400 23px Georgia,serif;margin:0 0 8px;padding:8px 0;border-bottom:1px solid var(--line)}
+.lp-dom h3 span{font:700 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--rust);padding:3px 7px;margin-right:8px;vertical-align:middle}
+.lp-c{margin:10px 0 14px}
+.lp-c h4{font:700 14px var(--sans);margin:0 0 4px;color:var(--ink)}
+.lp-c p,.lp-c li{font:400 15px/1.55 var(--sans)}
+.lp-c ul,.lp-c ol{margin:4px 0;padding-left:20px}
+.lp-seq{width:100%;border-collapse:collapse;font:400 14.5px/1.45 var(--sans)}
+.lp-seq th,.lp-seq td{border:1px solid var(--line);padding:7px 9px;vertical-align:top;text-align:left}
+.lp-seq th{background:var(--ground);font-weight:600}
+.lp-seq td:first-child{white-space:nowrap;font-weight:600}
+@media print{.lp-nav,.lp-print,#lpgate{display:none!important}.lp-wrap{display:block}.lp{border:none;padding:0}.lp-dom{break-inside:auto}.lp-seq tr{break-inside:avoid}}
+
+.wk-film{background:#211A14;border:3px double #C99A2E;padding:22px 24px;margin:22px 0}
+.wk-film h2{font:400 clamp(26px,3.6vw,36px)/1.15 Georgia,serif;color:#F7E9C6;margin:4px 0 12px}
+.wk-film h3{font:400 21px Georgia,serif;color:#F2C46B;margin:18px 0 6px}
+.wk-film p,.wk-film li{font:400 16px/1.6 var(--sans);color:#F0E4C8}
+.wk-lede{font:400 19px/1.55 Georgia,serif!important}
+.wk-cols{display:grid;grid-template-columns:1fr 300px;gap:24px}
+@media (max-width:860px){.wk-cols{grid-template-columns:1fr}}
+.wk-list{padding-left:18px}.wk-list li{margin:6px 0}
+.wk-fig{margin:0 0 14px}.wk-fig img{width:100%;display:block;border:1px solid #6B5638;filter:sepia(.2)}
+.wk-q{background:#16120E!important}
+.theater-h2{font:400 30px Georgia,serif;color:#F7E9C6;margin:28px 0 0}
+
+/* ---------- slideshow presentations (Unit 2 behavior, Unit 3 look) ---------- */
+body.deck-page{background:var(--ground)}
+.deck-bar{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.deck-bar .wrap{display:flex;align-items:center;gap:12px 18px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+.deck-bar .count{font:700 13px var(--sans);border:1px solid var(--line2);padding:6px 10px;min-width:72px;text-align:center}
+.deck-bar .where{font:600 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);flex:1;min-width:160px}
+.deck-bar .where b{color:var(--rust)}
+.deck-bar .btn{min-height:40px;font-size:14px}
+.deck{position:relative;max-width:1240px;margin:0 auto;padding:18px 32px 0}
+@media (max-width:640px){.deck{padding:12px 12px 0}}
+.slides{position:relative}
+.slide{display:none;background:#fff;border:1px solid var(--line);min-height:calc(100vh - 210px);flex-direction:column}
+.slide.on{display:flex;animation:sl-in .25s ease}
+@keyframes sl-in{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+.sl-in{flex:1;display:flex;flex-wrap:wrap;gap:32px;padding:44px 52px;align-items:flex-start}
+@media (max-width:760px){.sl-in{padding:26px 20px;gap:20px}}
+.sl-text{flex:999 1 440px;min-width:0;display:flex;flex-direction:column;gap:14px}
+.sl-text p{margin:0;font:400 19px/1.65 var(--serif)}
+.sl-text p.lede{font-size:22px;line-height:1.55}
+.sl-kick{font:700 12px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rust)}
+.sl-kick.green{color:var(--green)}
+.sl-text h2{margin:0;font:400 clamp(28px,3.4vw,40px)/1.15 var(--serif);letter-spacing:-.01em}
+.sl-media{flex:1 1 320px;min-width:0;max-width:480px;display:flex;flex-direction:column;gap:8px}
+.sl-media img{width:100%;max-height:440px;object-fit:contain;background:#ECEFE8;border:1px solid var(--line)}
+@media (max-width:760px){.sl-media{max-width:none}}
+/* cover */
+.slide.cover{position:relative;overflow:hidden;background:#1E2620;color:#fff;border-color:#1E2620}
+.slide.cover>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42;filter:grayscale(.25)}
+.slide.cover .sl-in{position:relative;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:16px}
+.cover-kick{font:700 13px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#F2D9CF}
+.cover-rule{width:52px;height:2px;background:#F2D9CF}
+.slide.cover h1{margin:0;font:400 clamp(40px,7vw,72px)/1.04 var(--serif);letter-spacing:-.015em;max-width:900px}
+.cover-sub{margin:0;font:400 21px/1.5 var(--serif);max-width:700px;color:#EEF1EA}
+.dq{background:rgba(255,255,255,.95);color:var(--ink);border-left:3px solid var(--rust);padding:14px 20px;text-align:left;max-width:620px;margin-top:6px}
+.dq span{display:block;font:700 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rust);margin-bottom:4px}
+.dq p{margin:0;font:400 20px/1.4 var(--serif)}
+.cover .btn.primary{margin-top:8px}
+.cover-credit{position:absolute;bottom:10px;left:16px;right:16px;font-size:11px;color:#D9DFD4;text-align:left}
+/* special slides */
+.slide.bth-slide .sl-text{background:var(--rust-bg);border:1px solid var(--rust-line);border-top:3px solid var(--rust);padding:24px 26px}
+.slide.bth-slide .sl-text p{font-size:18px}
+.slide.ill-slide .sl-text h2{color:var(--green)}
+.terms-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px 28px;width:100%}
+.terms-list div{border-bottom:1px solid var(--line3);padding:8px 0}
+.terms-list b{font:400 19px var(--serif);display:block}
+.terms-list span{font-size:15px;color:var(--muted)}
+.go-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;width:100%}
+.go-grid .card img{height:130px}
+.go-head{width:100%;display:flex;flex-direction:column;gap:8px}
+.note-small{font:italic 400 16px/1.6 var(--serif);color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+/* controls */
+.deck-nav{display:flex;align-items:center;justify-content:center;gap:12px;padding:14px 0 8px;flex-wrap:wrap}
+.deck-nav .arrow{width:48px;height:48px;border:1px solid var(--line2);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.deck-nav .arrow:hover{border-color:var(--ink)}
+.deck-nav .arrow:disabled{opacity:.35;cursor:default}
+.deck-nav .arrow svg{width:20px;height:20px;stroke:var(--ink);fill:none;stroke-width:2}
+.dots{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:70vw}
+.dots button{width:22px;height:8px;border:0;background:#D3D9CE;cursor:pointer;padding:0}
+.dots button[aria-current="true"]{background:var(--rust);width:30px}
+.dots button:focus-visible{outline-offset:3px}
+.kbd-hint{font-size:12px;color:var(--muted2);text-align:center;padding-bottom:6px}
+/* audio */
+.player{display:flex;align-items:center;gap:12px;background:var(--ground);border:1px solid var(--line2);padding:12px 14px;width:100%}
+.player button{width:46px;height:46px;flex:none;background:var(--rust);border:0;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.player button svg{width:20px;height:20px;fill:#fff}
+.player .pl-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.player .pl-t{font:600 15px var(--sans)}
+.player .bar{height:8px;background:#D3D9CE;cursor:pointer;position:relative}
+.player .bar span{position:absolute;left:0;top:0;bottom:0;background:var(--rust);width:0}
+.player time{font:600 13px ui-monospace,Consolas,monospace;color:var(--muted2)}
+.listen-for{margin:0;padding-left:20px;font:400 17px/1.6 var(--serif)}
+@media print{
+  .deck-bar,.deck-nav,.kbd-hint{display:none!important}
+  .slide{display:flex!important;min-height:0;break-inside:avoid-page;margin-bottom:14px}
+  .slide.cover{background:#fff;color:#000}
+  .slide.cover>img{display:none}
+  .cover-kick,.cover-sub{color:#333}
+}
+
+.sl-text p.credit,.sl-text .credit{font:400 13px/1.45 var(--sans);color:var(--muted2)}
+
+/* ---------- music tiles ---------- */
+.tracks{display:flex;flex-direction:column;gap:12px;width:100%}
+.tracks.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:760px){.tracks.grid2{grid-template-columns:1fr}}
+.track{display:flex;flex-direction:column;gap:6px;border:1px solid var(--line);padding:10px;background:#fff}
+.track .player{background:var(--ground)}
+.track .pl-t small{font-weight:400;color:var(--muted2)}
+.sl-text p.track-info{font:400 15px/1.5 var(--sans);color:var(--muted);margin:0 4px}
+
+/* ---------- The Nickelodeon theme ---------- */
+body.nick{background:#16120E}
+body.nick .deck-bar{background:#211A14;border-bottom-color:#4A3A28}
+body.nick .deck-bar .count{color:#F3E6C8;border-color:#6B5638}
+body.nick .deck-bar .where{color:#CDB98F}
+body.nick .deck-bar .where b{color:#E7B75A}
+body.nick .deck-bar .btn{background:#2C2219;color:#F3E6C8;border-color:#6B5638}
+body.nick .deck-bar .btn:hover{border-color:#E7B75A}
+.piano-ctl{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+body.nick [data-piano][aria-pressed="true"]{background:#E7B75A!important;color:#1E1610!important;border-color:#E7B75A!important}
+.piano-now{font:italic 400 14px var(--serif);color:#E7D3A6}
+body.nick .slide{background:#1E1813;border:3px double #C99A2E;color:#F3E6C8;box-shadow:0 0 0 6px #120E0A,0 20px 40px rgba(0,0,0,.5)}
+body.nick .sl-text p{color:#F0E4C8}
+body.nick .sl-kick{color:#E7B75A;letter-spacing:.2em}
+body.nick .sl-text h2{color:#FFF6DF;font-style:italic;letter-spacing:.01em}
+body.nick .sl-media img,body.nick .sl-media video{border:6px solid #0E0B08;background:#0E0B08;filter:sepia(.35) contrast(1.05);box-shadow:0 0 0 1px #6B5638}
+body.nick .sl-media .credit,body.nick .credit{color:#BFAE8A}
+body.nick .slide:not(.cover) .sl-media{position:relative}
+body.nick .slide:not(.cover) .sl-media::after{content:"";position:absolute;inset:0 0 auto 0;height:calc(100% - 40px);pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.35));animation:flicker 3.2s infinite steps(1)}
+@keyframes flicker{0%{opacity:.9}12%{opacity:1}24%{opacity:.85}37%{opacity:1}51%{opacity:.92}68%{opacity:1}83%{opacity:.88}}
+@media (prefers-reduced-motion:reduce){body.nick .slide:not(.cover) .sl-media::after{animation:none}}
+body.nick .sl-media.film{max-width:560px}
+body.nick .sl-media video{width:100%;display:block}
+body.nick .slide.bth-slide .sl-text{background:#2A2017;border-color:#6B5638;border-top-color:#E7B75A}
+body.nick .slide.bth-slide .sl-text p{color:#F3E6C8}
+body.nick .card{background:#2A2017;border-color:#6B5638;color:#F3E6C8}
+body.nick .card .t{color:#FFF6DF} body.nick .card .d{color:#CDB98F}
+body.nick .card .lbl,body.nick .card .lbl.green,body.nick .card .lbl.gray{color:#E7B75A}
+body.nick .go-head p{color:#CDB98F!important}
+body.nick .btn{background:#2C2219;color:#F3E6C8;border-color:#6B5638}
+body.nick .deck-nav .arrow{background:#2C2219;border-color:#6B5638}
+body.nick .deck-nav .arrow svg{stroke:#F3E6C8}
+body.nick .dots button{background:#4A3A28}
+body.nick .dots button[aria-current="true"]{background:#E7B75A}
+body.nick .kbd-hint{color:#9E8C6A}
+body.nick .tools-dock .btn{background:#2C2219;color:#F3E6C8;border-color:#6B5638}
+body.nick a{color:#E7B75A}
+/* ticket-booth cover */
+.slide.cover.ticket{background:#120E0A;border-color:#C99A2E}
+.slide.cover.ticket>img{opacity:.32;filter:sepia(.6) contrast(1.1)}
+.marquee{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;max-width:620px}
+.marquee i{width:10px;height:10px;border-radius:50%;background:#F6D27A;box-shadow:0 0 8px #F6D27A;animation:bulbs 1.2s infinite}
+.marquee i:nth-child(even){animation-delay:.6s}
+@keyframes bulbs{0%,49%{opacity:1}50%,100%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.marquee i{animation:none}}
+.slide.cover.ticket h1{font-family:Georgia,serif;font-style:italic;color:#FFF0C8;text-shadow:0 2px 0 #6B3A12,0 0 24px rgba(246,210,122,.35);letter-spacing:.02em}
+.admit{margin:0;font:700 14px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:#F6D27A;border:2px solid #C99A2E;padding:8px 16px}
+.admit b{font-size:22px;color:#FFF0C8}
+.ticket-btn{background:#B1442F!important;border-color:#F6D27A!important;color:#FFF6DF!important;font-size:17px!important;min-height:52px!important;padding:0 26px!important}
+.ticket-note{font-size:13px;color:#CDB98F}
+
+/* converted original deep dives */
+.sl-text.wide{max-width:none}
+.od-steps{display:grid;gap:10px;margin:14px 0}
+.od-step{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line);background:#fff;padding:12px 14px}
+.od-step b{flex:none;width:30px;height:30px;display:grid;place-items:center;background:var(--rust);color:#fff;font:700 15px var(--sans)}
+.od-step strong{display:block;font:600 17px var(--serif)}
+.od-step span{font:400 15px/1.5 var(--sans);color:var(--muted)}
+.od-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:14px}
+.od-cards .box p,.od-src .box p{margin:.35em 0 0}
+.od-src{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+@media (max-width:760px){.od-src{grid-template-columns:1fr}}
+.od-label{display:block;font:600 14px var(--sans);margin:14px 0 6px}
+.od-ta{width:100%;box-sizing:border-box;border:1px solid var(--line);padding:10px 12px;font:400 16px/1.5 var(--serif);background:#fff;resize:vertical}
+.od-ta:focus{outline:2px solid var(--rust);outline-offset:1px}
+.od-h3{font:400 22px var(--serif);margin:14px 0 0}
+.od-side{display:flex;flex-direction:column;gap:12px;max-width:360px}
+.od-save{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.od-lab{margin-top:10px}
+
+.od-big p{font:400 20px/1.6 var(--serif);margin:.4em 0 .6em}
+.od-count{display:inline-block;font:600 12px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-top:2px solid var(--rust);padding-top:6px;margin-bottom:10px}
+.sl-media.od-labfig{max-width:300px}
+@media (max-width:760px){.sl-media.od-labfig{max-width:none}}
+
+.od-flow p{font:400 18px/1.6 var(--serif);margin:.5em 0}
+.od-why{border-left:3px solid var(--rust);padding:2px 0 2px 14px;margin:12px 0}
+.od-why p{font:italic 400 18px/1.55 var(--serif);margin:.2em 0 0}
+.od-gal img{width:100%;display:block}
+.od-thumbs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.od-thumbs img{aspect-ratio:4/3;object-fit:cover;height:auto}
+.od-gal .credit{font-size:11px;line-height:1.45}
+.od-people{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.od-people.n2{grid-template-columns:1fr 1fr}
+.od-person{display:flex;gap:14px;border:1px solid var(--line);background:#fff;padding:12px}
+.od-person img{flex:none;width:118px;height:148px;object-fit:cover;object-position:center 20%}
+.od-person h3{margin:0 0 4px;font:600 19px var(--serif)}
+.od-person p{margin:0 0 6px;font:400 15px/1.5 var(--sans)}
+.od-person .credit{font-size:10.5px}
+@media (max-width:760px){.od-people,.od-people.n2{grid-template-columns:1fr}.od-person img{width:90px;height:112px}}
+
+.lyrics{margin:8px 0 2px;border-top:1px solid var(--line);padding-top:6px}
+.lyrics summary{cursor:pointer;font:600 14px var(--sans);color:var(--rust);list-style:none;padding:4px 0}
+.lyrics summary::-webkit-details-marker{display:none}
+.lyrics summary::before{content:'▸ ';display:inline-block;transition:transform .15s}
+.lyrics[open] summary::before{transform:rotate(90deg)}
+.ly-body{max-height:260px;overflow:auto;background:#fff;border:1px solid var(--line);padding:10px 12px;margin:6px 0}
+.ly-part{margin:0 0 10px}
+.ly-lbl{display:block;font:700 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ly-line{display:block;font:400 16px/1.5 Georgia,serif;color:var(--ink)}
+.sl-text .ly-note,.ly-note{font:400 14px/1.5 var(--sans)!important;color:var(--ink);background:#FBF3E8;border-left:3px solid var(--rust);padding:8px 10px;margin:6px 0}
+</style>
+</head>
+<body data-page="u3-ch7-assign" data-root="../">
+<a class="sr" href="#main">Skip to content</a>
+<div class="util"><div class="wrap"><span class="brand">Promise &amp; Practice · ShadowDog Digital Studios</span><span>Unit 3 · Industry, Immigration &amp; Reform · 1877–1919</span></div></div>
+<header class="mast"><div class="wrap">
+<div class="row"><a class="logo" href="../index.html"><b>Promise &amp; Practice</b><span>Unit 3 · 1877–1919</span></a>
+<div class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A6358" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg><label class="sr" for="q">Search Unit 3</label><input id="q" type="search" autocomplete="off" placeholder="Search people, places, terms…"></div></div>
+<nav class="nav" aria-label="Unit 3 sections"><a href="../index.html">Home</a><a href="../index.html#chapters">Chapters</a><a href="../index.html#assignments" aria-current="page">Assignments</a><a href="../index.html#quizzes">Quizzes</a><a href="../index.html#deepdives">Deep Dives</a><a href="../terms.html">Key Terms A–Z</a><a href="../timeline.html">Timeline</a><a href="../images.html">Image Library</a><a href="../films/index.html">Film Theater</a><a href="../flipbook/index.html" data-reader>The Book</a><a href="../teacher/lesson-plans.html" data-master>Lesson Plans</a></nav>
+</div></header>
+<main id="main">
+
+<div class="wrap assign">
+<nav class="crumbs no-print" aria-label="Breadcrumb"><a href="../index.html">Unit 3</a><span aria-hidden="true">›</span><a href="../index.html#assignments">Assignments</a><span aria-hidden="true">›</span><span>Chapter 7</span></nav>
+<form class="packet" data-work="u3-ch7-assign" autocomplete="off">
+<header class="pk-head"><svg class="crest" viewBox="0 0 64 72" aria-hidden="true"><path d="M32 2 60 12v22c0 18-12 30-28 36C16 64 4 52 4 34V12z" fill="#fff" fill-opacity=".14" stroke="#fff" stroke-width="2.5"/><text x="32" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#fff">P&amp;P</text></svg><div><span class="pk-kick">Promise &amp; Practice · Unit 3 · Chapter 7 Assignment</span><h1>Match the Muckraker</h1><span class="pk-sub">Matching + argument · Skill: Can journalism change the law?</span></div></header>
+<div class="pk-id"><label>Name <input name="name" autocomplete="name"></label><label>Period <select name="period"><option value=""></option><option>2</option><option>3</option><option>5</option><option>6</option><option>9</option></select></label><label>Date <input name="date" type="date"></label></div>
+<div class="goal"><span>What I can do today</span><p>I can connect what muckrakers exposed to the reforms that followed and judge how much journalism mattered.</p></div>
+<div class="pk-intro"><figure><img src="../images/2010647198.jpg" alt="The Beef Trust" loading="lazy"><figcaption class="credit">“The Beef Trust — Don’t shoot, I’ll come down” — cartoon, c. 1902, public domain (Library of Congress)</figcaption></figure>
+<div><h2>Directions</h2><p>Match each exposé to the change that followed it. Then decide which one did the most to change the law.</p><p class="no-print"><a href="../chapter7.html">Go through the Chapter 7 presentation: Voices for Reform</a> before you start.</p>
+<div class="savebar no-print"><span data-save-status>Your answers save on this device as you type.</span>
+<div class="savebtns"><button type="button" class="btn" data-work-act="download">Download my work</button><button type="button" class="btn" data-work-act="restore">Restore from file</button><button type="button" class="btn" data-work-act="print">Print / PDF</button><button type="button" class="btn" data-work-act="clear">Start over</button></div></div></div></div>
+<section class="part"><div class="part-head"><span class="badge">1</span><div><h2>Match the exposé to the change</h2><p class="prompt">Choose the change that followed each exposé.</p></div></div><div class="sort"><div class="sort-row" data-answer="0"><span class="sort-n">1</span><span class="sort-t">Upton Sinclair, The Jungle (1906) — Chicago meatpacking</span><label class="sr" for="p1_1">Match for item 1</label><select id="p1_1" name="p1_1"><option value="">Choose…</option><option value="0">Meat Inspection Act and Pure Food and Drug Act (1906)</option><option value="1">The Supreme Court breaks up Standard Oil (1911)</option><option value="2">New York Tenement House Act (1901)</option><option value="3">Keating-Owen Child Labor Act (1916)</option><option value="4">17th Amendment: voters elect senators directly (1913)</option></select><span class="mark" aria-live="polite"></span></div><div class="sort-row" data-answer="1"><span class="sort-n">2</span><span class="sort-t">Ida Tarbell, The History of the Standard Oil Company (1904)</span><label class="sr" for="p1_2">Match for item 2</label><select id="p1_2" name="p1_2"><option value="">Choose…</option><option value="0">Meat Inspection Act and Pure Food and Drug Act (1906)</option><option value="1">The Supreme Court breaks up Standard Oil (1911)</option><option value="2">New York Tenement House Act (1901)</option><option value="3">Keating-Owen Child Labor Act (1916)</option><option value="4">17th Amendment: voters elect senators directly (1913)</option></select><span class="mark" aria-live="polite"></span></div><div class="sort-row" data-answer="2"><span class="sort-n">3</span><span class="sort-t">Jacob Riis, How the Other Half Lives (1890) — tenement life</span><label class="sr" for="p1_3">Match for item 3</label><select id="p1_3" name="p1_3"><option value="">Choose…</option><option value="0">Meat Inspection Act and Pure Food and Drug Act (1906)</option><option value="1">The Supreme Court breaks up Standard Oil (1911)</option><option value="2">New York Tenement House Act (1901)</option><option value="3">Keating-Owen Child Labor Act (1916)</option><option value="4">17th Amendment: voters elect senators directly (1913)</option></select><span class="mark" aria-live="polite"></span></div><div class="sort-row" data-answer="3"><span class="sort-n">4</span><span class="sort-t">Lewis Hine, photographs of child workers (1908–1916)</span><label class="sr" for="p1_4">Match for item 4</label><select id="p1_4" name="p1_4"><option value="">Choose…</option><option value="0">Meat Inspection Act and Pure Food and Drug Act (1906)</option><option value="1">The Supreme Court breaks up Standard Oil (1911)</option><option value="2">New York Tenement House Act (1901)</option><option value="3">Keating-Owen Child Labor Act (1916)</option><option value="4">17th Amendment: voters elect senators directly (1913)</option></select><span class="mark" aria-live="polite"></span></div><div class="sort-row" data-answer="4"><span class="sort-n">5</span><span class="sort-t">David Graham Phillips, “The Treason of the Senate” (1906)</span><label class="sr" for="p1_5">Match for item 5</label><select id="p1_5" name="p1_5"><option value="">Choose…</option><option value="0">Meat Inspection Act and Pure Food and Drug Act (1906)</option><option value="1">The Supreme Court breaks up Standard Oil (1911)</option><option value="2">New York Tenement House Act (1901)</option><option value="3">Keating-Owen Child Labor Act (1916)</option><option value="4">17th Amendment: voters elect senators directly (1913)</option></select><span class="mark" aria-live="polite"></span></div></div><div class="check no-print"><button type="button" class="btn" data-check>Check my answers</button><span class="score" aria-live="polite"></span></div></section><section class="part"><div class="part-head"><span class="badge">2</span><div><h2>Did journalism change the law?</h2><p class="prompt">Pick the match you think shows journalism&#x27;s power best.</p></div></div><div class="q"><label for="p2_1">Which one, and why?</label><textarea id="p2_1" name="p2_1" rows="3" placeholder="I think ______ did the most because…"></textarea></div><div class="q"><label for="p2_2">What else besides the writing helped the law pass?</label><textarea id="p2_2" name="p2_2" rows="3" placeholder="Besides the writing,… also helped, such as…"></textarea></div></section><section class="part"><div class="part-head"><span class="badge">3</span><div><h2>A muckraker today</h2><p class="prompt">If you were a muckraker today, what problem would you expose?</p></div></div><div class="q"><label for="p3_1">Name the problem and who it hurts.</label><textarea id="p3_1" name="p3_1" rows="3" placeholder="I would expose… because it hurts…"></textarea></div></section>
+<div class="pk-end no-print"><p><strong>Finished?</strong> Download your work or print it, and turn it in the way your teacher asks.</p><a class="btn primary" href="../chapter7.html">Back to Chapter 7</a></div>
+</form>
+</div>
+</main>
+<footer class="rights"><div class="wrap">© 2026 ShadowDog Digital Studios. All Rights Reserved. ShadowDog Digital Studios holds the rights to the design, text, and arrangement of this material; public-domain images remain credited to their sources.</div></footer>
+<script>window.SDS_SEARCH=[{"t":"Chapter 1: The Gilded Age: Wealth and Its Cost","u":"chapter1.html","c":"Chapter","k":"The new industrial America, 1877–1900 Gilded Age Social Darwinism monopoly urbanization labor Gospel of Wealth interpretation significance"},{"t":"The machine that remade a nation","u":"chapter1.html#the-machine-that-remade-a-nation","c":"Chapter 1 section","k":""},{"t":"The gospel of wealth","u":"chapter1.html#the-gospel-of-wealth","c":"Chapter 1 section","k":""},{"t":"Be the Historian: Reading a Photograph","u":"chapter1.html#bth-reading-a-photograph","c":"Chapter 1","k":""},{"t":"Illinois: the shock-city of the age","u":"chapter1.html#illinois-the-shock-city-of-the-age","c":"Chapter 1 section","k":""},{"t":"Be the Historian: Progress, Exploitation, or Both?","u":"chapter1.html#bth-progress-exploitation-or-both","c":"Chapter 1","k":""},{"t":"Chapter 2: Robber Barons and Captains of Industry","u":"chapter2.html","c":"Chapter","k":"The titans of the new economy, 1870s–1900s Robber Baron monopoly trust Sherman Antitrust Act philanthropy captain of industry sourcing historiography"},{"t":"The men who owned America","u":"chapter2.html#the-men-who-owned-america","c":"Chapter 2 section","k":""},{"t":"Be the Historian: The Label Is the Argument","u":"chapter2.html#bth-the-label-is-the-argument","c":"Chapter 2","k":""},{"t":"Buying the government","u":"chapter2.html#buying-the-government","c":"Chapter 2 section","k":""},{"t":"Illinois: the master of his \"model town\"","u":"chapter2.html#illinois-the-master-of-his-model-town","c":"Chapter 2 section","k":""},{"t":"Be the Historian: Can Philanthropy Offset Exploitation?","u":"chapter2.html#bth-can-philanthropy-offset-exploitation","c":"Chapter 2","k":""},{"t":"Chapter 3: The Golden Door: Immigrants in a New Land","u":"chapter3.html","c":"Chapter","k":"The great wave of immigration, 1880–1920 immigration tenement settlement house push and pull factors Ellis Island mutual aid belonging corroboration"},{"t":"A new kind of newcomer","u":"chapter3.html#a-new-kind-of-newcomer","c":"Chapter 3 section","k":""},{"t":"Two doors: Ellis Island and Angel Island","u":"chapter3.html#two-doors-ellis-island-and-angel-island","c":"Chapter 3 section","k":""},{"t":"Be the Historian: The Myth and the Tenement","u":"chapter3.html#bth-the-myth-and-the-tenement","c":"Chapter 3","k":""},{"t":"Building a life in a hostile city","u":"chapter3.html#building-a-life-in-a-hostile-city","c":"Chapter 3 section","k":""},{"t":"Illinois: the most immigrant city, and Hull House","u":"chapter3.html#illinois-the-most-immigrant-city-and-hull-house","c":"Chapter 3 section","k":""},{"t":"Chapter 4: Fear and Exclusion","u":"chapter4.html","c":"Chapter","k":"Nativism and the closing door, 1880s–1920s nativism Chinese Exclusion Act eugenics literacy test quota scapegoat belonging causation"},{"t":"The first door slams: Chinese exclusion","u":"chapter4.html#the-first-door-slams-chinese-exclusion","c":"Chapter 4 section","k":""},{"t":"Inventing a science of prejudice","u":"chapter4.html#inventing-a-science-of-prejudice","c":"Chapter 4 section","k":""},{"t":"Be the Historian: A Law as Evidence of Fear","u":"chapter4.html#bth-a-law-as-evidence-of-fear","c":"Chapter 4","k":""},{"t":"The road to the closed gate","u":"chapter4.html#the-road-to-the-closed-gate","c":"Chapter 4 section","k":""},{"t":"Illinois: a city's fears come to a boil","u":"chapter4.html#illinois-a-city-s-fears-come-to-a-boil","c":"Chapter 4 section","k":""},{"t":"Be the Historian: Who Gets to Define \"american\"?","u":"chapter4.html#bth-who-gets-to-define-american","c":"Chapter 4","k":""},{"t":"Chapter 5: Life in the Industrial City","u":"chapter5.html","c":"Chapter","k":"Cities, slums, and the price of growth, 1880–1911 urbanization tenement political machine muckraker Pure Food and Drug Act sweatshop causation significance"},{"t":"The city explodes","u":"chapter5.html#the-city-explodes","c":"Chapter 5 section","k":""},{"t":"Exposing the other half","u":"chapter5.html#exposing-the-other-half","c":"Chapter 5 section","k":""},{"t":"Be the Historian: Accident, or System?","u":"chapter5.html#bth-accident-or-system","c":"Chapter 5","k":""},{"t":"The machine and the boss","u":"chapter5.html#the-machine-and-the-boss","c":"Chapter 5 section","k":""},{"t":"Illinois: the jungle of the stockyards","u":"chapter5.html#illinois-the-jungle-of-the-stockyards","c":"Chapter 5 section","k":""},{"t":"Chapter 6: Strikes and Solidarity","u":"chapter6.html","c":"Chapter","k":"The labor wars, 1877–1914 labor union strike Haymarket Pullman Strike solidarity collective bargaining injunction point of view"},{"t":"Why workers organized","u":"chapter6.html#why-workers-organized","c":"Chapter 6 section","k":""},{"t":"The great battles","u":"chapter6.html#the-great-battles","c":"Chapter 6 section","k":""},{"t":"Be the Historian: Who Threw the Bomb?","u":"chapter6.html#bth-who-threw-the-bomb","c":"Chapter 6","k":""},{"t":"Illinois: the cockpit of American labor","u":"chapter6.html#illinois-the-cockpit-of-american-labor","c":"Chapter 6 section","k":""},{"t":"Be the Historian: Why Was American Labor Weaker?","u":"chapter6.html#bth-why-was-american-labor-weaker","c":"Chapter 6","k":""},{"t":"Chapter 7: Voices for Reform","u":"chapter7.html","c":"Chapter","k":"The Progressive Era, 1890–1917 Progressivism muckraker trust-busting Square Deal conservation regulation interpretation significance"},{"t":"Dragging the truth into the light","u":"chapter7.html#dragging-the-truth-into-the-light","c":"Chapter 7 section","k":""},{"t":"Taming the giants","u":"chapter7.html#taming-the-giants","c":"Chapter 7 section","k":""},{"t":"Be the Historian: Can Journalism Change the Law?","u":"chapter7.html#bth-can-journalism-change-the-law","c":"Chapter 7","k":""},{"t":"Illinois: Hull House and the crusade the Progressives wouldn't join","u":"chapter7.html#illinois-hull-house-and-the-crusade-the-progress","c":"Chapter 7 section","k":""},{"t":"Be the Historian: Justice, or Order?","u":"chapter7.html#bth-justice-or-order","c":"Chapter 7","k":""},{"t":"Chapter 8: Democracy Expanding and Contracting","u":"chapter8.html","c":"Chapter","k":"The great paradox of the age, 1890–1920 suffrage disenfranchisement poll tax literacy test Plessy v. Ferguson Jim Crow grandfather clause contradiction"},{"t":"Democracy expanding","u":"chapter8.html#democracy-expanding","c":"Chapter 8 section","k":""},{"t":"Democracy contracting","u":"chapter8.html#democracy-contracting","c":"Chapter 8 section","k":""},{"t":"Be the Historian: Reading a Law for Its Real Intent","u":"chapter8.html#bth-reading-a-law-for-its-real-intent","c":"Chapter 8","k":""},{"t":"The Court says \"separate but equal\"","u":"chapter8.html#the-court-says-separate-but-equal","c":"Chapter 8 section","k":""},{"t":"Illinois: a breakthrough on the prairie","u":"chapter8.html#illinois-a-breakthrough-on-the-prairie","c":"Chapter 8 section","k":""},{"t":"Be the Historian: Expanding and Shrinking At Once","u":"chapter8.html#bth-expanding-and-shrinking-at-once","c":"Chapter 8","k":""},{"t":"Chapter 9: Seventy-Two Years: The Fight for Suffrage","u":"chapter9.html","c":"Chapter","k":"The long road to the vote for women, 1848–1920 suffrage Seneca Falls 19th Amendment Silent Sentinels ratification Alpha Suffrage Club continuity and change point of view"},{"t":"Seneca Falls and the long beginning","u":"chapter9.html#seneca-falls-and-the-long-beginning","c":"Chapter 9 section","k":""},{"t":"The long, grinding campaign","u":"chapter9.html#the-long-grinding-campaign","c":"Chapter 9 section","k":""},{"t":"Be the Historian: Why Seventy-two Years?","u":"chapter9.html#bth-why-seventy-two-years","c":"Chapter 9","k":""},{"t":"Illinois leads, and Ida B. Wells refuses the back of the line","u":"chapter9.html#illinois-leads-and-ida-b-wells-refuses-the-back-","c":"Chapter 9 section","k":""},{"t":"Be the Historian: Did the Nineteenth Amendment Enfranchise All Women?","u":"chapter9.html#bth-did-the-nineteenth-amendment-enfranchise","c":"Chapter 9","k":""},{"t":"Chapter 10: Whose Voices Were Left Out?","u":"chapter10.html","c":"Chapter","k":"Race, terror, and resistance in the age of reform, 1877–1919 lynching Jim Crow NAACP the nadir accommodation Niagara Movement Great Migration interpretation"},{"t":"The nadir","u":"chapter10.html#the-nadir","c":"Chapter 10 section","k":""},{"t":"Be the Historian: Wells and the Power of Numbers","u":"chapter10.html#bth-wells-and-the-power-of-numbers","c":"Chapter 10","k":""},{"t":"Two roads: Washington and Du Bois","u":"chapter10.html#two-roads-washington-and-du-bois","c":"Chapter 10 section","k":""},{"t":"Illinois: the riot that built the NAACP","u":"chapter10.html#illinois-the-riot-that-built-the-naacp","c":"Chapter 10 section","k":""},{"t":"Be the Historian: Accommodation or Agitation?","u":"chapter10.html#bth-accommodation-or-agitation","c":"Chapter 10","k":""},{"t":"Read the Photograph","u":"assignments/ch1.html","c":"Assignment · Ch 1","k":"Photo analysis assignment homework"},{"t":"Robber Baron or Captain of Industry?","u":"assignments/ch2.html","c":"Assignment · Ch 2","k":"Evidence sort assignment homework"},{"t":"Push, Pull, and the Golden Door","u":"assignments/ch3.html","c":"Assignment · Ch 3","k":"Push/pull sort + two-source check assignment homework"},{"t":"Read a Law for Its Fear","u":"assignments/ch4.html","c":"Assignment · Ch 4","k":"Close reading in chunks assignment homework"},{"t":"Accident or System?","u":"assignments/ch5.html","c":"Assignment · Ch 5","k":"Cause-and-effect chain assignment homework"},{"t":"Who Threw the Bomb? Weigh the Evidence","u":"assignments/ch6.html","c":"Assignment · Ch 6","k":"Evidence weighing assignment homework"},{"t":"Match the Muckraker","u":"assignments/ch7.html","c":"Assignment · Ch 7","k":"Matching + argument assignment homework"},{"t":"Expanding or Shrinking?","u":"assignments/ch8.html","c":"Assignment · Ch 8","k":"T-chart sort + claim assignment homework"},{"t":"Seventy-Two Years: Put It in Order","u":"assignments/ch9.html","c":"Assignment · Ch 9","k":"Timeline sequencing assignment homework"},{"t":"Washington or Du Bois? Point of View","u":"assignments/ch10.html","c":"Assignment · Ch 10","k":"Quote analysis + argument assignment homework"},{"t":"Immigration & the City Quiz","u":"quizzes/immigration.html","c":"Quiz","k":"quiz test"},{"t":"Industry & Labor Quiz","u":"quizzes/industry-labor.html","c":"Quiz","k":"quiz test"},{"t":"Reformers Quiz","u":"quizzes/reformers.html","c":"Quiz","k":"quiz test"},{"t":"Listen Like a Historian: Ragtime","u":"assignments/joplin.html","c":"Deep-dive assignment","k":"Listening + sheet music analysis"},{"t":"Our Town in the Industrial Age","u":"assignments/waukegan.html","c":"Deep-dive assignment","k":"Photo analysis + timeline + local link"},{"t":"Opening Night at the Nickelodeon","u":"assignments/nickelodeon.html","c":"Deep-dive assignment","k":"Film viewing + cause-and-effect chain"},{"t":"Four Voices, One Chord","u":"assignments/barbershop.html","c":"Deep-dive assignment","k":"Listening + sort + claim and evidence"},{"t":"The White City","u":"white-city/index.html","c":"Deep dive","k":"Tour Chicago's 1893 World's Fair, see what debuted there, and decide: progress, or illusion?"},{"t":"Who Threw the Bomb?","u":"haymarket/index.html","c":"Deep dive","k":"A rally, a bomb, and a trial that shook Chicago. Weigh the evidence and make the call."},{"t":"Movers & Shakers","u":"movers-shakers/index.html","c":"Deep dive","k":"Addams, Pullman, Wells, Debs, Darrow, Burnham, and the other Illinois figures who shaped the age."},{"t":"Three Nations, One Frontier","u":"three-nations/index.html","c":"Deep dive","k":"The United States, Mexico, and Native nations in the contested West."},{"t":"The Wild West","u":"wild-west/index.html","c":"Deep dive","k":"Barbed wire, the cattle trail to Chicago, and the gunfighter myth."},{"t":"Ragtime: Scott Joplin","u":"joplin/index.html","c":"Deep dive","k":"Hear the 'Maple Leaf Rag,' read Joplin's sheet music, and ask why the King of Ragtime died nearly forgotten."},{"t":"Waukegan on Stage","u":"waukegan-stage/index.html","c":"Deep dive","k":"Waukegan's mills, Jack Benny's vaudeville start, the Genesee Theatre, and Ray Bradbury's Green Town."},{"t":"The Nickelodeon","u":"nickelodeon/index.html","c":"Deep dive","k":"Step into a 1909 storefront theater: piano rags, silent films, Chicago's movie studios, and the city's first censorship law."},{"t":"Barbershop Harmony","u":"barbershop/index.html","c":"Deep dive","k":"Hear 1904–1911 quartet records, meet Bert Williams, and trace close harmony back to the barbershops where it began."},{"t":"Accommodation","u":"terms.html#t-accommodation","c":"Term","k":"Accepting unfair treatment for now in exchange for safety or slow progress. Booker T. Washington's strategy is often called accommodation."},{"t":"Alpha Suffrage Club","u":"terms.html#t-alpha-suffrage-club","c":"Term","k":"The first Black women's suffrage club in Chicago, founded by Ida B. Wells in 1913."},{"t":"Belonging","u":"terms.html#t-belonging","c":"Thread","k":"One of the course's four threads: who is welcomed as a full member of the nation, and who is pushed out."},{"t":"Captain of industry","u":"terms.html#t-captain-of-industry","c":"Term","k":"A positive label for business leaders that stresses the jobs, products, and gifts they gave the country."},{"t":"Causation","u":"terms.html#t-causation","c":"Historian skill","k":"Explaining why something happened: finding causes and showing how they led to effects."},{"t":"Chinese Exclusion Act","u":"terms.html#t-chinese-exclusion-act","c":"Event","k":"An 1882 law that stopped Chinese laborers from coming to the United States. It was the first U.S. law to ban immigrants by nationality."},{"t":"Collective bargaining","u":"terms.html#t-collective-bargaining","c":"Term","k":"Workers negotiating with an employer as one group instead of one at a time."},{"t":"Conservation","u":"terms.html#t-conservation","c":"Term","k":"Protecting forests, rivers, and wild land so they are not used up. Theodore Roosevelt set aside millions of acres."},{"t":"Continuity and change","u":"terms.html#t-continuity-and-change","c":"Historian skill","k":"Asking what stayed the same and what changed over time."},{"t":"Contradiction","u":"terms.html#t-contradiction","c":"Historian skill","k":"When two true things seem to clash, such as democracy growing for some people while shrinking for others."},{"t":"Corroboration","u":"terms.html#t-corroboration","c":"Historian skill","k":"Checking one source against other sources to see if they agree."},{"t":"Disenfranchisement","u":"terms.html#t-disenfranchisement","c":"Term","k":"Taking away someone's right to vote, by law or by force."},{"t":"Ellis Island","u":"terms.html#t-ellis-island","c":"Place","k":"The immigration station in New York Harbor that opened in 1892. Millions of European immigrants were inspected there."},{"t":"Eugenics","u":"terms.html#t-eugenics","c":"Term","k":"A false 'science' that claimed some groups of people were born better than others. It was used to justify immigration limits."},{"t":"Gilded Age","u":"terms.html#t-gilded-age","c":"Term","k":"The late 1800s. Like an object covered in thin gold, the era looked rich on the surface but hid deep poverty underneath."},{"t":"Gospel of Wealth","u":"terms.html#t-gospel-of-wealth","c":"Term","k":"Andrew Carnegie's idea that the rich have a duty to use their fortunes to help the public."},{"t":"Grandfather clause","u":"terms.html#t-grandfather-clause","c":"Term","k":"A rule that excused a man from voting tests if his grandfather had been allowed to vote. It protected white voters and blocked Black voters."},{"t":"Great Migration","u":"terms.html#t-great-migration","c":"Event","k":"The movement of millions of Black Southerners to Northern cities like Chicago, beginning around 1916."},{"t":"Haymarket","u":"terms.html#t-haymarket","c":"Event","k":"The 1886 bombing at a labor rally in Chicago's Haymarket Square. Eight anarchists were convicted, but no one proved who threw the bomb."},{"t":"Historiography","u":"terms.html#t-historiography","c":"Historian skill","k":"The history of how historians have explained a topic, and how those explanations changed."},{"t":"Immigration","u":"terms.html#t-immigration","c":"Term","k":"Moving to a new country to live there."},{"t":"Injunction","u":"terms.html#t-injunction","c":"Term","k":"A court order that tells people to stop doing something. Courts used injunctions to break strikes."},{"t":"Interpretation","u":"terms.html#t-interpretation","c":"Historian skill","k":"A historian's explanation of what the evidence means. Different historians can interpret the same facts differently."},{"t":"Jim Crow","u":"terms.html#t-jim-crow","c":"Term","k":"Laws and customs that kept Black and white Americans separate and unequal, mostly in the South."},{"t":"Labor","u":"terms.html#t-labor","c":"Thread","k":"Work, and the people who do it. One of the course's four threads."},{"t":"Labor union","u":"terms.html#t-labor-union","c":"Term","k":"A group of workers who join together to bargain for better pay, hours, and safety."},{"t":"Literacy test","u":"terms.html#t-literacy-test","c":"Term","k":"A reading test. It was used to keep Black citizens from voting and, after 1917, to keep some immigrants out."},{"t":"Lynching","u":"terms.html#t-lynching","c":"Term","k":"The murder of a person by a mob without a trial. Thousands of Black Americans were lynched in this era."},{"t":"Monopoly","u":"terms.html#t-monopoly","c":"Term","k":"When one company controls almost all of a product or service, so it can set prices."},{"t":"Muckraker","u":"terms.html#t-muckraker","c":"Term","k":"A journalist who dug up and exposed corruption and abuse."},{"t":"Mutual aid","u":"terms.html#t-mutual-aid","c":"Term","k":"Neighbors helping neighbors. Immigrant groups formed societies to help members with jobs, loans, and burials."},{"t":"NAACP","u":"terms.html#t-naacp","c":"Term","k":"The National Association for the Advancement of Colored People, founded in 1909 to fight for civil rights."},{"t":"Nativism","u":"terms.html#t-nativism","c":"Term","k":"Favoring people born in the country over immigrants, often with fear or hatred of newcomers."},{"t":"Niagara Movement","u":"terms.html#t-niagara-movement","c":"Term","k":"A group led by W. E. B. Du Bois, founded in 1905, that demanded full civil rights for Black Americans."},{"t":"Nineteenth Amendment","u":"terms.html#t-nineteenth-amendment","c":"Event","k":"The 1920 amendment that said the right to vote cannot be denied because of sex."},{"t":"Philanthropy","u":"terms.html#t-philanthropy","c":"Term","k":"Giving money to improve society, such as funding libraries, schools, or hospitals."},{"t":"Plessy v. Ferguson","u":"terms.html#t-plessy-v-ferguson","c":"Event","k":"An 1896 Supreme Court case that allowed segregation as long as facilities were 'separate but equal.'"},{"t":"Point of view","u":"terms.html#t-point-of-view","c":"Historian skill","k":"Where a person is coming from: who they are and what they want, which shapes what they say."},{"t":"Political machine","u":"terms.html#t-political-machine","c":"Term","k":"A group that ran a city by trading jobs and favors for votes. Tammany Hall in New York was the most famous."},{"t":"Poll tax","u":"terms.html#t-poll-tax","c":"Term","k":"A fee a person had to pay before voting. It kept many poor and Black citizens from voting."},{"t":"Progressivism","u":"terms.html#t-progressivism","c":"Term","k":"A reform movement, about 1890 to 1920, that tried to fix problems caused by industry and city growth."},{"t":"Pullman Strike","u":"terms.html#t-pullman-strike","c":"Event","k":"An 1894 strike that began in Pullman, Illinois, and spread across the nation's railroads before federal troops ended it."},{"t":"Pure Food and Drug Act","u":"terms.html#t-pure-food-and-drug-act","c":"Event","k":"A 1906 law that required honest labels and banned unsafe food and medicine."},{"t":"Push and pull factors","u":"terms.html#t-push-and-pull-factors","c":"Term","k":"Push factors drive people out of their home country. Pull factors draw them to a new one."},{"t":"Quota","u":"terms.html#t-quota","c":"Term","k":"A set limit on how many people from a country may immigrate."},{"t":"Ratification","u":"terms.html#t-ratification","c":"Term","k":"Official approval. An amendment must be ratified by three-fourths of the states."},{"t":"Regulation","u":"terms.html#t-regulation","c":"Term","k":"Government rules that control how businesses operate, for safety or fairness."},{"t":"Robber baron","u":"terms.html#t-robber-baron","c":"Term","k":"A negative label for business leaders that stresses how they grew rich by crushing workers and rivals."},{"t":"Scapegoat","u":"terms.html#t-scapegoat","c":"Term","k":"A person or group blamed for problems they did not cause."},{"t":"Seneca Falls","u":"terms.html#t-seneca-falls","c":"Event","k":"The 1848 women's rights convention in New York where the Declaration of Sentiments was signed."},{"t":"Settlement house","u":"terms.html#t-settlement-house","c":"Term","k":"A neighborhood center where reformers lived and offered classes, child care, and help to immigrants. Hull House is the best known."},{"t":"Sherman Antitrust Act","u":"terms.html#t-sherman-antitrust-act","c":"Event","k":"An 1890 law that outlawed trusts and deals that limited competition."},{"t":"Significance","u":"terms.html#t-significance","c":"Historian skill","k":"Why something matters: how many people it affected, for how long, and what it changed."},{"t":"Silent Sentinels","u":"terms.html#t-silent-sentinels","c":"Term","k":"Suffragists who stood silently outside the White House with banners in 1917. Many were arrested and jailed."},{"t":"Social Darwinism","u":"terms.html#t-social-darwinism","c":"Term","k":"The false idea that the rich were rich because they were 'fittest,' so the poor deserved to be poor."},{"t":"Solidarity","u":"terms.html#t-solidarity","c":"Term","k":"The power of people standing together, such as workers supporting each other in a strike."},{"t":"Sourcing","u":"terms.html#t-sourcing","c":"Historian skill","k":"Asking who made a source, when, and why before trusting it."},{"t":"Square Deal","u":"terms.html#t-square-deal","c":"Term","k":"Theodore Roosevelt's promise of fairness for workers, business owners, and consumers."},{"t":"Strike","u":"terms.html#t-strike","c":"Term","k":"Workers stopping work together to win better pay or conditions."},{"t":"Suffrage","u":"terms.html#t-suffrage","c":"Term","k":"The right to vote."},{"t":"Sweatshop","u":"terms.html#t-sweatshop","c":"Term","k":"A crowded, unsafe workplace where people work long hours for very low pay."},{"t":"Tenement","u":"terms.html#t-tenement","c":"Term","k":"A crowded, run-down city apartment building where many poor families lived."},{"t":"The nadir","u":"terms.html#t-the-nadir","c":"Term","k":"The lowest point. Historians use it for the years around 1900, when conditions for Black Americans were at their worst since slavery."},{"t":"Trust","u":"terms.html#t-trust","c":"Term","k":"A group of companies combined under one control to limit competition."},{"t":"Trust-busting","u":"terms.html#t-trust-busting","c":"Term","k":"Using the law to break up trusts. Theodore Roosevelt became known as a trust-buster."},{"t":"Urbanization","u":"terms.html#t-urbanization","c":"Term","k":"The growth of cities as people move from farms and villages into them."},{"t":"1848: Seneca Falls Convention","u":"chapter9.html","c":"Timeline","k":"Seneca Falls, New York Women demand equal rights, including the vote, in the Declaration of Sentiments."},{"t":"1869: Wyoming Territory gives women the vote","u":"chapter9.html","c":"Timeline","k":"Wyoming The first U.S. territory to let women vote."},{"t":"1877: Great Railroad Strike","u":"chapter6.html","c":"Timeline","k":"Nationwide Wage cuts spark a strike across the country; federal troops break it."},{"t":"1882: Chinese Exclusion Act","u":"chapter4.html","c":"Timeline","k":"Washington, D.C. The first U.S. law to bar immigrants by nationality."},{"t":"1885: Home Insurance Building completed","u":"chapter1.html","c":"Timeline","k":"Chicago Often called the first skyscraper, built on a metal frame."},{"t":"1886: Haymarket Affair","u":"chapter6.html","c":"Timeline","k":"Chicago A bomb explodes at a labor rally for the eight-hour day. No one proves who threw it."},{"t":"1887: Dawes Act","u":"chapter4.html","c":"Timeline","k":"Washington, D.C. Tribal land is broken into individual plots; millions of acres pass out of Native hands."},{"t":"1889: Hull House opens","u":"chapter7.html","c":"Timeline","k":"Chicago Jane Addams and Ellen Gates Starr open a settlement house on Halsted Street."},{"t":"1890: Sherman Antitrust Act","u":"chapter2.html","c":"Timeline","k":"Washington, D.C. Congress outlaws trusts that limit competition."},{"t":"1890: Mississippi adds a poll tax and literacy test","u":"chapter8.html","c":"Timeline","k":"Mississippi A new state constitution blocks most Black men from voting."},{"t":"1890: Wounded Knee","u":"chapter4.html","c":"Timeline","k":"South Dakota U.S. soldiers kill hundreds of Lakota men, women, and children."},{"t":"1892: Ellis Island opens","u":"chapter3.html","c":"Timeline","k":"New York The main gateway for European immigrants arriving on the East Coast."},{"t":"1892: Homestead Strike","u":"chapter6.html","c":"Timeline","k":"Pennsylvania Steelworkers battle Pinkerton guards at Carnegie's mill."},{"t":"1893: World's Columbian Exposition","u":"chapter1.html","c":"Timeline","k":"Chicago The “White City” shows off American progress to the world."},{"t":"1894: Pullman Strike","u":"chapter6.html","c":"Timeline","k":"Pullman, Illinois A strike over wage cuts spreads across the nation's railroads until troops end it."},{"t":"1895: Booker T. Washington's Atlanta speech","u":"chapter10.html","c":"Timeline","k":"Atlanta Washington urges Black Southerners to focus on work and education for now."},{"t":"1896: Plessy v. Ferguson","u":"chapter8.html","c":"Timeline","k":"Washington, D.C. The Supreme Court allows “separate but equal” segregation."},{"t":"1903: The Souls of Black Folk","u":"chapter10.html","c":"Timeline","k":"Nationwide W. E. B. Du Bois challenges Washington and demands full rights."},{"t":"1905: Niagara Movement founded","u":"chapter10.html","c":"Timeline","k":"Niagara Falls Du Bois and others organize to demand civil rights."},{"t":"1906: The Jungle and food safety laws","u":"chapter5.html","c":"Timeline","k":"Chicago Upton Sinclair's novel exposes the stockyards; Congress passes meat inspection and pure food laws."},{"t":"1908: Springfield race riot","u":"chapter10.html","c":"Timeline","k":"Springfield, Illinois White mobs attack Black residents in Lincoln's hometown."},{"t":"1909: NAACP founded","u":"chapter10.html","c":"Timeline","k":"New York A civil rights organization born in response to Springfield."},{"t":"1911: Triangle Shirtwaist fire","u":"chapter5.html","c":"Timeline","k":"New York 146 garment workers die behind a locked door."},{"t":"1911: Standard Oil broken up","u":"chapter7.html","c":"Timeline","k":"Washington, D.C. The Supreme Court orders Rockefeller's trust split apart."},{"t":"1913: Woman Suffrage Procession","u":"chapter9.html","c":"Timeline","k":"Washington, D.C. Thousands march the day before President Wilson takes office."},{"t":"1913: 17th Amendment","u":"chapter8.html","c":"Timeline","k":"Nationwide Voters now elect U.S. senators directly."},{"t":"1913: Illinois women win the presidential vote","u":"chapter8.html","c":"Timeline","k":"Springfield, Illinois The first state east of the Mississippi River to do so."},{"t":"1916: Great Migration begins","u":"chapter10.html","c":"Timeline","k":"From the South to Chicago and the North Black Southerners move north for jobs and to escape Jim Crow."},{"t":"1917: Silent Sentinels arrested","u":"chapter9.html","c":"Timeline","k":"Washington, D.C. Suffragists picketing the White House are jailed."},{"t":"1920: 19th Amendment ratified","u":"chapter9.html","c":"Timeline","k":"Nationwide The vote can no longer be denied because of sex."},{"t":"The Unit 3 Book (flip-book)","u":"flipbook/index.html","c":"The Reading Room","k":"flipbook flip-book textbook read book"},{"t":"Key Terms A–Z","u":"terms.html","c":"Page","k":"glossary vocabulary"},{"t":"Timeline","u":"timeline.html","c":"Page","k":"dates"},{"t":"Image Library","u":"images.html","c":"Page","k":"photos pictures"}];window.SDS_TERMS=[{"t":"Accommodation","d":"Accepting unfair treatment for now in exchange for safety or slow progress. Booker T. Washington's strategy is often called accommodation.","id":"t-accommodation"},{"t":"Alpha Suffrage Club","d":"The first Black women's suffrage club in Chicago, founded by Ida B. Wells in 1913.","id":"t-alpha-suffrage-club"},{"t":"Belonging","d":"One of the course's four threads: who is welcomed as a full member of the nation, and who is pushed out.","id":"t-belonging"},{"t":"Captain of industry","d":"A positive label for business leaders that stresses the jobs, products, and gifts they gave the country.","id":"t-captain-of-industry"},{"t":"Causation","d":"Explaining why something happened: finding causes and showing how they led to effects.","id":"t-causation"},{"t":"Chinese Exclusion Act","d":"An 1882 law that stopped Chinese laborers from coming to the United States. It was the first U.S. law to ban immigrants by nationality.","id":"t-chinese-exclusion-act"},{"t":"Collective bargaining","d":"Workers negotiating with an employer as one group instead of one at a time.","id":"t-collective-bargaining"},{"t":"Conservation","d":"Protecting forests, rivers, and wild land so they are not used up. Theodore Roosevelt set aside millions of acres.","id":"t-conservation"},{"t":"Continuity and change","d":"Asking what stayed the same and what changed over time.","id":"t-continuity-and-change"},{"t":"Contradiction","d":"When two true things seem to clash, such as democracy growing for some people while shrinking for others.","id":"t-contradiction"},{"t":"Corroboration","d":"Checking one source against other sources to see if they agree.","id":"t-corroboration"},{"t":"Disenfranchisement","d":"Taking away someone's right to vote, by law or by force.","id":"t-disenfranchisement"},{"t":"Ellis Island","d":"The immigration station in New York Harbor that opened in 1892. Millions of European immigrants were inspected there.","id":"t-ellis-island"},{"t":"Eugenics","d":"A false 'science' that claimed some groups of people were born better than others. It was used to justify immigration limits.","id":"t-eugenics"},{"t":"Gilded Age","d":"The late 1800s. Like an object covered in thin gold, the era looked rich on the surface but hid deep poverty underneath.","id":"t-gilded-age"},{"t":"Gospel of Wealth","d":"Andrew Carnegie's idea that the rich have a duty to use their fortunes to help the public.","id":"t-gospel-of-wealth"},{"t":"Grandfather clause","d":"A rule that excused a man from voting tests if his grandfather had been allowed to vote. It protected white voters and blocked Black voters.","id":"t-grandfather-clause"},{"t":"Great Migration","d":"The movement of millions of Black Southerners to Northern cities like Chicago, beginning around 1916.","id":"t-great-migration"},{"t":"Haymarket","d":"The 1886 bombing at a labor rally in Chicago's Haymarket Square. Eight anarchists were convicted, but no one proved who threw the bomb.","id":"t-haymarket"},{"t":"Historiography","d":"The history of how historians have explained a topic, and how those explanations changed.","id":"t-historiography"},{"t":"Immigration","d":"Moving to a new country to live there.","id":"t-immigration"},{"t":"Injunction","d":"A court order that tells people to stop doing something. Courts used injunctions to break strikes.","id":"t-injunction"},{"t":"Interpretation","d":"A historian's explanation of what the evidence means. Different historians can interpret the same facts differently.","id":"t-interpretation"},{"t":"Jim Crow","d":"Laws and customs that kept Black and white Americans separate and unequal, mostly in the South.","id":"t-jim-crow"},{"t":"Labor","d":"Work, and the people who do it. One of the course's four threads.","id":"t-labor"},{"t":"Labor union","d":"A group of workers who join together to bargain for better pay, hours, and safety.","id":"t-labor-union"},{"t":"Literacy test","d":"A reading test. It was used to keep Black citizens from voting and, after 1917, to keep some immigrants out.","id":"t-literacy-test"},{"t":"Lynching","d":"The murder of a person by a mob without a trial. Thousands of Black Americans were lynched in this era.","id":"t-lynching"},{"t":"Monopoly","d":"When one company controls almost all of a product or service, so it can set prices.","id":"t-monopoly"},{"t":"Muckraker","d":"A journalist who dug up and exposed corruption and abuse.","id":"t-muckraker"},{"t":"Mutual aid","d":"Neighbors helping neighbors. Immigrant groups formed societies to help members with jobs, loans, and burials.","id":"t-mutual-aid"},{"t":"NAACP","d":"The National Association for the Advancement of Colored People, founded in 1909 to fight for civil rights.","id":"t-naacp"},{"t":"Nativism","d":"Favoring people born in the country over immigrants, often with fear or hatred of newcomers.","id":"t-nativism"},{"t":"Niagara Movement","d":"A group led by W. E. B. Du Bois, founded in 1905, that demanded full civil rights for Black Americans.","id":"t-niagara-movement"},{"t":"Nineteenth Amendment","d":"The 1920 amendment that said the right to vote cannot be denied because of sex.","id":"t-nineteenth-amendment"},{"t":"Philanthropy","d":"Giving money to improve society, such as funding libraries, schools, or hospitals.","id":"t-philanthropy"},{"t":"Plessy v. Ferguson","d":"An 1896 Supreme Court case that allowed segregation as long as facilities were 'separate but equal.'","id":"t-plessy-v-ferguson"},{"t":"Point of view","d":"Where a person is coming from: who they are and what they want, which shapes what they say.","id":"t-point-of-view"},{"t":"Political machine","d":"A group that ran a city by trading jobs and favors for votes. Tammany Hall in New York was the most famous.","id":"t-political-machine"},{"t":"Poll tax","d":"A fee a person had to pay before voting. It kept many poor and Black citizens from voting.","id":"t-poll-tax"},{"t":"Progressivism","d":"A reform movement, about 1890 to 1920, that tried to fix problems caused by industry and city growth.","id":"t-progressivism"},{"t":"Pullman Strike","d":"An 1894 strike that began in Pullman, Illinois, and spread across the nation's railroads before federal troops ended it.","id":"t-pullman-strike"},{"t":"Pure Food and Drug Act","d":"A 1906 law that required honest labels and banned unsafe food and medicine.","id":"t-pure-food-and-drug-act"},{"t":"Push and pull factors","d":"Push factors drive people out of their home country. Pull factors draw them to a new one.","id":"t-push-and-pull-factors"},{"t":"Quota","d":"A set limit on how many people from a country may immigrate.","id":"t-quota"},{"t":"Ratification","d":"Official approval. An amendment must be ratified by three-fourths of the states.","id":"t-ratification"},{"t":"Regulation","d":"Government rules that control how businesses operate, for safety or fairness.","id":"t-regulation"},{"t":"Robber baron","d":"A negative label for business leaders that stresses how they grew rich by crushing workers and rivals.","id":"t-robber-baron"},{"t":"Scapegoat","d":"A person or group blamed for problems they did not cause.","id":"t-scapegoat"},{"t":"Seneca Falls","d":"The 1848 women's rights convention in New York where the Declaration of Sentiments was signed.","id":"t-seneca-falls"},{"t":"Settlement house","d":"A neighborhood center where reformers lived and offered classes, child care, and help to immigrants. Hull House is the best known.","id":"t-settlement-house"},{"t":"Sherman Antitrust Act","d":"An 1890 law that outlawed trusts and deals that limited competition.","id":"t-sherman-antitrust-act"},{"t":"Significance","d":"Why something matters: how many people it affected, for how long, and what it changed.","id":"t-significance"},{"t":"Silent Sentinels","d":"Suffragists who stood silently outside the White House with banners in 1917. Many were arrested and jailed.","id":"t-silent-sentinels"},{"t":"Social Darwinism","d":"The false idea that the rich were rich because they were 'fittest,' so the poor deserved to be poor.","id":"t-social-darwinism"},{"t":"Solidarity","d":"The power of people standing together, such as workers supporting each other in a strike.","id":"t-solidarity"},{"t":"Sourcing","d":"Asking who made a source, when, and why before trusting it.","id":"t-sourcing"},{"t":"Square Deal","d":"Theodore Roosevelt's promise of fairness for workers, business owners, and consumers.","id":"t-square-deal"},{"t":"Strike","d":"Workers stopping work together to win better pay or conditions.","id":"t-strike"},{"t":"Suffrage","d":"The right to vote.","id":"t-suffrage"},{"t":"Sweatshop","d":"A crowded, unsafe workplace where people work long hours for very low pay.","id":"t-sweatshop"},{"t":"Tenement","d":"A crowded, run-down city apartment building where many poor families lived.","id":"t-tenement"},{"t":"The nadir","d":"The lowest point. Historians use it for the years around 1900, when conditions for Black Americans were at their worst since slavery.","id":"t-the-nadir"},{"t":"Trust","d":"A group of companies combined under one control to limit competition.","id":"t-trust"},{"t":"Trust-busting","d":"Using the law to break up trusts. Theodore Roosevelt became known as a trust-buster.","id":"t-trust-busting"},{"t":"Urbanization","d":"The growth of cities as people move from farms and villages into them.","id":"t-urbanization"}];</script>
+<script>/* Promise & Practice · Unit 3 — shared page code.
+   © 2026 ShadowDog Digital Studios. All Rights Reserved. */
+(function () {
+  'use strict';
+  var LOCK = {"salt": "sds-u3|", "end": "2027-08-30", "windows": [["2026-11-03", ["15add0ea6e7df847c226cbbc", "15949c6a64f257bed813b903", "b5ab20397f931d29a57cef96", "1b32412f3a8e77d071946f9a", "f0cf9d5ca29d38009a461e2b"]], ["2026-12-03", ["98854a8d92d41379c6a21cf7", "bf252eceef44db757e381768", "fafe21afeea99b583a4ada02", "eb8b7890fcea6eddf3bbad00", "263e3b039e0590adb7e4dc1d"]], ["2027-01-02", ["fd5d3ed3c5ef4ae8e6278d58", "5c652d478b429dec7a506b8d", "df281796326ca96cc4d695e1", "7bcc4c3e338b30c09c7b753f", "88d89ea3ec4d4e8a5b5bcba0"]], ["2027-02-01", ["381429b69c1341a05925d157", "91d4b5cd11b3079e02cda63d", "4fee3ee613affda48f6e757e", "d539910364ef37311994e897", "80081833b2c46ca78619f6ef"]], ["2027-03-03", ["fc1efcf573376e6080c6289f", "4f125f5128fab832872cc35b", "a4b47b57ade17b03d490bb7a", "b7f254d9295237950127b43c", "c27043c2b28802b2432ca42f"]], ["2027-04-02", ["3d7c0ec1b4a699b5bedcbe68", "cde1df76dbcb17c9a1b6ee5d", "d6527e206ae62f586af7370e", "92237355a9b235795f8b1472", "b0d5dc172dc03d3b6be928a8"]], ["2027-05-02", ["a6d0e7e4f4a32fd82769c26e", "e3c1e07c087296060af03377", "f434af99e4a50b948490bd29", "fcdd95eefb878bf5a391ecae", "981e2349aa9d2b9bcd54ebef"]], ["2027-06-01", ["676c5e4651e5f806892d1094", "1e94dcc309dc6716dec4169d", "3b689bd53bec8e0dd29d093a", "7123eba6e8a5adf1da3adb15", "df1b5d98c3b833ef1a0725f6"]], ["2027-07-01", ["5218d2e555e1729bbaa4e1a8", "3dda157d88f14fa749c190d4", "52d8782a513885fec7b204f1", "60df522f7d9777493a663133", "ac3b81014175b0c7103e8058"]], ["2027-07-31", ["69a83504720ea47fe903b1b8", "931c8ba5714d9681e0ca7bfa", "b7bd2a76ae83f2b2baa8adb5", "aa8094b55023908b54ec6aeb", "66d0708ae407065bdccff09f"]]], "master": "505260b920fb4b2b7b34dca3", "mv": "505260b9"};
+  var SEARCH = window.SDS_SEARCH || [];
+  var KEY_UNLOCK = 'sds_site_unlock_v1';
+  var PAGE = (document.body && document.body.getAttribute('data-page')) || location.pathname;
+
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
+
+  /* ---------- class-code lock ---------- */
+  function windowIndex(now) {
+    var d = now || new Date(); var iso = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    if (iso >= LOCK.end) return -1;
+    var idx = -1;
+    for (var i = 0; i < LOCK.windows.length; i++) if (iso >= LOCK.windows[i][0]) idx = i;
+    return idx;
+  }
+  async function hash(code) {
+    var norm = LOCK.salt + String(code).toLowerCase().replace(/\s+/g, '');
+    var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(norm));
+    return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('').slice(0, 24);
+  }
+  function unlocked() {
+    var v = store(KEY_UNLOCK);
+    if (!v) return false;
+    if (v === 'm:' + LOCK.mv) return true;
+    var w = windowIndex();
+    return w >= 0 && v === 'w' + w;
+  }
+  function showLock() {
+    var el = document.createElement('div');
+    el.id = 'sds-lock';
+    el.innerHTML = '<form class="panel" novalidate><span class="kicker">Promise &amp; Practice · Unit 3<\/span>' +
+      '<h1>Enter your class code<\/h1><p>Your teacher gives each class a code. Type it once on this device and the whole Unit 3 site opens.<\/p>' +
+      '<label class="sr" for="sds-code">Class code<\/label><input id="sds-code" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Class code">' +
+      '<div class="err" role="alert"><\/div><button class="btn primary" type="submit">Open Unit 3<\/button>' +
+      '<small>© ' + new Date().getFullYear() + ' ShadowDog Digital Studios. All Rights Reserved.<\/small><\/form>';
+    document.body.appendChild(el);
+    var input = el.querySelector('input'), err = el.querySelector('.err');
+    setTimeout(function () { input.focus(); }, 50);
+    el.querySelector('form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var v = input.value.trim(); if (!v) { err.textContent = 'Type your class code.'; return; }
+      var h; try { h = await hash(v); } catch (x) { err.textContent = 'This browser cannot check codes. Try Chrome.'; return; }
+      if (h === LOCK.master) { store(KEY_UNLOCK, 'm:' + LOCK.mv); document.documentElement.classList.add('is-master'); return open(); }
+      var w = windowIndex();
+      if (w >= 0 && LOCK.windows[w][1].indexOf(h) >= 0) { store(KEY_UNLOCK, 'w' + w); return open(); }
+      err.textContent = 'That code did not work. Check it with your teacher.';
+      input.select();
+    });
+    function open() { if (document.body.getAttribute('data-page') === 'u3-flipbook') { location.reload(); return; } el.remove(); document.documentElement.classList.remove('locked'); }
+  }
+
+  /* ---------- search ---------- */
+  function initSearch() {
+    document.querySelectorAll('.search').forEach(function (box) {
+      var input = box.querySelector('input'); var res = document.createElement('div');
+      res.className = 'search-results'; res.setAttribute('role', 'listbox'); box.appendChild(res);
+      var base = document.body.getAttribute('data-root') || '';
+      function run() {
+        var q = input.value.trim().toLowerCase();
+        if (q.length < 2) { res.classList.remove('open'); res.innerHTML = ''; return; }
+        var hits = SEARCH.filter(function (s) { return (s.t + ' ' + (s.k || '')).toLowerCase().indexOf(q) >= 0; }).slice(0, 10);
+        res.innerHTML = hits.length ? hits.map(function (h) { return '<a href="' + base + h.u + '"><small>' + h.c + '<\/small>' + h.t + '<\/a>'; }).join('') : '<div class="none">No matches in Unit 3.<\/div>';
+        res.classList.add('open');
+      }
+      input.addEventListener('input', run);
+      input.addEventListener('focus', run);
+      document.addEventListener('click', function (e) { if (!box.contains(e.target)) res.classList.remove('open'); });
+      input.addEventListener('keydown', function (e) { if (e.key === 'Escape') { res.classList.remove('open'); input.blur(); } if (e.key === 'Enter') { var a = res.querySelector('a'); if (a) location.href = a.href; } });
+    });
+  }
+
+  /* ---------- highlighter ---------- */
+  var HL_KEY = 'sds_hl_' + PAGE;
+  var hlOn = false;
+  function zones() { return Array.prototype.slice.call(document.querySelectorAll('[data-hl]')); }
+  function textNodes(root) { var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), a = [], n; while ((n = w.nextNode())) a.push(n); return a; }
+  function serialize() {
+    var data = {};
+    zones().forEach(function (z) {
+      var off = 0, ranges = [];
+      textNodes(z).forEach(function (t) {
+        var len = t.nodeValue.length, m = t.parentNode.closest && t.parentNode.closest('mark.hl');
+        if (m && z.contains(m)) { var last = ranges[ranges.length - 1]; if (last && last[1] === off) last[1] = off + len; else ranges.push([off, off + len]); }
+        off += len;
+      });
+      if (ranges.length) data[z.getAttribute('data-hl')] = ranges;
+    });
+    store(HL_KEY, Object.keys(data).length ? JSON.stringify(data) : null);
+  }
+  function wrapOffsets(z, s, e) {
+    var off = 0;
+    textNodes(z).forEach(function (t) {
+      var len = t.nodeValue.length, a = Math.max(s, off), b = Math.min(e, off + len);
+      if (b > a && !(t.parentNode.closest && t.parentNode.closest('mark.hl'))) {
+        var node = t;
+        if (a > off) node = node.splitText(a - off);
+        if (b < off + len) node.splitText(b - a);
+        if (/\S/.test(node.nodeValue)) { var m = document.createElement('mark'); m.className = 'hl'; node.parentNode.insertBefore(m, node); m.appendChild(node); }
+      }
+      off += len;
+    });
+  }
+  function restore() {
+    var raw = store(HL_KEY); if (!raw) return;
+    try { var data = JSON.parse(raw); zones().forEach(function (z) { (data[z.getAttribute('data-hl')] || []).forEach(function (r) { wrapOffsets(z, r[0], r[1]); }); }); } catch (e) {}
+  }
+  function offsetIn(z, node, nodeOff) {
+    var off = 0, found = -1;
+    textNodes(z).some(function (t) { if (t === node) { found = off + nodeOff; return true; } off += t.nodeValue.length; return false; });
+    return found;
+  }
+  function onSelect() {
+    if (!hlOn) return;
+    var sel = window.getSelection(); if (!sel || sel.isCollapsed || !sel.rangeCount) return;
+    var r = sel.getRangeAt(0);
+    zones().forEach(function (z) {
+      if (!r.intersectsNode(z)) return;
+      var s = 0, e = z.textContent.length;
+      if (z.contains(r.startContainer) && r.startContainer.nodeType === 3) s = offsetIn(z, r.startContainer, r.startOffset);
+      if (z.contains(r.endContainer) && r.endContainer.nodeType === 3) e = offsetIn(z, r.endContainer, r.endOffset);
+      if (s >= 0 && e > s) wrapOffsets(z, s, e);
+    });
+    sel.removeAllRanges(); serialize();
+  }
+  function onMarkClick(e) {
+    var m = e.target.closest && e.target.closest('mark.hl'); if (!m || !hlOn) return;
+    var p = m.parentNode; while (m.firstChild) p.insertBefore(m.firstChild, m); p.removeChild(m); p.normalize(); serialize();
+  }
+
+  /* ---------- notes ---------- */
+  var NOTE_KEY = 'sds_notes_' + PAGE;
+  function initTools() {
+    if (!zones().length && !document.body.hasAttribute('data-notes')) return;
+    var dock = document.createElement('div'); dock.className = 'tools-dock no-print';
+    var tip = '<div class="hl-tip" role="status">Highlighter is on. Select words to highlight them. Click a highlight to remove it. Highlights save on this device.<\/div>';
+    dock.innerHTML = tip + '<button type="button" class="btn" data-act="notes">My Notes<\/button>' + (zones().length ? '<button type="button" class="btn" data-act="hl" aria-pressed="false">Highlighter<\/button>' : '');
+    document.body.appendChild(dock);
+    var panel = document.createElement('div'); panel.className = 'notes-panel no-print'; panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', 'My Notes');
+    panel.innerHTML = '<header>My Notes <button type="button" class="btn" data-act="close" style="min-height:36px;padding:0 12px">Close<\/button><\/header>' +
+      '<label class="sr" for="sds-notes">My notes for this page<\/label><textarea id="sds-notes" placeholder="Type your notes. They save on this device."><\/textarea>' +
+      '<footer><span>Saves automatically<\/span><button type="button" class="btn" data-act="dl" style="min-height:36px;padding:0 12px">Download<\/button><button type="button" class="btn" data-act="clearhl" style="min-height:36px;padding:0 12px">Clear highlights<\/button><\/footer>';
+    document.body.appendChild(panel);
+    var ta = panel.querySelector('textarea'); ta.value = store(NOTE_KEY) || '';
+    ta.addEventListener('input', function () { store(NOTE_KEY, ta.value || null); });
+    dock.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.act === 'notes') { panel.classList.toggle('open'); if (panel.classList.contains('open')) ta.focus(); }
+      if (b.dataset.act === 'hl') { hlOn = !hlOn; document.documentElement.classList.toggle('hl-on', hlOn); b.setAttribute('aria-pressed', hlOn); dock.querySelector('.hl-tip').classList.toggle('show', hlOn); }
+    });
+    panel.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.act === 'close') panel.classList.remove('open');
+      if (b.dataset.act === 'dl') download((document.title || 'notes') + ' - my notes.txt', document.title + '\n\n' + ta.value, 'text/plain');
+      if (b.dataset.act === 'clearhl' && confirm('Remove all highlights on this page?')) { document.querySelectorAll('mark.hl').forEach(function (m) { var p = m.parentNode; while (m.firstChild) p.insertBefore(m.firstChild, m); p.removeChild(m); p.normalize(); }); store(HL_KEY, null); }
+    });
+    document.addEventListener('mouseup', onSelect);
+    document.addEventListener('touchend', function () { setTimeout(onSelect, 30); });
+    document.addEventListener('click', onMarkClick);
+    restore();
+  }
+
+  function download(name, text, type) {
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type: type || 'application/octet-stream' }));
+    a.download = name.replace(/[\\/:*?"<>|]/g, '-'); document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+
+  /* ---------- assignment autosave ---------- */
+  function initWork() {
+    var form = document.querySelector('form[data-work]'); if (!form) return;
+    var KEY = 'sds_work_' + form.getAttribute('data-work');
+    var status = document.querySelector('[data-save-status]');
+    function fields() { return Array.prototype.slice.call(form.querySelectorAll('[name]')); }
+    function collect() { var o = {}; fields().forEach(function (f) { if (f.type === 'radio') { if (f.checked) o[f.name] = f.value; } else if (f.type === 'checkbox') { o[f.name] = f.checked; } else o[f.name] = f.value; }); return o; }
+    function apply(o) { fields().forEach(function (f) { if (!(f.name in o)) return; if (f.type === 'radio') f.checked = (o[f.name] === f.value); else if (f.type === 'checkbox') f.checked = !!o[f.name]; else f.value = o[f.name]; }); form.dispatchEvent(new Event('restored')); }
+    function save() { store(KEY, JSON.stringify(collect())); if (status) { status.textContent = 'Saved on this device ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); } }
+    try { var saved = JSON.parse(store(KEY) || 'null'); if (saved) { apply(saved); if (status) status.textContent = 'Your saved work was restored.'; } } catch (e) {}
+    form.addEventListener('input', save); form.addEventListener('change', save);
+    form.addEventListener('submit', function (e) { e.preventDefault(); });
+    document.querySelectorAll('[data-work-act]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var act = b.getAttribute('data-work-act');
+        if (act === 'print') window.print();
+        if (act === 'download') download(form.getAttribute('data-work') + ' - my work.json', JSON.stringify({ page: form.getAttribute('data-work'), saved: new Date().toISOString(), work: collect() }, null, 1), 'application/json');
+        if (act === 'restore') { var fi = document.createElement('input'); fi.type = 'file'; fi.accept = '.json,application/json'; fi.onchange = function () { var r = new FileReader(); r.onload = function () { try { var d = JSON.parse(r.result); apply(d.work || d); save(); if (status) status.textContent = 'Work restored from your file.'; } catch (x) { alert('That file could not be read.'); } }; r.readAsText(fi.files[0]); }; fi.click(); }
+        if (act === 'clear' && confirm('Erase all your answers on this page? This cannot be undone.')) { store(KEY, null); form.reset(); form.dispatchEvent(new Event('restored')); if (status) status.textContent = 'Cleared.'; }
+      });
+    });
+  }
+
+  function masterDevice() { return store(KEY_UNLOCK) === 'm:' + LOCK.mv; }
+  if (masterDevice()) document.documentElement.classList.add('is-master');
+  window.SDS = { masterDevice: masterDevice, store: store, download: download, hash: hash, windowIndex: windowIndex,
+    isMaster: async function (code) { try { return (await hash(code)) === LOCK.master; } catch (e) { return false; } } };
+
+  /* ---------- The Reading Room: flip-book reader ---------- */
+  var reader = null;
+  function openReader(ch) {
+    var base = document.body.getAttribute('data-root') || '';
+    var url = base + 'flipbook/index.html' + (ch ? '#ch' + ch : '');
+    if (!reader) {
+      reader = document.createElement('div'); reader.className = 'reader no-print'; reader.setAttribute('role', 'dialog'); reader.setAttribute('aria-label', 'Unit 3 book');
+      var rib = ''; for (var i = 1; i <= 10; i++) rib += '<button type="button" data-rch="' + i + '" aria-label="Go to Chapter ' + i + '">' + i + '<\/button>';
+      reader.innerHTML = '<div class="reader-bar"><span class="rt"><small>The Reading Room<\/small>Unit 3 · Industry, Immigration &amp; Reform<\/span>' +
+        '<a class="btn" data-full href="' + base + 'flipbook/index.html" target="_blank" rel="noopener">Open in its own tab<\/a><button type="button" class="btn dark" data-close>Close the book<\/button><\/div>' +
+        '<div class="reader-body"><nav class="reader-ribbons" aria-label="Chapters">' + rib + '<\/nav><iframe title="Unit 3 flip-book" loading="lazy"><\/iframe><\/div>';
+      document.body.appendChild(reader);
+      reader.querySelector('[data-close]').addEventListener('click', closeReader);
+      reader.addEventListener('click', function (e) { var b = e.target.closest('[data-rch]'); if (b) goChapter(+b.dataset.rch); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && reader && !reader.hidden) closeReader(); });
+    }
+    var fr = reader.querySelector('iframe');
+    if (!fr.getAttribute('src')) fr.setAttribute('src', url); else if (ch) goChapter(ch);
+    markRibbon(ch); reader.hidden = false; document.documentElement.style.overflow = 'hidden';
+    setTimeout(function () { reader.querySelector('[data-close]').focus(); }, 50);
+  }
+  function goChapter(ch) {
+    var fr = reader.querySelector('iframe');
+    try { fr.contentWindow.location.hash = 'ch' + ch; } catch (e) { fr.setAttribute('src', (document.body.getAttribute('data-root') || '') + 'flipbook/index.html#ch' + ch); }
+    markRibbon(ch);
+  }
+  function markRibbon(ch) { reader.querySelectorAll('[data-rch]').forEach(function (b) { b.setAttribute('aria-current', String(+b.dataset.rch === +ch)); }); }
+  function closeReader() { reader.hidden = true; document.documentElement.style.overflow = ''; document.querySelectorAll('.book3d.opening').forEach(function (b) { b.classList.remove('opening'); }); }
+  function initReader() {
+    document.addEventListener('click', function (e) {
+      var t = e.target.closest('[data-reader]'); if (!t) return;
+      e.preventDefault();
+      var ch = t.getAttribute('data-reader') || '';
+      if (t.classList.contains('book3d')) { t.classList.add('opening'); setTimeout(function () { openReader(ch); }, 650); }
+      else openReader(ch);
+    });
+  }
+
+  function ready() {
+    if (!unlocked()) showLock(); else document.documentElement.classList.remove('locked');
+    initSearch(); initTools(); initWork(); initReader();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready); else ready();
+})();
+</script>
+<script>/* Promise & Practice · Unit 3 — learning supports (read-aloud, word definitions, about panel).
+   © 2026 ShadowDog Digital Studios. All Rights Reserved. */
+(function () {
+  'use strict';
+  var TERMS = window.SDS_TERMS || [];
+  var PAGE = document.body.getAttribute('data-page') || '';
+  var synth = window.speechSynthesis;
+  var HL = (window.CSS && CSS.highlights && window.Highlight) ? true : false;
+
+  function dock() { return document.querySelector('.tools-dock'); }
+  function lang() { var l = document.documentElement.getAttribute('data-lang') || document.documentElement.lang || 'en'; return l; }
+  var VOICE_LANG = { en: 'en-US', es: 'es-US', ml: 'ml-IN' };
+
+  /* ---------- read-aloud with word highlighting ---------- */
+  var SKIP = 'script,style,button,.credit,.no-print,.tools-dock,.notes-panel,.term-pop,details:not([open]),figcaption,nav,.deck-bar,.deck-nav,input,textarea,select,[aria-hidden="true"]';
+  function target() {
+    var s = document.querySelector('.slide.on .sl-in') || document.querySelector('.slide.on');
+    return s || document.querySelector('.lp-main') || document.querySelector('main') || document.querySelector('.wrap') || document.body;
+  }
+  function blocks(root) {
+    var out = [];
+    root.querySelectorAll('h1,h2,h3,h4,p,li,.ly-line,.dq p,label').forEach(function (el) {
+      if (el.closest(SKIP)) return;
+      if (el.querySelector('p,li')) return;
+      var t = el.textContent.replace(/\s+/g, ' ').trim();
+      if (t.length > 1) out.push(el);
+    });
+    return out;
+  }
+  function textNodes(el) {
+    var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, { acceptNode: function (n) { return n.parentElement && n.parentElement.closest(SKIP) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT; } });
+    var a = [], n; while ((n = w.nextNode())) a.push(n); return a;
+  }
+  function rangeAt(nodes, start, len) {
+    var pos = 0, r = document.createRange(), set = false;
+    for (var i = 0; i < nodes.length; i++) {
+      var L = nodes[i].nodeValue.length;
+      if (!set && start < pos + L) { r.setStart(nodes[i], start - pos); set = true; }
+      if (set && start + len <= pos + L) { r.setEnd(nodes[i], Math.max(start + len - pos, 0)); return r; }
+      pos += L;
+    }
+    return set ? r : null;
+  }
+  var reading = null;
+  function clearHL() { if (HL) CSS.highlights.delete('sds-read'); document.querySelectorAll('.reading-now').forEach(function (e) { e.classList.remove('reading-now'); }); }
+  function stopRead() { if (synth) synth.cancel(); if (reading && reading.audio) { reading.audio.pause(); } reading = null; clearHL(); setBar(false); }
+  function pickVoice() {
+    var want = VOICE_LANG[lang()] || 'en-US', vs = synth.getVoices();
+    return vs.find(function (v) { return v.lang === want; }) || vs.find(function (v) { return v.lang.indexOf(want.slice(0, 2)) === 0; }) || null;
+  }
+  function readFrom(list, i) {
+    if (!reading || i >= list.length) { stopRead(); return; }
+    var el = list[i], nodes = textNodes(el), text = nodes.map(function (n) { return n.nodeValue; }).join('');
+    clearHL(); el.classList.add('reading-now');
+    try { el.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch (e) {}
+    var u = new SpeechSynthesisUtterance(text);
+    var v = pickVoice(); if (v) u.voice = v; u.lang = (v && v.lang) || VOICE_LANG[lang()] || 'en-US';
+    u.rate = reading.rate;
+    u.onboundary = function (e) {
+      if (!HL || e.name && e.name !== 'word') return;
+      var m = text.slice(e.charIndex).match(/^[^\s]+/); if (!m) return;
+      var r = rangeAt(nodes, e.charIndex, (e.charLength || m[0].length)); if (r) CSS.highlights.set('sds-read', new Highlight(r));
+    };
+    u.onend = function () { if (reading && !reading.paused) readFrom(list, i + 1); };
+    u.onerror = function () { if (reading) readFrom(list, i + 1); };
+    reading.i = i; synth.speak(u);
+  }
+  function startRead() {
+    stopRead();
+    var root = target(), narr = root.closest('[data-narr]') || root.querySelector('[data-narr]');
+    if (narr) {  // recorded narration (e.g. ElevenLabs) — used automatically when a file is attached
+      var a = new Audio(narr.getAttribute('data-narr')); reading = { audio: a }; a.onended = stopRead; a.play().catch(stopRead); setBar(true); return;
+    }
+    if (!synth) { alert('Read-aloud is not available in this browser. Try Chrome.'); return; }
+    if (!synth.getVoices().length) { setTimeout(function () { if (!synth.getVoices().length) alert('No reading voice is installed on this device yet. On a Chromebook, open Settings → Accessibility → Text-to-Speech to add one.'); }, 600); }
+    var list = blocks(root); if (!list.length) return;
+    reading = { rate: parseFloat(localStore('sds_read_rate') || '1'), paused: false, list: list };
+    setBar(true); readFrom(list, 0);
+  }
+  function localStore(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  var bar;
+  function setBar(on) {
+    if (!bar) return;
+    bar.hidden = !on;
+    var b = document.querySelector('[data-act="read"]'); if (b) b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  }
+  function buildBar() {
+    bar = document.createElement('div'); bar.className = 'read-bar no-print'; bar.hidden = true; bar.setAttribute('role', 'toolbar'); bar.setAttribute('aria-label', 'Read aloud controls');
+    bar.innerHTML = '<span class="rb-t">Reading aloud<\/span><button type="button" class="btn" data-r="pause">Pause<\/button><button type="button" class="btn" data-r="stop">Stop<\/button>' +
+      '<label>Speed <select data-r="rate"><option value="0.8">Slow<\/option><option value="1">Normal<\/option><option value="1.2">Fast<\/option><\/select><\/label>';
+    document.body.appendChild(bar);
+    var sel = bar.querySelector('select'); sel.value = localStore('sds_read_rate') || '1';
+    sel.onchange = function () { localStore('sds_read_rate', sel.value); if (reading && reading.list) { reading.rate = parseFloat(sel.value); var i = reading.i; synth.cancel(); reading.paused = false; readFrom(reading.list, i); } };
+    bar.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-r]'); if (!b || !reading) return;
+      if (b.dataset.r === 'stop') stopRead();
+      if (b.dataset.r === 'pause') {
+        if (reading.audio) { if (reading.audio.paused) { reading.audio.play(); b.textContent = 'Pause'; } else { reading.audio.pause(); b.textContent = 'Resume'; } return; }
+        if (synth.paused) { synth.resume(); reading.paused = false; b.textContent = 'Pause'; } else { synth.pause(); reading.paused = true; b.textContent = 'Resume'; }
+      }
+    });
+    document.addEventListener('sds:slide', stopRead);
+    window.addEventListener('hashchange', stopRead);
+    window.addEventListener('pagehide', stopRead);
+  }
+
+  /* ---------- click-a-word definitions ---------- */
+  var NO_TERMS = /^u3-quiz|^u3-lessons|^u3-teacher/;
+  var TSKIP = 'a,button,mark,h1,h2,h3,label,summary,.credit,.lbl,.kicker,.sl-kick,.tools-dock,.notes-panel,.term-pop,.no-print,input,textarea,select,.terms-list,.ly-body,.vocab,script,style';
+  function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function markTerms() {
+    if (!TERMS.length || NO_TERMS.test(PAGE) || lang() !== 'en') return;
+    var sorted = TERMS.slice().sort(function (a, b) { return b.t.length - a.t.length; });
+    var scopes = document.querySelectorAll('.slide, [data-hl], .film-body, .wk-film');
+    if (!scopes.length) scopes = [document.querySelector('main') || document.body];
+    Array.prototype.forEach.call(scopes, function (scope) {
+      if (scope.closest('.slide') && scope !== scope.closest('.slide') && scopes.length > 1 && scope.matches('[data-hl]')) { /* slide handles it */ }
+      var used = {};
+      sorted.forEach(function (term) {
+        if (used[term.t.toLowerCase()]) return;
+        var re = new RegExp('\\b(' + esc(term.t) + ')\\b', 'i');
+        var w = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT, { acceptNode: function (n) { return n.parentElement.closest(TSKIP) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT; } });
+        var n;
+        while ((n = w.nextNode())) {
+          var m = re.exec(n.nodeValue); if (!m) continue;
+          var after = n.splitText(m.index); after.splitText(m[1].length);
+          var b = document.createElement('button'); b.type = 'button'; b.className = 'term-def'; b.setAttribute('data-term', term.t); b.setAttribute('aria-label', m[1] + ' — show definition');
+          after.parentNode.insertBefore(b, after); b.appendChild(after);
+          used[term.t.toLowerCase()] = 1; break;
+        }
+      });
+    });
+  }
+  var pop;
+  function showDef(btn) {
+    var t = TERMS.find(function (x) { return x.t === btn.getAttribute('data-term'); }); if (!t) return;
+    if (!pop) { pop = document.createElement('div'); pop.className = 'term-pop'; pop.setAttribute('role', 'dialog'); document.body.appendChild(pop); }
+    pop.innerHTML = '<strong>' + t.t + '<\/strong><p>' + t.d + '<\/p><div class="tp-act"><button type="button" class="btn" data-tp="say">🔊 Read it<\/button><a class="btn" href="' + (document.body.getAttribute('data-root') || '') + 'terms.html#' + t.id + '">Key terms<\/a><button type="button" class="btn" data-tp="x">Close<\/button><\/div>';
+    var r = btn.getBoundingClientRect(); pop.style.left = Math.max(8, Math.min(window.innerWidth - 330, r.left)) + 'px'; pop.style.top = (window.scrollY + r.bottom + 6) + 'px'; pop.hidden = false;
+    pop.querySelector('[data-tp="x"]').onclick = function () { pop.hidden = true; btn.focus(); };
+    pop.querySelector('[data-tp="say"]').onclick = function () { if (!synth) return; synth.cancel(); var u = new SpeechSynthesisUtterance(t.t + '. ' + t.d); var v = pickVoice(); if (v) u.voice = v; synth.speak(u); };
+    pop.querySelector('[data-tp="say"]').focus();
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.term-def');
+    if (b) { if (document.documentElement.classList.contains('hl-on')) return; e.preventDefault(); showDef(b); return; }
+    if (pop && !pop.hidden && !e.target.closest('.term-pop')) pop.hidden = true;
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { if (pop) pop.hidden = true; } });
+
+  /* ---------- about these supports (UDL) ---------- */
+  function about() {
+    var d = document.createElement('div'); d.className = 'about-pop no-print'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-label', 'About these supports');
+    d.innerHTML = '<div class="ab-in"><span class="kicker">About this adaptation<\/span><h2>Supports built into Unit 3<\/h2>' +
+      '<p>Every page is designed with <strong>Universal Design for Learning (UDL)<\/strong>: more than one way to take in the content, more than one way to show what you know, and choices that keep you interested.<\/p>' +
+      '<h3>Ways to take in the content<\/h3><ul><li><strong>🔊 Read aloud<\/strong> reads the page or slide and lights up each word as it is spoken. Choose slow, normal, or fast.<\/li>' +
+      '<li><strong>Dotted words<\/strong> are key terms. Click one for a plain-language definition you can also hear.<\/li>' +
+      '<li>Every idea comes with pictures, primary sources, music, or film, each with a caption.<\/li><li>Song tiles have a lyrics drop-down.<\/li><\/ul>' +
+      '<h3>Ways to show what you know<\/h3><ul><li><strong>Highlighter<\/strong> and <strong>My Notes<\/strong> save on this device.<\/li><li>Questions use plain words with <strong>sentence starters<\/strong>.<\/li>' +
+      '<li>Your answers <strong>save as you type<\/strong>; you can download, restore, or print them. Paper copies are available from your teacher.<\/li><\/ul>' +
+      '<h3>Choices<\/h3><ul><li>Pick a deep dive, a film, or the book. Move at your own pace with the arrows, dots, keyboard, or swipe.<\/li><\/ul>' +
+      '<p class="ab-k">Keyboard: ← → move between slides · Esc closes pop-ups.<\/p><button type="button" class="btn primary" data-ab="x">Close<\/button><\/div>';
+    document.body.appendChild(d);
+    d.addEventListener('click', function (e) { if (e.target === d || e.target.closest('[data-ab="x"]')) d.remove(); });
+    d.querySelector('[data-ab="x"]').focus();
+  }
+
+  function init() {
+    var dk = dock();
+    if (dk) {
+      var rb = document.createElement('button'); rb.type = 'button'; rb.className = 'btn'; rb.setAttribute('data-act', 'read'); rb.setAttribute('aria-pressed', 'false'); rb.textContent = '🔊 Read aloud';
+      rb.onclick = function () { if (reading) stopRead(); else startRead(); };
+      var ab = document.createElement('button'); ab.type = 'button'; ab.className = 'btn ab-btn'; ab.textContent = 'ⓘ Supports'; ab.setAttribute('aria-label', 'About these supports'); ab.onclick = about;
+      dk.insertBefore(rb, dk.firstChild.nextSibling); dk.appendChild(ab);
+      buildBar();
+    }
+    setTimeout(markTerms, 60);
+    if (synth) { synth.getVoices(); synth.onvoiceschanged = function () {}; }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+  window.SDSAccess = { read: startRead, stop: stopRead, markTerms: markTerms };
+})();
+</script>
+<script>/* Promise & Practice · Unit 3 — assignment self-checks. © 2026 ShadowDog Digital Studios. All Rights Reserved. */
+(function () {
+  'use strict';
+  function clearMarks(part) {
+    part.querySelectorAll('.mark').forEach(function (m) { m.textContent = ''; m.className = 'mark'; });
+    part.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('right', 'wrong'); });
+    part.querySelectorAll('.why').forEach(function (w) { w.hidden = true; });
+    part.querySelectorAll('.year').forEach(function (y) { y.textContent = ''; });
+    var s = part.querySelector('.score'); if (s) s.textContent = '';
+  }
+  function check(part) {
+    clearMarks(part);
+    var right = 0, total = 0, blank = 0;
+    part.querySelectorAll('.sort-row').forEach(function (row) {
+      var sel = row.querySelector('select'); if (!sel) return;
+      total++;
+      var m = row.querySelector('.mark');
+      if (sel.value === '') { blank++; m.textContent = 'Not answered'; m.className = 'mark no'; return; }
+      var ok = sel.value === row.dataset.answer;
+      if (ok) right++;
+      m.textContent = ok ? '✓ Correct' : '✗ Try again'; m.className = 'mark ' + (ok ? 'ok' : 'no');
+      var y = row.querySelector('.year'); if (y && row.dataset.year && ok) y.textContent = row.dataset.year;
+      if (row.dataset.src && ok) { var c = row.querySelector('.src-hide'); if (c) c.textContent = row.dataset.src; }
+    });
+    part.querySelectorAll('fieldset.mc').forEach(function (fs) {
+      total++;
+      var pick = fs.querySelector('input:checked');
+      if (!pick) { blank++; return; }
+      var ok = pick.value === fs.dataset.answer; if (ok) right++;
+      pick.closest('.opt').classList.add(ok ? 'right' : 'wrong');
+      if (ok) fs.querySelector('.why').hidden = false;
+    });
+    var s = part.querySelector('.score');
+    if (s) s.textContent = right + ' of ' + total + ' correct' + (blank ? ' · ' + blank + ' not answered' : '') + (right === total ? ' — nice work!' : '');
+  }
+  document.querySelectorAll('[data-check]').forEach(function (b) {
+    b.addEventListener('click', function () { check(b.closest('.part')); });
+  });
+  var form = document.querySelector('form[data-work]');
+  if (form) form.addEventListener('restored', function () { document.querySelectorAll('.part').forEach(clearMarks); });
+})();
+</script>
+</body>
+</html>
