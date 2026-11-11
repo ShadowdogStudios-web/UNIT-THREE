@@ -8,18 +8,27 @@
     return Array.from(new Uint8Array(b)).map(function (x) { return x.toString(16).padStart(2, '0'); }).join('');
   }
   function normName(n) { return String(n || '').toLowerCase().replace(/[^a-z]/g, ''); }
-  async function makeCode(prefix, period, score, total, name) {
-    var core = prefix + '-P' + period + '-' + score + '/' + total;
+  async function makeCode(prefix, period, score, total, name, miss) {
+    var core = prefix + '-P' + period + '-' + score + '/' + total + (miss ? '-Q' + String(miss).toUpperCase() : '');
     var chk = (await sha(SALT + normName(name) + '|' + core)).slice(0, 4).toUpperCase();
     return core + '-' + chk;
   }
   async function verify(name, code) {
-    var m = String(code || '').trim().toUpperCase().match(/^([A-Z]+)-P(\d+)-(\d+)\/(\d+)-([0-9A-F]{4})$/);
+    var m = String(code || '').trim().toUpperCase().match(/^([A-Z]+)-P(\d+)-(\d+)\/(\d+)(?:-Q([0-9A-F]+))?-([0-9A-F]{4})$/);
     if (!m) return 'That does not look like a result code.';
-    var good = await makeCode(m[1], m[2], m[3], m[4], name);
+    var good = await makeCode(m[1], m[2], m[3], m[4], name, m[5]);
     return good === code.trim().toUpperCase() ? '✓ Valid: ' + m[3] + ' of ' + m[4] + ', period ' + m[2] + '.' : '✗ Does not match this name. Check the spelling of the name, or the code may have been changed.';
   }
-  window.SDSQuiz = { verify: verify };
+  // Missed questions ride in the code as hex: digit d covers questions 4d+1..4d+4 (bit b = question 4d+b+1).
+  function parse(code) {
+    var m = String(code || '').trim().toUpperCase().match(/^([A-Z]+)-P(\d+)-(\d+)\/(\d+)(?:-Q([0-9A-F]+))?-([0-9A-F]{4})$/);
+    if (!m) return null;
+    var r = { prefix: m[1], period: m[2], score: +m[3], total: +m[4], missed: null };
+    if (m[5]) { r.missed = []; for (var d = 0; d < m[5].length; d++) { var v = parseInt(m[5][d], 16); for (var b = 0; b < 4; b++) if (v & (1 << b)) r.missed.push(d * 4 + b); } }
+    return r;
+  }
+  async function check(name, code) { var c = String(code || '').trim().toUpperCase(), p = parse(c); if (!p) return false; var q = c.match(/-Q([0-9A-F]+)-/); return (await makeCode(p.prefix, p.period, p.score, p.total, name, q ? q[1] : '')) === c; }
+  window.SDSQuiz = { verify: verify, parse: parse, check: check };
 
   var root = document.querySelector('.quiz[data-quiz]'); if (!root) return;
   var slug = root.dataset.quiz, prefix = root.dataset.code, total = +root.dataset.total;
@@ -86,7 +95,9 @@
     var n = countAnswered();
     if (n < total && !confirm('You answered ' + n + ' of ' + total + ' questions. Submit anyway?')) return;
     var a = answers(); clearMarks(); var score = mark(a);
-    var code = await makeCode(prefix, perEl.value, score, total, nameEl.value);
+    var qs = form.querySelectorAll('.qq'), miss = '';
+    for (var d = 0; d < Math.ceil(qs.length / 4); d++) { var v = 0; for (var b = 0; b < 4; b++) { var qi = d * 4 + b; if (qi < qs.length && a['q' + qi] !== qs[qi].dataset.answer) v |= 1 << b; } miss += v.toString(16).toUpperCase(); }
+    var code = await makeCode(prefix, perEl.value, score, total, nameEl.value, miss);
     st.attempts.push({ score: score, code: code, at: new Date().toISOString(), answers: a });
     st.draft = {}; st.retaking = false; save(st);
     lockForm(true); showStatus(); status.scrollIntoView({ behavior: 'smooth' });

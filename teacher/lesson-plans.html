@@ -2,6 +2,8 @@
 <html lang="en" class="locked">
 <head>
 <meta charset="utf-8">
+<meta name="copyright" content="© 2026 ShadowDog Digital Studios. All Rights Reserved.">
+<!-- sds:SDS-U3-MASTER-20261111:fcdbd47d31f9cad4 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <meta name="description" content="Teacher lesson plans">
@@ -437,16 +439,22 @@ blockquote.src cite{display:block;margin-top:8px;font:400 14px var(--sans);color
 @keyframes bk-cover-in{0%,46%{background:#233A2E;box-shadow:inset 6px 0 10px rgba(0,0,0,.35)}47%,100%{background:#EDE6D3;box-shadow:inset -10px 0 14px rgba(0,0,0,.18)}}
 @keyframes bk-face-off{0%,46%{opacity:1}47%,100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){.book3d .cover{transition:none}.book3d.opening .cover,.book3d.opening .cover>*{animation:none}}
-/* tiles lift on hover */
-.card{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;overflow:hidden}
-.card img{transition:transform .35s ease}
-.card:hover,.card:focus-visible{transform:translateY(-5px);border-color:var(--line2);box-shadow:0 16px 30px -16px rgba(30,38,32,.42),0 3px 8px -3px rgba(30,38,32,.14)}
-.card:hover img,.card:focus-visible img{transform:scale(1.035)}
-.ill-link{transition:transform .18s ease,box-shadow .18s ease}
-.ill-link:hover,.ill-link:focus-visible{transform:translateY(-3px);box-shadow:0 12px 22px -14px rgba(30,38,32,.4)}
-.film-card{transition:transform .18s ease,box-shadow .18s ease}
-.film-card:hover,.film-card:focus-visible{transform:translateY(-5px);box-shadow:0 18px 30px -16px rgba(0,0,0,.6)}
-@media (prefers-reduced-motion:reduce){.card,.card img,.ill-link,.film-card{transition:none}.card:hover,.card:hover img,.ill-link:hover,.film-card:hover{transform:none}}
+/* tiles lift on hover (image stays put; no jiggle) */
+.card{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;backface-visibility:hidden;transform:translateZ(0);will-change:transform}
+.card:hover,.card:focus-visible{transform:translate3d(0,-5px,0);border-color:var(--line2);box-shadow:0 16px 30px -16px rgba(30,38,32,.42),0 3px 8px -3px rgba(30,38,32,.14)}
+.ill-link{transition:transform .2s ease,box-shadow .2s ease;backface-visibility:hidden;will-change:transform}
+.ill-link:hover,.ill-link:focus-visible{transform:translate3d(0,-3px,0);box-shadow:0 12px 22px -14px rgba(30,38,32,.4)}
+.film-card{transition:transform .2s ease,box-shadow .2s ease;backface-visibility:hidden;will-change:transform}
+.film-card:hover,.film-card:focus-visible{transform:translate3d(0,-5px,0);box-shadow:0 18px 30px -16px rgba(0,0,0,.6)}
+/* shortcut category bar */
+.shortcuts a{position:relative;background:#fff;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;backface-visibility:hidden;will-change:transform}
+.shortcuts a:hover,.shortcuts a:focus-visible{transform:translate3d(0,-4px,0);background:#fff;z-index:2;box-shadow:0 14px 24px -14px rgba(30,38,32,.45),0 0 0 1px var(--line2)}
+/* key terms as tiles */
+.terms{gap:12px 16px}
+.term{background:#fff;border:1px solid var(--line3);border-radius:2px;padding:12px 16px 14px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;backface-visibility:hidden;will-change:transform}
+.term:hover{transform:translate3d(0,-4px,0);border-color:var(--line2);box-shadow:0 14px 26px -16px rgba(30,38,32,.42),0 3px 8px -3px rgba(30,38,32,.12)}
+.term:target,.term.flash{outline:none;box-shadow:0 0 0 3px var(--gold-bg),0 14px 26px -16px rgba(30,38,32,.42)}
+@media (prefers-reduced-motion:reduce){.card,.ill-link,.film-card,.shortcuts a,.term{transition:none}.card:hover,.ill-link:hover,.film-card:hover,.shortcuts a:hover,.term:hover{transform:none}}
 
 .book3d .mosaic{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;flex:1;opacity:.55;filter:grayscale(.3)}
 .book3d .mosaic span{background-size:cover;background-position:center}
@@ -1351,5 +1359,6 @@ async function tryKey(k,cache){try{var list=await dec(k);if(cache){try{var raw=a
 var go=document.getElementById('lpgo'),inp=document.getElementById('lpk'),err=document.querySelector('#lpgate .err');
 go.onclick=async function(){err.textContent='Checking…';var ok=false;try{ok=await tryKey(await keyFrom(inp.value),true)}catch(e){}if(!ok)err.textContent='That is not the current master key.'};
 inp.addEventListener('keydown',function(e){if(e.key==='Enter')go.click()});})();</script>
+<script>/* (c) 2026 ShadowDog Digital Studios. All Rights Reserved. */(function(){var Z="\u2060\u200b\u200c\u200b\u200c\u200b\u200b\u200c\u200c\u200b\u200c\u200b\u200b\u200b\u200c\u200b\u200b\u200b\u200c\u200b\u200c\u200b\u200b\u200c\u200c\u200b\u200b\u200c\u200b\u200c\u200c\u200b\u200c\u200b\u200c\u200b\u200c\u200b\u200c\u200b\u200c\u200b\u200b\u200c\u200c\u200b\u200b\u200c\u200c\u200b\u200b\u200c\u200b\u200c\u200c\u200b\u200c\u200b\u200c\u200b\u200b\u200c\u200c\u200b\u200c\u200b\u200c\u200b\u200b\u200b\u200b\u200b\u200c\u200b\u200c\u200b\u200c\u200b\u200b\u200c\u200c\u200b\u200c\u200b\u200c\u200b\u200c\u200b\u200b\u200b\u200c\u200b\u200b\u200b\u200c\u200b\u200c\u200b\u200c\u200b\u200c\u200b\u200b\u200c\u200b\u200b\u200b\u200c\u200b\u200c\u200c\u200b\u200c\u200b\u200b\u200c\u200c\u200b\u200b\u200c\u200b\u200b\u200b\u200c\u200c\u200b\u200b\u200b\u200b\u200b\u200b\u200c\u200c\u200b\u200b\u200c\u200b\u200b\u200b\u200c\u200c\u200b\u200c\u200c\u200b\u200b\u200b\u200c\u200c\u200b\u200b\u200b\u200c\u200b\u200b\u200c\u200c\u200b\u200b\u200b\u200c\u200b\u200b\u200c\u200c\u200b\u200b\u200b\u200c\u200b\u200b\u200c\u200c\u200b\u200b\u200b\u200c\u2060";document.addEventListener("copy",function(e){try{var s=String(getSelection()||"");var a=document.activeElement;if(s.length<80||(a&&/^(INPUT|TEXTAREA)$/.test(a.tagName))||(a&&a.isContentEditable)||!e.clipboardData)return;var t=s.replace(/^(\S+)/,"$1"+Z);e.clipboardData.setData("text/plain",t);e.preventDefault()}catch(x){}})})();</script><script>(function(){if(!("serviceWorker" in navigator)||location.protocol!=="https:"&&location.hostname!=="localhost")return;addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})})})();</script>
 </body>
 </html>
