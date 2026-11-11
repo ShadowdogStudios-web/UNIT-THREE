@@ -427,6 +427,16 @@ blockquote.src cite{display:block;margin-top:8px;font:400 14px var(--sans);color
 @keyframes bk-cover-in{0%,46%{background:#233A2E;box-shadow:inset 6px 0 10px rgba(0,0,0,.35)}47%,100%{background:#EDE6D3;box-shadow:inset -10px 0 14px rgba(0,0,0,.18)}}
 @keyframes bk-face-off{0%,46%{opacity:1}47%,100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){.book3d .cover{transition:none}.book3d.opening .cover,.book3d.opening .cover>*{animation:none}}
+/* tiles lift on hover */
+.card{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;overflow:hidden}
+.card img{transition:transform .35s ease}
+.card:hover,.card:focus-visible{transform:translateY(-5px);border-color:var(--line2);box-shadow:0 16px 30px -16px rgba(30,38,32,.42),0 3px 8px -3px rgba(30,38,32,.14)}
+.card:hover img,.card:focus-visible img{transform:scale(1.035)}
+.ill-link{transition:transform .18s ease,box-shadow .18s ease}
+.ill-link:hover,.ill-link:focus-visible{transform:translateY(-3px);box-shadow:0 12px 22px -14px rgba(30,38,32,.4)}
+.film-card{transition:transform .18s ease,box-shadow .18s ease}
+.film-card:hover,.film-card:focus-visible{transform:translateY(-5px);box-shadow:0 18px 30px -16px rgba(0,0,0,.6)}
+@media (prefers-reduced-motion:reduce){.card,.card img,.ill-link,.film-card{transition:none}.card:hover,.card:hover img,.ill-link:hover,.film-card:hover{transform:none}}
 
 .book3d .mosaic{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;flex:1;opacity:.55;filter:grayscale(.3)}
 .book3d .mosaic span{background-size:cover;background-position:center}
