@@ -420,6 +420,14 @@ blockquote.src cite{display:block;margin-top:8px;font:400 14px var(--sans);color
 .book3d .spine{position:absolute;left:0;top:0;width:36px;height:100%;background:linear-gradient(90deg,#16251c,#2F5E46);transform-origin:left;transform:rotateY(90deg) translateX(-36px)}
 .book3d .cover{position:absolute;inset:0;transform-origin:left center;transition:transform .9s cubic-bezier(.4,.1,.2,1);background:#233A2E;border-radius:2px 6px 6px 2px;overflow:hidden;box-shadow:inset 6px 0 10px rgba(0,0,0,.35);display:flex;flex-direction:column}
 .book3d.opening .cover{transform:rotateY(-155deg)}
+/* book opening: show the inside of the cover and a clean first page, not the mirrored front */
+.book3d .pages{background:linear-gradient(90deg,rgba(0,0,0,.10) 0,rgba(0,0,0,0) 7%),repeating-linear-gradient(180deg,transparent 0 46px,rgba(60,50,30,.05) 46px 47px) 0 30px/100% calc(100% - 60px) no-repeat,#FBF9F2;box-shadow:0 18px 40px rgba(30,38,32,.28),inset -7px 0 0 #fff,inset -8px 0 0 #E4DFD2,inset -10px 0 0 #fff,inset -11px 0 0 #E4DFD2}
+.book3d.opening .cover{animation:bk-cover-in .9s cubic-bezier(.4,.1,.2,1) forwards}
+.book3d.opening .cover>*{animation:bk-face-off .9s linear forwards}
+@keyframes bk-cover-in{0%,46%{background:#233A2E;box-shadow:inset 6px 0 10px rgba(0,0,0,.35)}47%,100%{background:#EDE6D3;box-shadow:inset -10px 0 14px rgba(0,0,0,.18)}}
+@keyframes bk-face-off{0%,46%{opacity:1}47%,100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.book3d .cover{transition:none}.book3d.opening .cover,.book3d.opening .cover>*{animation:none}}
+
 .book3d .mosaic{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;flex:1;opacity:.55;filter:grayscale(.3)}
 .book3d .mosaic span{background-size:cover;background-position:center}
 .book3d .cv-title{position:absolute;left:0;right:0;bottom:0;padding:16px 16px 18px;background:linear-gradient(transparent,rgba(20,32,25,.95) 30%);color:#fff;text-align:left}
