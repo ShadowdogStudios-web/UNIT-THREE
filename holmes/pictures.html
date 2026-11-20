@@ -1556,7 +1556,7 @@ var SYN=window.speechSynthesis;
 function lang(){return (document.documentElement.lang||'en').slice(0,2)}
 function slides(){return [].slice.call(document.querySelectorAll('.slides .slide'))}
 function idx(){return slides().findIndex(function(s){return s.classList.contains('on')})}
-var SEL='h1,h2,.cover-sub,.dq span,.dq p,.lede,.od-flow>p,.sl-text>p:not(.lede),.hh-cap p,.od-why .kicker,.od-why p,.hh-list li,.hh-layers li,.hh-tl li,.hh-card>p:first-child,.box>.kicker,.box>p,.listen-for li,.hh-quote p';
+var SEL='.pw-step p,h1,h2,.cover-sub,.dq span,.dq p,.lede,.od-flow>p,.sl-text>p:not(.lede),.hh-cap p,.od-why .kicker,.od-why p,.hh-list li,.hh-layers li,.hh-tl li,.hh-card>p:first-child,.box>.kicker,.box>p,.listen-for li,.hh-quote p';
 function blocks(s){return [].slice.call(s.querySelectorAll(SEL)).filter(function(b){return !b.closest('figcaption,.credit,.hh-why,.hh-mapnote,button,label,[hidden],.cover-credit,.hh-picslink')&&b.textContent.trim()})}
 /* words: {r:Range,b:blockIndex,t:text} */
 function words(list){var out=[];list.forEach(function(b,bi){var w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT),n;
